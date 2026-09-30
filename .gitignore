@@ -1,0 +1,29 @@
+# secrets — never commit AWS credentials
+.env
+*.pem
+*.key
+config.local.*
+.aws/
+
+# Java / Maven
+target/
+*.class
+*.jar
+
+# Python harness
+__pycache__/
+*.py[cod]
+.venv/
+
+# runtime data
+data/local/
+*.db
+*.sqlite3
+trace.jsonl
+.kuma/
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
