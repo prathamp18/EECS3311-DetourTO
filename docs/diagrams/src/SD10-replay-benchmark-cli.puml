@@ -1,0 +1,56 @@
+@startuml SD10-replay-benchmark-cli
+!include _seq.iuml
+title SD10 — Replay Disruption Scenario and Benchmark via CLI (F12 / UC14, UC02)
+
+actor ":Evaluator" as E
+participant "__:DetourCli__" as CLI
+participant "__:TripController__" as TC
+participant "__:BenchmarkRunner__" as BR
+participant "__rf:ReplayRealtimeFeed__" as RF
+participant "__as:AlertService__" as AS
+participant "__:TripRequestAgent__" as AG
+participant "__:JourneyPlanner__" as JP
+participant "__:EventBus__" as EB
+participant "__:TraceLogger__" as TL
+participant "__:JsonResultWriter__" as JW
+
+E -> CLI : detour replay scenarios/line1-closure.json --json
+activate CLI
+CLI -> TC : runReplay(s)
+activate TC
+TC -> BR : run(s)
+activate BR
+BR -> RF ** : <<create>>(s)
+BR -> AS ** : <<create>>(rf, interpreter)
+BR -> AS : currentDisruptions()
+activate AS
+AS -> RF : alerts()
+RF --> AS : s.alerts
+AS --> BR : List<Disruption>
+deactivate AS
+BR -> AG : run(req: s.request at s.at)
+activate AG
+loop each LLM call, tool call and validation
+  AG -> EB : publish(AGENT_STEP)
+  EB -> TL : onEvent(e)
+end
+note right of TL : one JSON line per LLM call,\ntool call and validation result\n-> trace.jsonl (KUMA evidence)
+AG --> BR : AgentResult(TripQuery)
+deactivate AG
+BR -> JP : plan(q, ds, FASTEST)
+JP --> BR : List<Itinerary>
+BR -> JP : plan(q, emptyList, FASTEST)
+JP --> BR : baseline List<Itinerary>
+BR -> BR : compare closed stops with\ns.expectedClosedStopIds,\narrival delay vs baseline
+BR --> TC : BenchmarkReport
+deactivate BR
+TC --> CLI : BenchmarkReport
+deactivate TC
+alt --json flag
+  CLI -> JW : write(report, System.out)
+else human-readable
+  CLI --> E : table: feasible, delay, grounding violations, LLM calls, latency
+end
+CLI --> E : exit code 0 (1 if scenario file invalid)
+deactivate CLI
+@enduml

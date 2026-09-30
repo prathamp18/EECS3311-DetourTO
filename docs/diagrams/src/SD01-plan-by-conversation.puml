@@ -1,0 +1,80 @@
+@startuml SD01-plan-by-conversation
+!include _seq.iuml
+title SD01 — Plan Trip by Conversation (F01, F02, F06 / UC02, UC16, UC17, UC18)
+
+actor ":Rider" as R
+participant "__:TripPlannerPanel__" as UI
+participant "__:TripController__" as TC
+participant "__:TripRequestAgent__" as AG
+participant "__llm:BedrockClaudeAdapter__" as LLM
+participant "__:ToolRegistry__" as REG
+participant "__:FindStopTool__" as FST
+participant "__:PlanJourneyTool__" as PJT
+participant "__:JourneyPlanner__" as JP
+participant "__:ResponseParser__" as RP
+participant "__:GroundingValidator__" as GV
+participant "__:EventBus__" as EB
+participant "Amazon Bedrock\n<<external>>" as BR
+
+R -> UI : onSendClicked()\n"York U by 10, no streetcars"
+activate UI
+UI -> TC : planFromText(text, now)
+activate TC
+TC -> AG : run(req: AgentRequest)
+activate AG
+AG -> AG : buildMessages(req)
+loop response has tool calls and round < maxToolRounds
+  AG -> LLM : complete(msgs, tools, systemPrompt())
+  activate LLM
+  LLM -> BR : converse(ConverseRequest)
+  BR --> LLM : ConverseResponse(toolUse)
+  LLM --> AG : LLMResponse(toolCalls)
+  deactivate LLM
+  AG -> REG : execute(call, ctx)
+  activate REG
+  alt call.toolName == "find_stop"
+    REG -> FST : execute(call, ctx)
+    activate FST
+    FST --> REG : ToolResult(List<Stop>)
+    deactivate FST
+    REG --> AG : ToolResult
+  else call.toolName == "plan_journey"
+    REG -> PJT : execute(call, ctx)
+    activate PJT
+    PJT -> JP : plan(q, ds, strategy)
+    JP --> PJT : List<Itinerary>
+    PJT --> REG : ToolResult(summary)
+    deactivate PJT
+    REG --> AG : ToolResult
+  else unknown tool or bad arguments
+    REG --> AG : ToolResult(ok=false, error)
+  end
+  deactivate REG
+  AG -> EB : publish(AGENT_STEP)
+end
+AG -> RP : toTripQuery(json, resolver)
+RP --> AG : TripQuery
+AG -> GV : validateQuery(q)
+GV --> AG : ValidationReport
+alt report.valid
+  AG --> TC : AgentResult(success, TripQuery)
+else ambiguous place (UC17 extends UC02)
+  AG --> TC : AgentResult(ClarificationRequest)
+  TC --> UI : PlanResult(clarification)
+  UI --> R : "York University Stn or York Mills Stn?"
+else invalid after one retry, or LLM timeout
+  AG --> TC : AgentResult(success=false, errors)
+  TC --> UI : PlanResult(message: use the form instead)
+end
+deactivate AG
+TC -> JP : plan(q, disruptions, strategies.get(q.strategyKind))
+activate JP
+JP --> TC : List<Itinerary>
+deactivate JP
+note right of TC : Options shown to the rider always\ncome from JourneyPlanner, never\nfrom model text.
+TC -> EB : publish(ITINERARY_UPDATED)
+TC --> UI : PlanResult(options)
+deactivate TC
+UI --> R : ranked options on list and map
+deactivate UI
+@enduml

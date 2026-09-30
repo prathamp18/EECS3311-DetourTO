@@ -1,0 +1,21 @@
+@startuml class-infrastructure
+!include _style.iuml
+title Class Diagram — Infrastructure Layer (feeds, decorators, loaders, repositories)
+!include model.iuml
+remove *
+restore $infra
+restore TransitNetwork
+restore ServiceAlert
+restore RealtimeSnapshot
+restore Arrival
+restore RiderProfile
+restore Commute
+restore ReplayScenario
+hide TransitNetwork members
+hide ServiceAlert members
+hide RealtimeSnapshot members
+hide Arrival members
+hide RiderProfile members
+hide Commute members
+hide ReplayScenario members
+@enduml

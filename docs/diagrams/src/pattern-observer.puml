@@ -1,0 +1,23 @@
+@startuml pattern-observer
+!include _style.iuml
+title Observer — EventBus and EventListener
+!include model.iuml
+remove *
+restore EventBus
+restore EventListener
+restore TransitEvent
+restore EventType
+restore BasePanel
+restore ConsoleNotifier
+restore TraceLogger
+restore AlertService
+restore TripMonitorService
+restore CommuteScheduler
+restore TransitAgent
+hide AlertService members
+hide TripMonitorService members
+hide CommuteScheduler members
+hide TransitAgent members
+note "Subject: EventBus.publish() notifies every\nsubscribed listener. Publishers (AlertService,\nTripMonitorService, agents) never reference\nthe GUI, the console or the trace file." as N1
+N1 .. EventBus
+@enduml

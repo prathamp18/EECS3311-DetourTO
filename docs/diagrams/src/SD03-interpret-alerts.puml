@@ -1,0 +1,75 @@
+@startuml SD03-interpret-alerts
+!include _seq.iuml
+title SD03 — View and Interpret Service Alerts (F04 / UC05, UC19, UC18)
+
+actor ":Rider" as R
+participant "__:AlertsPanel__" as UI
+participant "__:TripController__" as TC
+participant "__:AlertService__" as AS
+participant "__:CachingRealtimeFeed__" as CF
+participant "__:ResilientRealtimeFeed__" as RF
+participant "__:CircuitBreaker__" as CB
+participant "__:GtfsRealtimeAdapter__" as AD
+participant "__:AlertInterpreterAgent__" as AG
+participant "__:GroundingValidator__" as GV
+participant "__:EventBus__" as EB
+participant "TTC GTFS-RT feed\n<<external>>" as TTC
+
+R -> UI : onRefreshClicked()
+activate UI
+UI -> TC : getAlerts()
+activate TC
+TC -> AS : currentDisruptions()
+activate AS
+AS -> CF : alerts()
+activate CF
+alt cached copy younger than ttl
+  CF --> AS : cachedAlerts
+else cache expired
+  CF -> RF : alerts()
+  activate RF
+  RF -> CB : allowRequest()
+  CB --> RF : boolean
+  alt breaker CLOSED or HALF_OPEN
+    RF -> AD : alerts()
+    activate AD
+    AD -> TTC : GET /gtfsrt/alerts
+    TTC --> AD : protobuf bytes
+    AD -> AD : fetch(path) / toServiceAlert(e)
+    AD --> RF : List<ServiceAlert>
+    deactivate AD
+    RF -> CB : recordSuccess()
+  else breaker OPEN (feed failed 3 times)
+    RF --> CF : last good alerts, marked stale
+  end
+  RF --> CF : List<ServiceAlert>
+  deactivate RF
+  CF --> AS : List<ServiceAlert>
+end
+deactivate CF
+loop each alert not already in cache
+  alt informed route and stop ids are enough
+    AS -> AS : fromStructuredFields(a)
+  else free-text only (typical for subway alerts)
+    AS -> AG : run(req with a.header, a.description)
+    activate AG
+    note right of AG : Template Method loop as in SD01:\nLLM call, parseFinal() -> Disruption
+    AG -> GV : validateDisruption(d)
+    GV --> AG : ValidationReport
+    alt stop and route ids exist in TransitNetwork
+      AG --> AS : AgentResult(Disruption, llmDerived = true)
+    else hallucinated station or malformed JSON
+      AG --> AS : AgentResult(success = false)
+      AS -> AS : keep Disruption(kind = UNKNOWN, confidence = 0)
+    end
+    deactivate AG
+  end
+end
+AS -> EB : publish(ALERTS_UPDATED)
+AS --> TC : List<Disruption>
+deactivate AS
+TC --> UI : List<Disruption>
+deactivate TC
+UI --> R : alert table (plain summary, affected stops, source text)
+deactivate UI
+@enduml

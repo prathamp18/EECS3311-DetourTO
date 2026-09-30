@@ -1,0 +1,10 @@
+@startuml class-presentation
+!include _style.iuml
+title Class Diagram — Presentation Layer (JavaFX GUI and picocli CLI)
+!include model.iuml
+remove *
+restore $pres
+restore TripController
+restore EventListener
+hide TripController members
+@enduml

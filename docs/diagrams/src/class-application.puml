@@ -1,0 +1,39 @@
+@startuml class-application
+!include _style.iuml
+title Class Diagram — Application Layer (facade, events, commands, trip monitoring)
+!include model.iuml
+remove *
+restore $app
+restore JourneyPlanner
+restore RouteScoringStrategy
+restore TripRequestAgent
+restore ExplanationAgent
+restore PreferenceExtractorAgent
+restore AlertInterpreterAgent
+restore ServiceAlert
+restore Disruption
+restore ProfileRepository
+restore CommuteRepository
+restore RealtimeFeed
+restore Itinerary
+restore TripQuery
+restore ReplayRealtimeFeed
+restore BenchmarkReport
+restore ConversationHistory
+hide JourneyPlanner members
+hide RouteScoringStrategy members
+hide TripRequestAgent members
+hide ExplanationAgent members
+hide PreferenceExtractorAgent members
+hide AlertInterpreterAgent members
+hide ServiceAlert members
+hide Disruption members
+hide ProfileRepository members
+hide CommuteRepository members
+hide RealtimeFeed members
+hide Itinerary members
+hide TripQuery members
+hide ReplayRealtimeFeed members
+hide BenchmarkReport members
+hide ConversationHistory members
+@enduml

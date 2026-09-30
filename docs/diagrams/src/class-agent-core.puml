@@ -1,0 +1,23 @@
+@startuml class-agent-core
+!include _style.iuml
+title Class Diagram — Agent Layer (agents, LLM adapter, parsing and validation)
+!include model.iuml
+remove *
+restore $agent
+remove Tool
+remove FindStopTool
+remove PlanJourneyTool
+remove GetAlertsTool
+remove GetArrivalsTool
+remove GetProfileTool
+remove ToolResult
+remove ToolSpec
+hide EventBus members
+hide AppConfig members
+hide RiderProfile members
+hide TransitNetwork members
+restore EventBus
+restore AppConfig
+restore RiderProfile
+restore TransitNetwork
+@enduml

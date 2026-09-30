@@ -1,0 +1,18 @@
+@startuml pattern-state
+!include _style.iuml
+title State — ActiveTrip and TripState
+!include model.iuml
+remove *
+restore ActiveTrip
+restore TripState
+restore PlannedState
+restore OnTrackState
+restore AtRiskState
+restore ReroutedState
+restore CompletedState
+restore TripMonitorService
+restore Itinerary
+hide Itinerary members
+note "Context: ActiveTrip.update() delegates to\nstate.handle(), which may call setState().\nPlanned -> OnTrack -> AtRisk -> Rerouted\n-> Completed" as N1
+N1 .. ActiveTrip
+@enduml

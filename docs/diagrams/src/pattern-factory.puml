@@ -1,0 +1,21 @@
+@startuml pattern-factory
+!include _style.iuml
+title Factory — LLMClientFactory and QueryCommandFactory
+!include model.iuml
+remove *
+restore LLMClientFactory
+restore LLMClient
+restore BedrockClaudeAdapter
+restore ScriptedLLMClient
+restore AppConfig
+restore QueryCommandFactory
+restore QueryCommand
+restore FollowUpIntent
+hide AppConfig members
+hide FollowUpIntent members
+hide BedrockClaudeAdapter members
+hide ScriptedLLMClient members
+hide QueryCommand members
+hide LLMClient members
+note "Callers ask for an interface type;\nthe factory decides which concrete\nclass to instantiate." as N1
+@enduml

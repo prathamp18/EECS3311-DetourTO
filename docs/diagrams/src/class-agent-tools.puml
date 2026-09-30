@@ -1,0 +1,30 @@
+@startuml class-agent-tools
+!include _style.iuml
+title Class Diagram — Agent Tools (what the LLM is allowed to call)
+!include model.iuml
+remove *
+restore TransitAgent
+restore ToolRegistry
+restore Tool
+restore FindStopTool
+restore PlanJourneyTool
+restore GetAlertsTool
+restore GetArrivalsTool
+restore GetProfileTool
+restore ToolResult
+restore ToolSpec
+restore ToolCall
+restore AgentContext
+restore PlaceResolver
+restore JourneyPlanner
+restore AlertService
+restore RealtimeFeed
+restore ProfileRepository
+hide TransitAgent members
+hide AgentContext members
+hide PlaceResolver members
+hide JourneyPlanner members
+hide AlertService members
+hide RealtimeFeed members
+hide ProfileRepository members
+@enduml

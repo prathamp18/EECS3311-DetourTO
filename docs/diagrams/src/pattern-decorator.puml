@@ -1,0 +1,14 @@
+@startuml pattern-decorator
+!include _style.iuml
+title Decorator — RealtimeFeedDecorator
+!include model.iuml
+remove *
+restore RealtimeFeed
+restore GtfsRealtimeAdapter
+restore RealtimeFeedDecorator
+restore CachingRealtimeFeed
+restore ResilientRealtimeFeed
+restore CircuitBreaker
+note "Runtime chain built once at startup:\nnew CachingRealtimeFeed(\n  new ResilientRealtimeFeed(\n    new GtfsRealtimeAdapter(url)))" as N1
+N1 .. RealtimeFeedDecorator
+@enduml

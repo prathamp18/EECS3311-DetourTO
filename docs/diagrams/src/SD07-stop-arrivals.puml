@@ -1,0 +1,47 @@
+@startuml SD07-stop-arrivals
+!include _seq.iuml
+title SD07 — View Stop Arrivals (F08 / UC09)
+
+actor ":Rider" as R
+participant "__:ArrivalsPanel__" as UI
+participant "__:TripController__" as TC
+participant "__:PlaceResolver__" as PR
+participant "__feed:CachingRealtimeFeed__" as CF
+participant "__:GtfsRealtimeAdapter__" as AD
+participant "__:JourneyPlanner__" as JP
+participant "TTC GTFS-RT feed\n<<external>>" as TTC
+
+R -> UI : onStopSearched("Spadina")
+activate UI
+UI -> TC : getArrivals("Spadina")
+activate TC
+TC -> PR : resolve("Spadina")
+activate PR
+PR -> PR : similarity(text, stop.name)
+PR --> TC : List<Stop>
+deactivate PR
+alt several candidate stops
+  TC --> UI : empty list + candidates
+  UI --> R : "Spadina Stn, Spadina Ave / King, ...?"
+else one stop resolved
+  alt surface stop (bus or streetcar)
+    TC -> CF : arrivals(stopId)
+    activate CF
+    CF -> AD : arrivals(stopId)
+    activate AD
+    AD -> TTC : GET /gtfsrt/trips
+    TTC --> AD : protobuf bytes
+    AD --> CF : List<Arrival> (with delaySeconds)
+    deactivate AD
+    CF --> TC : List<Arrival>
+    deactivate CF
+  else subway platform (TTC publishes no subway real-time)
+    TC -> JP : scheduledDepartures(stopId, now, 6)
+    JP --> TC : List<Arrival> (scheduled)
+  end
+  TC --> UI : List<Arrival>
+  UI --> R : next vehicles, predicted time, delay
+end
+deactivate TC
+deactivate UI
+@enduml

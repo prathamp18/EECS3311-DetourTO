@@ -1,0 +1,16 @@
+@startuml pattern-strategy
+!include _style.iuml
+title Strategy — RouteScoringStrategy
+!include model.iuml
+remove *
+restore JourneyPlanner
+restore RouteScoringStrategy
+restore FastestStrategy
+restore FewestTransfersStrategy
+restore LeastWalkingStrategy
+restore AccessibleStrategy
+restore TripController
+hide TripController members
+note "Context: JourneyPlanner calls admissible()\nand score() without knowing which\nconcrete strategy the rider selected." as N1
+N1 .. JourneyPlanner
+@enduml

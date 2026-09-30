@@ -1,0 +1,49 @@
+' Shared style: plain UML notation as used in the EECS 3311 lecture slides
+skinparam style strictuml
+skinparam shadowing false
+skinparam roundcorner 0
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor white
+  BorderColor black
+  ArrowColor black
+  StereotypeFontSize 11
+}
+skinparam note {
+  BackgroundColor #FFFFF0
+  BorderColor #777777
+}
+skinparam package {
+  BackgroundColor white
+  BorderColor #555555
+}
+skinparam usecase {
+  BackgroundColor white
+  BorderColor black
+  ArrowColor black
+}
+skinparam actor {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam rectangle {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam sequence {
+  ArrowColor black
+  LifeLineBorderColor black
+  LifeLineBackgroundColor white
+  ParticipantBackgroundColor white
+  ParticipantBorderColor black
+  ActorBackgroundColor white
+  ActorBorderColor black
+  GroupBorderColor black
+  GroupBackgroundColor white
+}
+skinparam sequenceMessageAlign center
+skinparam ParticipantPadding 10
+hide circle

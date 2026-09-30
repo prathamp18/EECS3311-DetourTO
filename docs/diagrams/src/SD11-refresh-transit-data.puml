@@ -1,0 +1,47 @@
+@startuml SD11-refresh-transit-data
+!include _seq.iuml
+title SD11 — Refresh Transit Data (F13 / UC15)
+
+actor ":Evaluator" as E
+participant "__:DetourCli__" as CLI
+participant "__:TripController__" as TC
+participant "__:OpenDataDownloader__" as DL
+participant "__:GtfsStaticLoader__" as LD
+participant "__fresh:TransitNetwork__" as NEW
+participant "__live:TransitNetwork__" as LIVE
+participant "City of Toronto\nOpen Data <<external>>" as OD
+
+E -> CLI : detour refresh-data
+activate CLI
+CLI -> TC : refreshTransitData()
+activate TC
+TC -> DL : download(dataDir)
+activate DL
+DL -> OD : GET TTC Routes and Schedules (GTFS zip)
+alt download ok
+  OD --> DL : zip
+  DL --> TC : Path zip
+  deactivate DL
+  TC -> LD : load(zip)
+  activate LD
+  LD -> NEW ** : <<create>>
+  LD --> TC : fresh
+  TC -> LD : validate(fresh)
+  LD --> TC : FeedValidationReport
+  deactivate LD
+  alt report.ok (stops, trips, calendar consistent)
+    TC -> LIVE : replaceWith(fresh)
+    note right of LIVE : every holder (planner, resolver,\nvalidator) keeps the same reference
+  else validation failed
+    TC -> TC : keep current network
+  end
+else network error
+  DL --> TC : IOException
+  deactivate DL
+  TC -> TC : keep current network,\nreport(ok = false)
+end
+TC --> CLI : FeedValidationReport
+deactivate TC
+CLI --> E : "Loaded N stops, M trips, K warnings"
+deactivate CLI
+@enduml

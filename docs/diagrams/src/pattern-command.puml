@@ -1,0 +1,18 @@
+@startuml pattern-command
+!include _style.iuml
+title Command — QueryCommand and CommandHistory
+!include model.iuml
+remove *
+restore QueryCommand
+restore ChangeDepartureCommand
+restore AvoidRouteCommand
+restore ChangeStrategyCommand
+restore ChangeDestinationCommand
+restore CommandHistory
+restore QueryCommandFactory
+restore TripQuery
+restore TripController
+hide TripController members
+note "Client: TripController asks the factory for a\ncommand built from the agent's FollowUpIntent.\nInvoker: CommandHistory (undo / redo stacks).\nReceiver: TripQuery." as N1
+N1 .. CommandHistory
+@enduml
