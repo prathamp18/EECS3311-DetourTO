@@ -1,0 +1,1046 @@
+' ==========================================================================
+' DetourTO — the single class model. Every class-diagram view in docs/
+' is produced from this file by `remove *` + `restore $tag`, so the
+' views cannot disagree with each other.
+'   $pres   presentation (JavaFX GUI + picocli CLI)
+'   $app    application (facade, events, commands, trip monitoring)
+'   $agent  agent (LLM agents, tools, adapters, validation)
+'   $domain domain (transit network, planner, strategies, itineraries)
+'   $infra  infrastructure (feeds, decorators, loaders, repositories)
+' ==========================================================================
+
+' ------------------------------ PRESENTATION ------------------------------
+class MainWindow $pres <<JavaFX Application>> {
+  - controller : TripController
+  - panels : List<BasePanel>
+  + start(stage: Stage)
+  + {static} main(args: String[])
+}
+
+abstract class BasePanel $pres <<Observer>> {
+  # controller : TripController
+  + onEvent(e: TransitEvent)
+  + {abstract} render()
+  # runOnFxThread(task: Runnable)
+}
+
+class TripPlannerPanel $pres {
+  - chatInput : TextField
+  - optionsList : ListView<Itinerary>
+  - strategyBox : ComboBox<StrategyKind>
+  + onSendClicked()
+  + onPlanFormSubmitted()
+  + onStrategyChanged(kind: StrategyKind)
+  + onUndoClicked()
+  + onRedoClicked()
+  + onExplainClicked()
+  + onStartTripClicked()
+  + onAcceptRerouteClicked()
+  + render()
+}
+
+class MapPanel $pres {
+  - webView : WebView
+  + drawItinerary(i: Itinerary)
+  + highlightDisruption(d: Disruption)
+  + render()
+}
+
+class AlertsPanel $pres {
+  - alertTable : TableView<Disruption>
+  + onRefreshClicked()
+  + onRerouteClicked(d: Disruption)
+  + render()
+}
+
+class ArrivalsPanel $pres {
+  - stopField : TextField
+  + onStopSearched(query: String)
+  + render()
+}
+
+class CommutePanel $pres {
+  - commuteForm : GridPane
+  + onSaveCommuteClicked()
+  + onSavePlaceClicked()
+  + render()
+}
+
+class BenchmarkPanel $pres {
+  - resultsTable : TableView<BenchmarkReport>
+  + onRunReplayClicked(file: Path)
+  + render()
+}
+
+class DetourCli $pres <<picocli>> {
+  - controller : TripController
+  - json : boolean
+  + plan(request: String, at: LocalDateTime): int
+  + alerts(): int
+  + arrivals(stop: String): int
+  + monitor(itineraryId: String): int
+  + commute(action: String, name: String): int
+  + places(action: String, label: String, stop: String): int
+  + replay(scenarioFile: Path): int
+  + refreshData(): int
+  + {static} main(args: String[])
+}
+
+class ConsoleNotifier $pres <<Observer>> {
+  - out : PrintStream
+  + onEvent(e: TransitEvent)
+}
+
+class JsonResultWriter $pres {
+  + write(result: Object, out: PrintStream)
+}
+
+' ------------------------------ APPLICATION -------------------------------
+class TripController $app <<Facade>> {
+  - planner : JourneyPlanner
+  - places : PlaceResolver
+  - strategies : Map<StrategyKind, RouteScoringStrategy>
+  - tripAgent : TripRequestAgent
+  - explainAgent : ExplanationAgent
+  - preferenceAgent : PreferenceExtractorAgent
+  - alertService : AlertService
+  - monitor : TripMonitorService
+  - commuteScheduler : CommuteScheduler
+  - profiles : ProfileRepository
+  - history : CommandHistory
+  - commandFactory : QueryCommandFactory
+  - eventBus : EventBus
+  - session : ConversationSession
+  + planFromText(text: String, at: LocalDateTime): PlanResult
+  + planFromForm(q: TripQuery): PlanResult
+  + setStrategy(kind: StrategyKind): PlanResult
+  + followUp(text: String): PlanResult
+  + undo(): PlanResult
+  + redo(): PlanResult
+  + explain(): Explanation
+  + getAlerts(): List<Disruption>
+  + rerouteAround(d: Disruption): PlanResult
+  + startTrip(itineraryId: String): ActiveTrip
+  + acceptReroute(tripId: String): PlanResult
+  + getArrivals(stopQuery: String): List<Arrival>
+  + savePlace(label: String, stopQuery: String)
+  + saveCommute(c: Commute)
+  + runReplay(s: ReplayScenario): BenchmarkReport
+  + refreshTransitData(): FeedValidationReport
+}
+
+class PlanResult $app {
+  - query : TripQuery
+  - options : List<Itinerary>
+  - clarification : ClarificationRequest [0..1]
+  - disruptionsApplied : List<Disruption>
+  - message : String
+}
+
+class ConversationSession $app {
+  - conversation : ConversationHistory
+  - currentQuery : TripQuery [0..1]
+  - lastOptions : List<Itinerary>
+  + rememberOptions(options: List<Itinerary>)
+}
+
+class EventBus $app <<Subject>> {
+  - listeners : Map<EventType, List<EventListener>>
+  + subscribe(type: EventType, l: EventListener)
+  + unsubscribe(type: EventType, l: EventListener)
+  + publish(e: TransitEvent)
+}
+
+interface EventListener $app <<interface>> {
+  + onEvent(e: TransitEvent)
+}
+
+class TransitEvent $app {
+  - type : EventType
+  - payload : Object
+  - timestamp : Instant
+}
+
+enum EventType $app <<enumeration>> {
+  ALERTS_UPDATED
+  ITINERARY_UPDATED
+  TRIP_STATE_CHANGED
+  TRIP_AT_RISK
+  LEAVE_BY_ALERT
+  AGENT_STEP
+}
+
+class TraceLogger $app <<Observer>> {
+  - traceFile : Path
+  + onEvent(e: TransitEvent)
+}
+
+interface QueryCommand $app <<interface>> {
+  + execute()
+  + undo()
+  + describe(): String
+}
+
+class ChangeDepartureCommand $app {
+  - query : TripQuery
+  - newTime : LocalDateTime
+  - oldTime : LocalDateTime
+  + execute()
+  + undo()
+  + describe(): String
+}
+
+class AvoidRouteCommand $app {
+  - query : TripQuery
+  - routeId : String
+  + execute()
+  + undo()
+  + describe(): String
+}
+
+class ChangeStrategyCommand $app {
+  - query : TripQuery
+  - newKind : StrategyKind
+  - oldKind : StrategyKind
+  + execute()
+  + undo()
+  + describe(): String
+}
+
+class ChangeDestinationCommand $app {
+  - query : TripQuery
+  - newStop : Stop
+  - oldStop : Stop
+  + execute()
+  + undo()
+  + describe(): String
+}
+
+class CommandHistory $app <<Invoker>> {
+  - undoStack : Deque<QueryCommand>
+  - redoStack : Deque<QueryCommand>
+  + run(c: QueryCommand)
+  + undo(): boolean
+  + redo(): boolean
+  + canUndo(): boolean
+}
+
+class QueryCommandFactory $app <<Factory>> {
+  + create(intent: FollowUpIntent, q: TripQuery): QueryCommand
+}
+
+class TripMonitorService $app {
+  - trips : List<ActiveTrip>
+  - feed : RealtimeFeed
+  - alertService : AlertService
+  - eventBus : EventBus
+  - pollSeconds : int = 30
+  + start(i: Itinerary): ActiveTrip
+  + poll()
+  + applyReroute(tripId: String, i: Itinerary)
+  + stop(tripId: String)
+}
+
+class ActiveTrip $app <<Context>> {
+  - id : String
+  - itinerary : Itinerary
+  - state : TripState
+  - projectedArrival : LocalDateTime
+  + update(snap: RealtimeSnapshot, ds: List<Disruption>)
+  + setState(s: TripState)
+  + getState(): TripState
+  + replaceItinerary(i: Itinerary)
+}
+
+interface TripState $app <<interface>> {
+  + handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List<Disruption>)
+  + name(): String
+}
+
+class PlannedState $app {
+  + handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List<Disruption>)
+  + name(): String
+}
+class OnTrackState $app {
+  + handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List<Disruption>)
+  + name(): String
+}
+class AtRiskState $app {
+  + handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List<Disruption>)
+  + name(): String
+}
+class ReroutedState $app {
+  + handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List<Disruption>)
+  + name(): String
+}
+class CompletedState $app {
+  + handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List<Disruption>)
+  + name(): String
+}
+
+class CommuteScheduler $app {
+  - commutes : CommuteRepository
+  - planner : JourneyPlanner
+  - alertService : AlertService
+  - eventBus : EventBus
+  + schedule(c: Commute)
+  + checkDue(now: LocalDateTime)
+  - leaveByTime(c: Commute, ds: List<Disruption>): LocalDateTime
+}
+
+class BenchmarkRunner $app {
+  - planner : JourneyPlanner
+  - tripAgent : TripRequestAgent
+  - interpreter : AlertInterpreterAgent
+  - validator : GroundingValidator
+  + run(s: ReplayScenario): BenchmarkReport
+  + runAll(dir: Path): List<BenchmarkReport>
+}
+
+' --------------------------------- AGENT ----------------------------------
+abstract class TransitAgent $agent <<Template Method>> {
+  # llm : LLMClient
+  # tools : ToolRegistry
+  # parser : ResponseParser
+  # validator : GroundingValidator
+  # eventBus : EventBus
+  # maxToolRounds : int = 6
+  + run(req: AgentRequest): AgentResult
+  # buildMessages(req: AgentRequest): List<Message>
+  # {abstract} systemPrompt(): String
+  # {abstract} toolNames(): List<String>
+  # {abstract} parseFinal(r: LLMResponse, ctx: AgentContext): Object
+  # {abstract} validate(output: Object, ctx: AgentContext): ValidationReport
+  # onInvalid(report: ValidationReport, req: AgentRequest): AgentResult
+}
+
+class TripRequestAgent $agent {
+  # systemPrompt(): String
+  # toolNames(): List<String>
+  # parseFinal(r: LLMResponse, ctx: AgentContext): Object
+  # validate(output: Object, ctx: AgentContext): ValidationReport
+  + interpretFollowUp(text: String, ctx: AgentContext): FollowUpIntent
+}
+
+class AlertInterpreterAgent $agent {
+  # systemPrompt(): String
+  # toolNames(): List<String>
+  # parseFinal(r: LLMResponse, ctx: AgentContext): Object
+  # validate(output: Object, ctx: AgentContext): ValidationReport
+}
+
+class ExplanationAgent $agent {
+  # systemPrompt(): String
+  # toolNames(): List<String>
+  # parseFinal(r: LLMResponse, ctx: AgentContext): Object
+  # validate(output: Object, ctx: AgentContext): ValidationReport
+}
+
+class PreferenceExtractorAgent $agent {
+  # systemPrompt(): String
+  # toolNames(): List<String>
+  # parseFinal(r: LLMResponse, ctx: AgentContext): Object
+  # validate(output: Object, ctx: AgentContext): ValidationReport
+}
+
+class AgentRequest $agent {
+  - task : String
+  - userText : String
+  - context : AgentContext
+}
+
+class AgentContext $agent {
+  - now : LocalDateTime
+  - profile : RiderProfile
+  - query : TripQuery [0..1]
+  - options : List<Itinerary>
+  - disruptions : List<Disruption>
+  - conversation : ConversationHistory
+}
+
+class AgentResult $agent {
+  - success : boolean
+  - output : Object [0..1]
+  - errors : List<String>
+  - toolCallCount : int
+  - llmCallCount : int
+}
+
+interface LLMClient $agent <<interface>> {
+  + complete(msgs: List<Message>, tools: List<ToolSpec>, system: String): LLMResponse
+}
+
+class BedrockClaudeAdapter $agent <<Adapter>> {
+  - bedrock : BedrockRuntimeClient
+  - modelId : String
+  - maxTokens : int = 1024
+  + complete(msgs: List<Message>, tools: List<ToolSpec>, system: String): LLMResponse
+  - toConverseRequest(msgs: List<Message>, tools: List<ToolSpec>, system: String): ConverseRequest
+  - fromConverseResponse(r: ConverseResponse): LLMResponse
+}
+
+class BedrockRuntimeClient $agent <<Adaptee (AWS SDK)>> {
+  + converse(req: ConverseRequest): ConverseResponse
+}
+
+class ScriptedLLMClient $agent {
+  - script : Queue<LLMResponse>
+  + complete(msgs: List<Message>, tools: List<ToolSpec>, system: String): LLMResponse
+}
+
+class LLMClientFactory $agent <<Factory>> {
+  + {static} create(cfg: AppConfig): LLMClient
+}
+
+class LLMResponse $agent {
+  - text : String [0..1]
+  - toolCalls : List<ToolCall>
+  - stopReason : String
+  - inputTokens : int
+  - outputTokens : int
+}
+
+class Message $agent {
+  - role : Role
+  - content : String
+}
+
+class ToolCall $agent {
+  - id : String
+  - toolName : String
+  - arguments : Map<String, Object>
+}
+
+class ToolSpec $agent {
+  - name : String
+  - description : String
+  - inputSchema : Map<String, Object>
+}
+
+interface Tool $agent <<interface>> {
+  + spec(): ToolSpec
+  + execute(call: ToolCall, ctx: AgentContext): ToolResult
+}
+
+class FindStopTool $agent {
+  - resolver : PlaceResolver
+  + spec(): ToolSpec
+  + execute(call: ToolCall, ctx: AgentContext): ToolResult
+}
+
+class PlanJourneyTool $agent {
+  - planner : JourneyPlanner
+  + spec(): ToolSpec
+  + execute(call: ToolCall, ctx: AgentContext): ToolResult
+}
+
+class GetAlertsTool $agent {
+  - alertService : AlertService
+  + spec(): ToolSpec
+  + execute(call: ToolCall, ctx: AgentContext): ToolResult
+}
+
+class GetArrivalsTool $agent {
+  - feed : RealtimeFeed
+  + spec(): ToolSpec
+  + execute(call: ToolCall, ctx: AgentContext): ToolResult
+}
+
+class GetProfileTool $agent {
+  - profiles : ProfileRepository
+  + spec(): ToolSpec
+  + execute(call: ToolCall, ctx: AgentContext): ToolResult
+}
+
+class ToolRegistry $agent {
+  - tools : Map<String, Tool>
+  + register(t: Tool)
+  + specsFor(names: List<String>): List<ToolSpec>
+  + execute(call: ToolCall, ctx: AgentContext): ToolResult
+}
+
+class ToolResult $agent {
+  - ok : boolean
+  - data : Object [0..1]
+  - error : String [0..1]
+}
+
+class ResponseParser $agent {
+  + toTripQuery(json: String, resolver: PlaceResolver): TripQuery
+  + toClarification(json: String): ClarificationRequest
+  + toDisruption(json: String): Disruption
+  + toExplanation(json: String): Explanation
+  + toFollowUpIntent(json: String): FollowUpIntent
+  + toPreferences(json: String): List<PreferenceUpdate>
+}
+
+class GroundingValidator $agent {
+  - network : TransitNetwork
+  + validateQuery(q: TripQuery): ValidationReport
+  + validateDisruption(d: Disruption): ValidationReport
+  + validateExplanation(e: Explanation, options: List<Itinerary>): ValidationReport
+}
+
+class ValidationReport $agent {
+  - valid : boolean
+  - errors : List<String>
+}
+
+class ConversationHistory $agent {
+  - messages : List<Message>
+  - maxTurns : int = 20
+  + append(m: Message)
+  + recent(n: int): List<Message>
+}
+
+class Explanation $agent {
+  - summary : String
+  - optionNotes : Map<String, String>
+  - citedItineraryIds : List<String>
+  - citedMinutes : List<Integer>
+}
+
+class FollowUpIntent $agent {
+  - kind : IntentKind
+  - value : String
+}
+
+class ClarificationRequest $agent {
+  - question : String
+  - candidates : List<Stop>
+}
+
+class PreferenceUpdate $agent {
+  - key : String
+  - value : String
+}
+
+' --------------------------------- DOMAIN ---------------------------------
+class TransitNetwork $domain {
+  - stops : Map<String, Stop>
+  - routes : Map<String, Route>
+  - trips : Map<String, Trip>
+  - transfers : List<Transfer>
+  + stopById(id: String): Stop
+  + stopsNear(lat: double, lon: double, radiusM: int): List<Stop>
+  + withDisruptions(ds: List<Disruption>): NetworkView
+  + replaceWith(other: TransitNetwork)
+}
+
+class NetworkView $domain {
+  - base : TransitNetwork
+  - closedStopIds : Set<String>
+  - closedRouteIds : Set<String>
+  - outageStopIds : Set<String>
+  + isUsable(t: Trip, from: Stop, to: Stop): boolean
+  + isStepFree(s: Stop): boolean
+}
+
+class Stop $domain {
+  - id : String
+  - name : String
+  - lat : double
+  - lon : double
+  - wheelchairBoarding : boolean
+  - parentStation : String [0..1]
+}
+
+class Route $domain {
+  - id : String
+  - shortName : String
+  - longName : String
+  - mode : TransitMode
+}
+
+class Trip $domain {
+  - id : String
+  - serviceId : String
+  - headsign : String
+}
+
+class StopTime $domain {
+  - arrival : LocalTime
+  - departure : LocalTime
+  - sequence : int
+}
+
+class Transfer $domain {
+  - minSeconds : int
+}
+
+enum TransitMode $domain <<enumeration>> {
+  SUBWAY
+  STREETCAR
+  BUS
+  WALK
+}
+
+class JourneyPlanner $domain {
+  - network : TransitNetwork
+  - maxRounds : int = 5
+  + plan(q: TripQuery, ds: List<Disruption>, s: RouteScoringStrategy): List<Itinerary>
+  + scheduledDepartures(stopId: String, from: LocalDateTime, n: int): List<Arrival>
+  - raptorRounds(q: TripQuery, view: NetworkView, s: RouteScoringStrategy): ParetoSet
+  - reconstruct(p: ParetoSet): List<Itinerary>
+}
+
+class TripQuery $domain {
+  - origin : Stop
+  - destination : Stop
+  - departAt : LocalDateTime [0..1]
+  - arriveBy : LocalDateTime [0..1]
+  - strategyKind : StrategyKind
+  - avoidRouteIds : Set<String>
+  - maxWalkMeters : int = 800
+}
+
+enum StrategyKind $domain <<enumeration>> {
+  FASTEST
+  FEWEST_TRANSFERS
+  LEAST_WALKING
+  ACCESSIBLE
+}
+
+interface RouteScoringStrategy $domain <<interface>> {
+  + admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
+  + score(i: Itinerary): double
+  + label(): String
+}
+
+class FastestStrategy $domain {
+  + admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
+  + score(i: Itinerary): double
+  + label(): String
+}
+class FewestTransfersStrategy $domain {
+  - transferPenaltyMin : int = 10
+  + admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
+  + score(i: Itinerary): double
+  + label(): String
+}
+class LeastWalkingStrategy $domain {
+  - walkWeight : double = 3.0
+  + admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
+  + score(i: Itinerary): double
+  + label(): String
+}
+class AccessibleStrategy $domain {
+  + admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
+  + score(i: Itinerary): double
+  + label(): String
+}
+
+class Itinerary $domain {
+  - id : String
+  - legs : List<Leg>
+  + departure(): LocalDateTime
+  + arrival(): LocalDateTime
+  + durationMinutes(): int
+  + transfers(): int
+  + walkMeters(): int
+  + routeIds(): Set<String>
+}
+
+abstract class Leg $domain {
+  # from : Stop
+  # to : Stop
+  # start : LocalDateTime
+  # end : LocalDateTime
+  + {abstract} mode(): TransitMode
+  + minutes(): int
+}
+
+class RideLeg $domain {
+  - trip : Trip
+  - route : Route
+  + mode(): TransitMode
+}
+
+class WalkLeg $domain {
+  - meters : int
+  + mode(): TransitMode
+}
+
+class ServiceAlert $domain {
+  - id : String
+  - header : String
+  - description : String
+  - informedRouteIds : List<String>
+  - informedStopIds : List<String>
+  - activeFrom : Instant
+  - activeTo : Instant [0..1]
+}
+
+class Disruption $domain {
+  - id : String
+  - sourceAlertId : String
+  - kind : DisruptionKind
+  - affectedRouteIds : Set<String>
+  - closedStopIds : Set<String>
+  - start : LocalDateTime
+  - end : LocalDateTime [0..1]
+  - confidence : double
+  - llmDerived : boolean
+}
+
+enum DisruptionKind $domain <<enumeration>> {
+  CLOSURE
+  DELAY
+  DETOUR
+  ELEVATOR_OUTAGE
+  UNKNOWN
+}
+
+class AlertService $app {
+  - feed : RealtimeFeed
+  - interpreter : AlertInterpreterAgent
+  - cache : Map<String, Disruption>
+  - eventBus : EventBus
+  + currentDisruptions(): List<Disruption>
+  - fromStructuredFields(a: ServiceAlert): Disruption [0..1]
+  - interpret(a: ServiceAlert): Disruption
+}
+
+class PlaceResolver $domain {
+  - network : TransitNetwork
+  - profiles : ProfileRepository
+  + resolve(text: String): List<Stop>
+  - similarity(a: String, b: String): double
+}
+
+class RiderProfile $domain {
+  - savedPlaces : Map<String, String>
+  - defaultStrategy : StrategyKind
+  - avoidedRouteIds : Set<String>
+  - needsStepFree : boolean
+  + apply(u: PreferenceUpdate)
+}
+
+class Commute $domain {
+  - name : String
+  - origin : Stop
+  - destination : Stop
+  - arriveBy : LocalTime
+  - days : Set<DayOfWeek>
+  - warnMinutesBefore : int = 20
+}
+
+class Arrival $domain {
+  - route : Route
+  - stop : Stop
+  - predicted : LocalDateTime
+  - delaySeconds : int
+}
+
+class RealtimeSnapshot $domain {
+  - fetchedAt : Instant
+  - tripDelaySeconds : Map<String, Integer>
+  - stale : boolean
+}
+
+class ReplayScenario $domain {
+  - name : String
+  - at : LocalDateTime
+  - request : String
+  - alerts : List<ServiceAlert>
+  - expectedClosedStopIds : Set<String>
+}
+
+class BenchmarkReport $domain {
+  - scenario : String
+  - feasible : boolean
+  - arrivalDelayMinutes : int
+  - disruptionMatched : boolean
+  - groundingViolations : int
+  - llmCalls : int
+  - latencyMs : long
+}
+
+' ----------------------------- INFRASTRUCTURE -----------------------------
+interface RealtimeFeed $infra <<interface>> {
+  + alerts(): List<ServiceAlert>
+  + snapshot(): RealtimeSnapshot
+  + arrivals(stopId: String): List<Arrival>
+}
+
+class GtfsRealtimeAdapter $infra <<Adapter>> {
+  - http : HttpClient
+  - baseUrl : String
+  + alerts(): List<ServiceAlert>
+  + snapshot(): RealtimeSnapshot
+  + arrivals(stopId: String): List<Arrival>
+  - fetch(path: String): FeedMessage
+  - toServiceAlert(e: FeedEntity): ServiceAlert
+}
+
+class FeedMessage $infra <<Adaptee (gtfs-realtime-bindings)>> {
+  + getEntityList(): List<FeedEntity>
+  + {static} parseFrom(in: InputStream): FeedMessage
+}
+
+abstract class RealtimeFeedDecorator $infra <<Decorator>> {
+  # inner : RealtimeFeed
+  + alerts(): List<ServiceAlert>
+  + snapshot(): RealtimeSnapshot
+  + arrivals(stopId: String): List<Arrival>
+}
+
+class CachingRealtimeFeed $infra {
+  - ttl : Duration
+  - cachedAlerts : List<ServiceAlert>
+  - fetchedAt : Instant
+  + alerts(): List<ServiceAlert>
+  + snapshot(): RealtimeSnapshot
+}
+
+class ResilientRealtimeFeed $infra {
+  - breaker : CircuitBreaker
+  - lastGood : RealtimeSnapshot
+  + alerts(): List<ServiceAlert>
+  + snapshot(): RealtimeSnapshot
+}
+
+class ReplayRealtimeFeed $infra {
+  - scenario : ReplayScenario
+  + alerts(): List<ServiceAlert>
+  + snapshot(): RealtimeSnapshot
+  + arrivals(stopId: String): List<Arrival>
+}
+
+class CircuitBreaker $infra {
+  - status : BreakerStatus
+  - failures : int
+  - threshold : int = 3
+  - cooldown : Duration
+  - openedAt : Instant
+  + allowRequest(): boolean
+  + recordSuccess()
+  + recordFailure()
+}
+
+class GtfsStaticLoader $infra {
+  + load(zip: Path): TransitNetwork
+  + validate(net: TransitNetwork): FeedValidationReport
+}
+
+class OpenDataDownloader $infra {
+  - datasetUrl : String
+  + download(target: Path): Path
+}
+
+class FeedValidationReport $infra {
+  - stopCount : int
+  - tripCount : int
+  - warnings : List<String>
+  - ok : boolean
+}
+
+interface ProfileRepository $infra <<interface>> {
+  + load(): RiderProfile
+  + save(p: RiderProfile)
+}
+
+interface CommuteRepository $infra <<interface>> {
+  + findAll(): List<Commute>
+  + save(c: Commute)
+  + delete(name: String)
+}
+
+class SqliteProfileRepository $infra {
+  - db : Connection
+  + load(): RiderProfile
+  + save(p: RiderProfile)
+}
+
+class SqliteCommuteRepository $infra {
+  - db : Connection
+  + findAll(): List<Commute>
+  + save(c: Commute)
+  + delete(name: String)
+}
+
+class AppConfig $infra {
+  - modelId : String
+  - awsRegion : String
+  - feedBaseUrl : String
+  - traceFile : Path
+  - useScriptedLlm : boolean
+  + {static} load(path: Path): AppConfig
+}
+
+' ============================== RELATIONSHIPS ==============================
+' presentation
+MainWindow "1" *-- "6" BasePanel
+BasePanel <|-- TripPlannerPanel
+BasePanel <|-- MapPanel
+BasePanel <|-- AlertsPanel
+BasePanel <|-- ArrivalsPanel
+BasePanel <|-- CommutePanel
+BasePanel <|-- BenchmarkPanel
+EventListener <|.. BasePanel
+EventListener <|.. ConsoleNotifier
+EventListener <|.. TraceLogger
+MainWindow --> "1" TripController
+BasePanel --> "1" TripController
+DetourCli --> "1" TripController
+DetourCli ..> JsonResultWriter : <<use>>
+
+' application
+TripController o--> "1" JourneyPlanner
+TripController o--> "4" RouteScoringStrategy
+TripController o--> "1" TripRequestAgent
+TripController o--> "1" ExplanationAgent
+TripController o--> "1" PreferenceExtractorAgent
+TripController o--> "1" AlertService
+TripController o--> "1" TripMonitorService
+TripController o--> "1" CommuteScheduler
+TripController o--> "1" ProfileRepository
+TripController *--> "1" CommandHistory
+TripController o--> "1" QueryCommandFactory
+TripController o--> "1" EventBus
+TripController *--> "1" ConversationSession
+TripController ..> PlanResult : <<create>>
+TripController ..> BenchmarkRunner : <<use>>
+ConversationSession *--> "1" ConversationHistory
+EventBus o--> "0..*" EventListener
+EventBus ..> TransitEvent : <<use>>
+TransitEvent --> "1" EventType
+QueryCommand <|.. ChangeDepartureCommand
+QueryCommand <|.. AvoidRouteCommand
+QueryCommand <|.. ChangeStrategyCommand
+QueryCommand <|.. ChangeDestinationCommand
+CommandHistory o--> "0..*" QueryCommand
+QueryCommandFactory ..> QueryCommand : <<create>>
+ChangeDepartureCommand --> "1" TripQuery
+AvoidRouteCommand --> "1" TripQuery
+ChangeStrategyCommand --> "1" TripQuery
+ChangeDestinationCommand --> "1" TripQuery
+TripMonitorService "1" *--> "0..*" ActiveTrip
+TripMonitorService --> "1" RealtimeFeed
+TripMonitorService --> "1" AlertService
+ActiveTrip --> "1" TripState
+ActiveTrip --> "1" Itinerary
+TripState <|.. PlannedState
+TripState <|.. OnTrackState
+TripState <|.. AtRiskState
+TripState <|.. ReroutedState
+TripState <|.. CompletedState
+CommuteScheduler --> "1" CommuteRepository
+CommuteScheduler --> "1" JourneyPlanner
+BenchmarkRunner --> "1" TripRequestAgent
+BenchmarkRunner ..> ReplayRealtimeFeed : <<create>>
+BenchmarkRunner ..> BenchmarkReport : <<create>>
+
+' agent
+TransitAgent <|-- TripRequestAgent
+TransitAgent <|-- AlertInterpreterAgent
+TransitAgent <|-- ExplanationAgent
+TransitAgent <|-- PreferenceExtractorAgent
+TransitAgent --> "1" LLMClient
+TransitAgent --> "1" ToolRegistry
+TransitAgent --> "1" ResponseParser
+TransitAgent --> "1" GroundingValidator
+TransitAgent ..> AgentRequest : <<use>>
+TransitAgent ..> AgentResult : <<create>>
+AgentRequest *--> "1" AgentContext
+AgentContext --> "1" ConversationHistory
+AgentContext --> "1" RiderProfile
+LLMClient <|.. BedrockClaudeAdapter
+LLMClient <|.. ScriptedLLMClient
+BedrockClaudeAdapter --> "1" BedrockRuntimeClient
+LLMClientFactory ..> LLMClient : <<create>>
+LLMClientFactory ..> AppConfig : <<use>>
+LLMClient ..> LLMResponse : <<create>>
+LLMResponse *--> "0..*" ToolCall
+ConversationHistory *--> "0..*" Message
+Tool <|.. FindStopTool
+Tool <|.. PlanJourneyTool
+Tool <|.. GetAlertsTool
+Tool <|.. GetArrivalsTool
+Tool <|.. GetProfileTool
+ToolRegistry o--> "1..*" Tool
+Tool ..> ToolSpec : <<create>>
+Tool ..> ToolResult : <<create>>
+FindStopTool --> "1" PlaceResolver
+PlanJourneyTool --> "1" JourneyPlanner
+GetAlertsTool --> "1" AlertService
+GetArrivalsTool --> "1" RealtimeFeed
+GetProfileTool --> "1" ProfileRepository
+GroundingValidator --> "1" TransitNetwork
+GroundingValidator ..> ValidationReport : <<create>>
+ResponseParser ..> Explanation : <<create>>
+ResponseParser ..> FollowUpIntent : <<create>>
+ResponseParser ..> ClarificationRequest : <<create>>
+ResponseParser ..> PreferenceUpdate : <<create>>
+ResponseParser ..> Disruption : <<create>>
+
+' domain
+TransitNetwork "1" *--> "0..*" Stop
+TransitNetwork "1" *--> "0..*" Route
+TransitNetwork "1" *--> "0..*" Trip
+TransitNetwork "1" *--> "0..*" Transfer
+Trip "1" *--> "1..*" StopTime
+Trip --> "1" Route
+StopTime --> "1" Stop
+Transfer --> "2" Stop
+Route --> "1" TransitMode
+TransitNetwork ..> NetworkView : <<create>>
+NetworkView --> "1" TransitNetwork
+JourneyPlanner --> "1" TransitNetwork
+JourneyPlanner ..> RouteScoringStrategy : <<use>>
+JourneyPlanner ..> Itinerary : <<create>>
+RouteScoringStrategy <|.. FastestStrategy
+RouteScoringStrategy <|.. FewestTransfersStrategy
+RouteScoringStrategy <|.. LeastWalkingStrategy
+RouteScoringStrategy <|.. AccessibleStrategy
+TripQuery --> "2" Stop
+TripQuery --> "1" StrategyKind
+Itinerary "1" *--> "1..*" Leg
+Leg <|-- RideLeg
+Leg <|-- WalkLeg
+Leg --> "2" Stop
+RideLeg --> "1" Trip
+Disruption --> "1" DisruptionKind
+AlertService --> "1" RealtimeFeed
+AlertService --> "1" AlertInterpreterAgent
+AlertService "1" o--> "0..*" Disruption
+AlertService ..> ServiceAlert : <<use>>
+PlaceResolver --> "1" TransitNetwork
+PlaceResolver --> "1" ProfileRepository
+Commute --> "2" Stop
+ReplayScenario *--> "1..*" ServiceAlert
+
+' infrastructure
+RealtimeFeed <|.. GtfsRealtimeAdapter
+RealtimeFeed <|.. RealtimeFeedDecorator
+RealtimeFeed <|.. ReplayRealtimeFeed
+RealtimeFeedDecorator o--> "1" RealtimeFeed : inner
+RealtimeFeedDecorator <|-- CachingRealtimeFeed
+RealtimeFeedDecorator <|-- ResilientRealtimeFeed
+ResilientRealtimeFeed *--> "1" CircuitBreaker
+GtfsRealtimeAdapter ..> FeedMessage : <<use>>
+GtfsStaticLoader ..> TransitNetwork : <<create>>
+GtfsStaticLoader ..> FeedValidationReport : <<create>>
+OpenDataDownloader ..> GtfsStaticLoader : <<use>>
+ProfileRepository <|.. SqliteProfileRepository
+CommuteRepository <|.. SqliteCommuteRepository
+TripController ..> OpenDataDownloader : <<use>>
+TripController ..> GtfsStaticLoader : <<use>>
+DetourCli ..> ConsoleNotifier : <<create>>
+TransitAgent --> "1" EventBus : publishes >
+AlertService --> "1" EventBus : publishes >
+TripMonitorService --> "1" EventBus : publishes >
+CommuteScheduler --> "1" EventBus : publishes >
+CommuteScheduler --> "1" AlertService
+RealtimeFeed ..> ServiceAlert : <<create>>
+RealtimeFeed ..> RealtimeSnapshot : <<create>>
+RealtimeFeed ..> Arrival : <<create>>
+ReplayRealtimeFeed --> "1" ReplayScenario
+ProfileRepository ..> RiderProfile : <<use>>
+CommuteRepository ..> Commute : <<use>>
+QueryCommandFactory ..> FollowUpIntent : <<use>>
+BenchmarkRunner --> "1" JourneyPlanner
+TripController o--> "1" PlaceResolver
+JourneyPlanner ..> Arrival : <<create>>
+BenchmarkRunner ..> AlertService : <<create>>
+BenchmarkRunner --> "1" AlertInterpreterAgent

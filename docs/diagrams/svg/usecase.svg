@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1190" font-family="Helvetica, Arial, sans-serif">
+<rect width="1500" height="1190" fill="white"/>
+<text x="750.0" y="32.0" font-size="17" text-anchor="middle" font-weight="bold">Use Case Diagram — DetourTO</text>
+<rect x="190" y="70" width="980" height="1055" fill="none" stroke="black" stroke-width="1.4"/>
+<text x="202.0" y="92.0" font-size="14" text-anchor="start" font-weight="bold">DetourTO (JavaFX GUI and CLI)</text>
+<line x1="96" y1="470" x2="241.0" y2="120.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="190.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="260.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="470.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="330.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="400.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="548.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="630.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="700.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="770.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="470" x2="241.0" y2="905.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="250" x2="241.0" y2="400.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="960" x2="241.0" y2="1000.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="960" x2="241.0" y2="1075.0" stroke="black" stroke-width="1.1"/>
+<line x1="96" y1="1090" x2="241.0" y2="1075.0" stroke="black" stroke-width="1.1"/>
+<line x1="1314" y1="230" x2="1119.0" y2="230.0" stroke="black" stroke-width="1.1"/>
+<line x1="1314" y1="560" x2="1068.4" y2="461.4" stroke="black" stroke-width="1.1"/>
+<line x1="1314" y1="560" x2="448.9" y2="549.3" stroke="black" stroke-width="1.1"/>
+<line x1="1314" y1="560" x2="434.1" y2="687.1" stroke="black" stroke-width="1.1"/>
+<line x1="445.9" y1="196.0" x2="914.1" y2="224.0" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="903.9,228.2 914.1,224.0 904.5,218.6" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="586.4" y="199.4" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="447.2" y1="255.4" x2="912.8" y2="234.6" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="903.1,239.8 912.8,234.6 902.6,230.2" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="586.9" y="244.2" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="403.0" y1="449.2" x2="957.0" y2="250.8" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="949.3,258.6 957.0,250.8 946.1,249.6" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="524.9" y="400.6" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="399.4" y1="491.3" x2="635.6" y2="583.7" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="624.6,584.5 635.6,583.7 628.1,575.6" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="529.3" y="537.1" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="430.9" y1="344.1" x2="929.1" y2="425.9" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="918.6,429.0 929.1,425.9 920.1,419.6" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="580.4" y="363.6" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="445.9" y1="406.0" x2="914.1" y2="434.0" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="903.9,438.2 914.1,434.0 904.5,428.6" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="586.4" y="409.4" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="384.0" y1="423.2" x2="651.0" y2="581.8" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="640.0,580.9 651.0,581.8 644.9,572.7" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="464.1" y="465.8" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="431.4" y1="534.1" x2="928.6" y2="453.9" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="919.6,460.2 928.6,453.9 918.1,450.8" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="580.6" y="505.0" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="444.6" y1="622.8" x2="590.4" y2="612.2" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="580.9,617.7 590.4,612.2 580.2,608.2" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="524.8" y="612.0" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="383.8" y1="606.8" x2="976.2" y2="253.2" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="970.1,262.4 976.2,253.2 965.2,254.2" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="478.6" y="545.2" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="372.7" y1="880.9" x2="662.3" y2="629.1" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="658.0,639.2 662.3,629.1 651.7,632.0" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="532.0" y="737.4" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="703.0" y1="825.2" x2="1002.0" y2="254.8" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="1001.6,265.8 1002.0,254.8 993.2,261.4" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="792.7" y="649.1" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="1015.0" y1="415.0" x2="1015.0" y2="255.0" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="1019.8,264.9 1015.0,255.0 1010.2,264.9" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="1015.0" y="362.0" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="395.3" y1="978.1" x2="639.7" y2="871.9" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="632.5,880.2 639.7,871.9 628.7,871.4" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="529.7" y="914.7" font-size="11" text-anchor="middle" font-weight="normal">«include»</text>
+<line x1="345.0" y1="605.0" x2="345.0" y2="573.0" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="349.8,582.9 345.0,573.0 340.2,582.9" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="587.0" font-size="11" text-anchor="middle" font-weight="normal">«extend»</text>
+<text x="345.0" y="601.0" font-size="11" text-anchor="middle" font-weight="normal">[trip at risk]</text>
+<line x1="911.0" y1="850.0" x2="794.0" y2="850.0" stroke="black" stroke-width="1.1" stroke-dasharray="6,4"/>
+<polyline points="803.9,845.2 794.0,850.0 803.9,854.8" fill="none" stroke="black" stroke-width="1.2"/>
+<text x="852.5" y="848.0" font-size="11" text-anchor="middle" font-weight="normal">«extend»</text>
+<text x="852.5" y="862.0" font-size="11" text-anchor="middle" font-weight="normal">[ambiguous place]</text>
+<line x1="603.3" y1="863.8" x2="445.5" y2="889.0" stroke="black" stroke-width="1.2"/>
+<polygon points="444.3,881.4 431.7,891.2 446.7,896.5" fill="white" stroke="black" stroke-width="1.2"/>
+<line x1="603.3" y1="946.2" x2="445.5" y2="921.0" stroke="black" stroke-width="1.2"/>
+<polygon points="446.7,913.5 431.7,918.8 444.3,928.6" fill="white" stroke="black" stroke-width="1.2"/>
+<ellipse cx="345" cy="120" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="124.5" font-size="12" text-anchor="middle" font-weight="normal">UC04 Set Route Preference</text>
+<ellipse cx="345" cy="190" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="187.5" font-size="12" text-anchor="middle" font-weight="normal">UC10 Manage Saved Places</text>
+<text x="345.0" y="201.5" font-size="12" text-anchor="middle" font-weight="normal">and Preferences</text>
+<ellipse cx="345" cy="260" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="257.5" font-size="12" text-anchor="middle" font-weight="normal">UC07 Compare and</text>
+<text x="345.0" y="271.5" font-size="12" text-anchor="middle" font-weight="normal">Explain Options</text>
+<ellipse cx="345" cy="330" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="334.5" font-size="12" text-anchor="middle" font-weight="normal">UC05 View Service Alerts</text>
+<ellipse cx="345" cy="400" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="404.5" font-size="12" text-anchor="middle" font-weight="normal">UC13 Receive Leave-By Alert</text>
+<ellipse cx="345" cy="470" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="467.5" font-size="12" text-anchor="middle" font-weight="normal">UC11 Ask What-If Follow-up</text>
+<text x="345.0" y="481.5" font-size="12" text-anchor="middle" font-weight="normal">(undo / redo)</text>
+<ellipse cx="345" cy="548" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<line x1="249" y1="549" x2="441" y2="549" stroke="black" stroke-width="0.8"/>
+<text x="345.0" y="542.0" font-size="11.5" text-anchor="middle" font-weight="normal">UC08 Monitor Active Trip</text>
+<text x="345.0" y="563.0" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="italic">ext. point: trip at risk</text>
+<ellipse cx="345" cy="630" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="627.5" font-size="12" text-anchor="middle" font-weight="normal">UC06 Re-route Around</text>
+<text x="345.0" y="641.5" font-size="12" text-anchor="middle" font-weight="normal">Disruption</text>
+<ellipse cx="345" cy="700" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="704.5" font-size="12" text-anchor="middle" font-weight="normal">UC09 View Stop Arrivals</text>
+<ellipse cx="345" cy="770" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="774.5" font-size="12" text-anchor="middle" font-weight="normal">UC12 Set Up Commute Watch</text>
+<ellipse cx="345" cy="905" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="909.5" font-size="12" text-anchor="middle" font-weight="normal">UC01 Plan Trip</text>
+<ellipse cx="345" cy="1000" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="997.5" font-size="12" text-anchor="middle" font-weight="normal">UC14 Replay Disruption</text>
+<text x="345.0" y="1011.5" font-size="12" text-anchor="middle" font-weight="normal">Scenario and Benchmark</text>
+<ellipse cx="345" cy="1075" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="345.0" y="1079.5" font-size="12" text-anchor="middle" font-weight="normal">UC15 Refresh Transit Data</text>
+<ellipse cx="690" cy="605" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="690.0" y="609.5" font-size="12" text-anchor="middle" font-weight="normal">UC16 Compute Itineraries</text>
+<ellipse cx="1015" cy="850" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1015.0" y="847.5" font-size="12" text-anchor="middle" font-weight="normal">UC17 Clarify Ambiguous</text>
+<text x="1015.0" y="861.5" font-size="12" text-anchor="middle" font-weight="normal">Request</text>
+<ellipse cx="690" cy="850" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<line x1="594" y1="851" x2="786" y2="851" stroke="black" stroke-width="0.8"/>
+<text x="690.0" y="844.0" font-size="11.5" text-anchor="middle" font-weight="normal">UC02 Plan Trip by Conversation</text>
+<text x="690.0" y="865.0" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="italic">ext. point: ambiguous place</text>
+<ellipse cx="690" cy="960" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="690.0" y="964.5" font-size="12" text-anchor="middle" font-weight="normal">UC03 Plan Trip by Form</text>
+<ellipse cx="1015" cy="230" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1015.0" y="234.5" font-size="12" text-anchor="middle" font-weight="normal">UC18 Run Agent Task</text>
+<ellipse cx="1015" cy="440" rx="104" ry="25" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1015.0" y="444.5" font-size="12" text-anchor="middle" font-weight="normal">UC19 Interpret Service Alert</text>
+<circle cx="80" cy="439" r="9" fill="white" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="448" x2="80" y2="474" stroke="black" stroke-width="1.3"/>
+<line x1="66" y1="457" x2="94" y2="457" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="474" x2="68" y2="492" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="474" x2="92" y2="492" stroke="black" stroke-width="1.3"/>
+<text x="80.0" y="510.0" font-size="12.5" text-anchor="middle" font-weight="normal">Rider</text>
+<circle cx="80" cy="219" r="9" fill="white" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="228" x2="80" y2="254" stroke="black" stroke-width="1.3"/>
+<line x1="66" y1="237" x2="94" y2="237" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="254" x2="68" y2="272" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="254" x2="92" y2="272" stroke="black" stroke-width="1.3"/>
+<text x="80.0" y="290.0" font-size="12.5" text-anchor="middle" font-weight="normal">Clock</text>
+<text x="80.0" y="305.0" font-size="11.5" text-anchor="middle" font-weight="normal">«timer»</text>
+<circle cx="80" cy="929" r="9" fill="white" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="938" x2="80" y2="964" stroke="black" stroke-width="1.3"/>
+<line x1="66" y1="947" x2="94" y2="947" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="964" x2="68" y2="982" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="964" x2="92" y2="982" stroke="black" stroke-width="1.3"/>
+<text x="80.0" y="1000.0" font-size="12.5" text-anchor="middle" font-weight="normal">Evaluator</text>
+<circle cx="80" cy="1059" r="9" fill="white" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="1068" x2="80" y2="1094" stroke="black" stroke-width="1.3"/>
+<line x1="66" y1="1077" x2="94" y2="1077" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="1094" x2="68" y2="1112" stroke="black" stroke-width="1.3"/>
+<line x1="80" y1="1094" x2="92" y2="1112" stroke="black" stroke-width="1.3"/>
+<text x="80.0" y="1130.0" font-size="12.5" text-anchor="middle" font-weight="normal">City of Toronto</text>
+<text x="80.0" y="1145.0" font-size="11.5" text-anchor="middle" font-weight="normal">Open Data Portal</text>
+<text x="80.0" y="1160.0" font-size="11.5" text-anchor="middle" font-weight="normal">«external system»</text>
+<circle cx="1330" cy="199" r="9" fill="white" stroke="black" stroke-width="1.3"/>
+<line x1="1330" y1="208" x2="1330" y2="234" stroke="black" stroke-width="1.3"/>
+<line x1="1316" y1="217" x2="1344" y2="217" stroke="black" stroke-width="1.3"/>
+<line x1="1330" y1="234" x2="1318" y2="252" stroke="black" stroke-width="1.3"/>
+<line x1="1330" y1="234" x2="1342" y2="252" stroke="black" stroke-width="1.3"/>
+<text x="1330.0" y="270.0" font-size="12.5" text-anchor="middle" font-weight="normal">Amazon Bedrock</text>
+<text x="1330.0" y="285.0" font-size="11.5" text-anchor="middle" font-weight="normal">(Claude LLM)</text>
+<text x="1330.0" y="300.0" font-size="11.5" text-anchor="middle" font-weight="normal">«external system»</text>
+<circle cx="1330" cy="529" r="9" fill="white" stroke="black" stroke-width="1.3"/>
+<line x1="1330" y1="538" x2="1330" y2="564" stroke="black" stroke-width="1.3"/>
+<line x1="1316" y1="547" x2="1344" y2="547" stroke="black" stroke-width="1.3"/>
+<line x1="1330" y1="564" x2="1318" y2="582" stroke="black" stroke-width="1.3"/>
+<line x1="1330" y1="564" x2="1342" y2="582" stroke="black" stroke-width="1.3"/>
+<text x="1330.0" y="600.0" font-size="12.5" text-anchor="middle" font-weight="normal">TTC GTFS-Realtime</text>
+<text x="1330.0" y="615.0" font-size="11.5" text-anchor="middle" font-weight="normal">Feed</text>
+<text x="1330.0" y="630.0" font-size="11.5" text-anchor="middle" font-weight="normal">«external system»</text>
+</svg>

@@ -1,0 +1,27 @@
+@startuml pattern-facade
+!include _style.iuml
+title Facade — TripController
+!include model.iuml
+remove *
+restore TripController
+restore MainWindow
+restore DetourCli
+restore BasePanel
+restore JourneyPlanner
+restore TripRequestAgent
+restore AlertService
+restore TripMonitorService
+restore CommuteScheduler
+restore ProfileRepository
+hide MainWindow members
+hide DetourCli members
+hide BasePanel members
+hide JourneyPlanner members
+hide TripRequestAgent members
+hide AlertService members
+hide TripMonitorService members
+hide CommuteScheduler members
+hide ProfileRepository members
+note "Facade: one entry point for GUI and CLI.\nClients never touch the planner, agents,\nfeeds or repositories directly." as N1
+N1 .. TripController
+@enduml

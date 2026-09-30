@@ -1,0 +1,22 @@
+@startuml pattern-template-method
+!include _style.iuml
+title Template Method — TransitAgent.run()
+!include model.iuml
+remove *
+restore TransitAgent
+restore TripRequestAgent
+restore AlertInterpreterAgent
+restore ExplanationAgent
+restore PreferenceExtractorAgent
+note as N1
+<b>run()</b> is final and fixes the agent loop:
+1. buildMessages(req)
+2. llm.complete(msgs, tools, systemPrompt())
+3. while tool calls and round < maxToolRounds:
+   execute via ToolRegistry, append results
+4. output = parseFinal(response, ctx)
+5. report = validate(output, ctx)
+6. valid ? success : onInvalid(report, req)
+end note
+N1 .. TransitAgent
+@enduml

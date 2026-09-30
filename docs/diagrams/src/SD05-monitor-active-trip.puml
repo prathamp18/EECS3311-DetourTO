@@ -1,0 +1,78 @@
+@startuml SD05-monitor-active-trip
+!include _seq.iuml
+title SD05 — Monitor Active Trip (F07 / UC08, extended by UC06)
+
+actor ":Rider" as R
+participant "__:TripPlannerPanel__" as UI
+participant "__:TripController__" as TC
+participant "__:TripMonitorService__" as MON
+participant "__trip:ActiveTrip__" as AT
+participant "__st:TripState__" as ST
+participant "__feed:RealtimeFeed__" as FEED
+participant "__:AlertService__" as AS
+participant "__:JourneyPlanner__" as JP
+participant "__:EventBus__" as EB
+participant "__:ConsoleNotifier__" as CN
+
+R -> UI : onStartTripClicked()
+activate UI
+UI -> TC : startTrip(itineraryId)
+activate TC
+TC -> MON : start(i)
+activate MON
+MON -> AT ** : <<create>>(i, new PlannedState())
+MON --> TC : trip
+deactivate MON
+TC --> UI : trip
+deactivate TC
+deactivate UI
+
+loop every pollSeconds until trip state is CompletedState
+  MON -> MON : poll()
+  activate MON
+  MON -> FEED : snapshot()
+  FEED --> MON : RealtimeSnapshot
+  MON -> AS : currentDisruptions()
+  AS --> MON : List<Disruption>
+  MON -> AT : update(snap, ds)
+  activate AT
+  AT -> ST : handle(this, snap, ds)
+  activate ST
+  alt disruption on a remaining leg, or projected arrival > arriveBy
+    ST -> AT : setState(new AtRiskState())
+  else delays within slack
+    ST -> AT : setState(new OnTrackState())
+  else final leg finished
+    ST -> AT : setState(new CompletedState())
+  end
+  deactivate ST
+  deactivate AT
+  MON -> AT : getState()
+  AT --> MON : state
+  MON -> EB : publish(TRIP_STATE_CHANGED)
+  opt state is AtRiskState
+    MON -> EB : publish(TRIP_AT_RISK)
+    activate EB
+    EB -> UI : onEvent(e)
+    EB -> CN : onEvent(e)
+    deactivate EB
+    UI --> R : "Line 1 closed at St George. Re-route?"
+    opt rider accepts (UC06 extends UC08 at "trip at risk")
+      R -> UI : onAcceptRerouteClicked()
+      activate UI
+      UI -> TC : acceptReroute(tripId)
+      activate TC
+      TC -> JP : plan(remaining query from current position, ds, strategy)
+      JP --> TC : List<Itinerary>
+      TC -> MON : applyReroute(tripId, best)
+      MON -> AT : replaceItinerary(best)
+      MON -> AT : setState(new ReroutedState())
+      TC --> UI : PlanResult(options)
+      deactivate TC
+      UI --> R : new route drawn on map
+      deactivate UI
+    end
+  end
+  deactivate MON
+end
+@enduml

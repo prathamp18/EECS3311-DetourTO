@@ -1,0 +1,72 @@
+@startuml SD06-what-if-followup
+!include _seq.iuml
+title SD06 — What-If Follow-up with Undo (F10 / UC11, UC16, UC18)
+
+actor ":Rider" as R
+participant "__:TripPlannerPanel__" as UI
+participant "__:TripController__" as TC
+participant "__:TripRequestAgent__" as AG
+participant "__:QueryCommandFactory__" as F
+participant "__:CommandHistory__" as H
+participant "__cmd:ChangeDepartureCommand__" as C
+participant "__q:TripQuery__" as Q
+participant "__:JourneyPlanner__" as JP
+
+R -> UI : onSendClicked()\n"what if I leave 15 min later?"
+activate UI
+UI -> TC : followUp(text)
+activate TC
+TC -> AG : interpretFollowUp(text, ctx)
+activate AG
+note right of AG : LLM call, then\nResponseParser.toFollowUpIntent(json)
+AG --> TC : FollowUpIntent(DEPART_SHIFT, "+15")
+deactivate AG
+alt intent recognised
+  TC -> F : create(intent, q)
+  activate F
+  F -> C ** : <<create>>(q, newTime)
+  F --> TC : cmd
+  deactivate F
+  TC -> H : run(cmd)
+  activate H
+  H -> C : execute()
+  activate C
+  C -> Q : departAt = newTime (oldTime saved)
+  deactivate C
+  H -> H : push cmd on undoStack, clear redoStack
+  deactivate H
+  TC -> JP : plan(q, ds, strategy)
+  JP --> TC : List<Itinerary>
+  TC --> UI : PlanResult(options, message: "Leaving 08:45")
+else intent is really a new trip
+  TC -> TC : planFromText(text, now)
+  TC --> UI : PlanResult
+end
+deactivate TC
+UI --> R : updated options
+deactivate UI
+
+R -> UI : onUndoClicked()
+activate UI
+UI -> TC : undo()
+activate TC
+TC -> H : undo()
+activate H
+alt undoStack not empty
+  H -> C : undo()
+  activate C
+  C -> Q : departAt = oldTime
+  deactivate C
+  H --> TC : true
+  TC -> JP : plan(q, ds, strategy)
+  JP --> TC : List<Itinerary>
+  TC --> UI : PlanResult(options)
+else nothing to undo
+  H --> TC : false
+  TC --> UI : PlanResult(message: "Nothing to undo")
+end
+deactivate H
+deactivate TC
+UI --> R : previous options restored
+deactivate UI
+@enduml

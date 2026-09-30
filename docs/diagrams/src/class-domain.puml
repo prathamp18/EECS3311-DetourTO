@@ -1,0 +1,9 @@
+@startuml class-domain
+!include _style.iuml
+title Class Diagram — Domain Layer (transit network, planner, strategies, disruptions)
+!include model.iuml
+remove *
+restore $domain
+restore ProfileRepository
+hide ProfileRepository members
+@enduml

@@ -1,0 +1,5 @@
+!include _style.iuml
+skinparam style strictuml
+hide footbox
+skinparam responseMessageBelowArrow true
+skinparam sequenceGroupHeaderFontStyle bold

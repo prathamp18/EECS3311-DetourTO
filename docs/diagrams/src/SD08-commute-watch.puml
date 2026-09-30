@@ -1,0 +1,50 @@
+@startuml SD08-commute-watch
+!include _seq.iuml
+title SD08 — Commute Watch and Leave-By Alert (F11 / UC12, UC13, UC16, UC19)
+
+actor ":Rider" as R
+actor ":Clock" as CLK
+participant "__:CommutePanel__" as UI
+participant "__:TripController__" as TC
+participant "__:CommuteScheduler__" as CS
+participant "__:CommuteRepository__" as REPO
+participant "__:AlertService__" as AS
+participant "__:JourneyPlanner__" as JP
+participant "__:EventBus__" as EB
+participant "__:ConsoleNotifier__" as CN
+
+R -> UI : onSaveCommuteClicked()\nHome -> York U, arrive 10:00, Mon-Thu
+activate UI
+UI -> TC : saveCommute(c)
+activate TC
+TC -> CS : schedule(c)
+activate CS
+CS -> REPO : save(c)
+deactivate CS
+deactivate TC
+UI --> R : commute saved
+deactivate UI
+
+CLK -> CS : checkDue(now)   [every minute]
+activate CS
+CS -> REPO : findAll()
+REPO --> CS : List<Commute>
+loop each commute c with today in c.days
+  CS -> AS : currentDisruptions()
+  AS --> CS : List<Disruption>
+  CS -> CS : leaveByTime(c, ds)
+  activate CS
+  CS -> JP : plan(arriveBy query, ds, FASTEST)
+  JP --> CS : List<Itinerary>
+  deactivate CS
+  opt now >= leaveBy - c.warnMinutesBefore and not yet warned today
+    CS -> EB : publish(LEAVE_BY_ALERT)
+    activate EB
+    EB -> UI : onEvent(e)
+    EB -> CN : onEvent(e)
+    deactivate EB
+    UI --> R : "Leave by 08:52 - Line 1 delay adds 9 min"
+  end
+end
+deactivate CS
+@enduml

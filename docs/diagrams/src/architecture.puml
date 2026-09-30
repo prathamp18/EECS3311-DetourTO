@@ -1,0 +1,55 @@
+@startuml architecture
+!include _style.iuml
+title DetourTO — Layered Architecture (package overview)
+skinparam packageStyle rectangle
+allowmixing
+hide members
+hide stereotype
+
+package "Presentation" as P {
+  class MainWindow
+  class "BasePanel + 6 panels" as Panels
+  class DetourCli
+}
+package "Application" as A {
+  class TripController <<Facade>>
+  class EventBus
+  class CommandHistory
+  class TripMonitorService
+  class CommuteScheduler
+  class AlertService
+  class BenchmarkRunner
+}
+package "Agent" as G {
+  class "TransitAgent + 4 agents" as Agents
+  class ToolRegistry
+  class "LLMClient" as LLMC
+  class GroundingValidator
+}
+package "Domain" as D {
+  class JourneyPlanner
+  class TransitNetwork
+  class RouteScoringStrategy
+  class Itinerary
+  class Disruption
+}
+package "Infrastructure" as I {
+  class "RealtimeFeed (+ decorators)" as Feed
+  class GtfsStaticLoader
+  class "SQLite repositories" as Repo
+}
+rectangle "Amazon Bedrock\n(Claude)" as BR
+rectangle "TTC GTFS-Realtime\nbustime.ttc.ca/gtfsrt" as RT
+rectangle "City of Toronto Open Data\nTTC GTFS schedule zip" as OD
+rectangle "KUMA harness\n(Python, Stage 3)" as KUMA
+
+P ..> A : calls facade /\nsubscribes to events
+A ..> G : runs agents
+A ..> D : plans journeys
+G ..> D : tools call planner,\nvalidator reads network
+A ..> I : reads feeds, saves profile
+LLMC ..> BR : Converse API (HTTPS)
+Feed ..> RT : HTTPS (protobuf)
+GtfsStaticLoader ..> OD : download zip
+KUMA ..> DetourCli : subprocess:\ndetour ... --json\n+ trace.jsonl
+@enduml

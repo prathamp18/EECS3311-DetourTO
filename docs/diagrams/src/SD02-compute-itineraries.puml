@@ -1,0 +1,60 @@
+@startuml SD02-compute-itineraries
+!include _seq.iuml
+title SD02 — Plan Trip by Form and Compute Itineraries (F02, F03 / UC03, UC04, UC16)
+
+actor ":Rider" as R
+participant "__:TripPlannerPanel__" as UI
+participant "__:TripController__" as TC
+participant "__:AlertService__" as AS
+participant "__:JourneyPlanner__" as JP
+participant "__:TransitNetwork__" as NET
+participant "__view:NetworkView__" as NV
+participant "__s:AccessibleStrategy__" as ST
+participant "__:EventBus__" as EB
+
+R -> UI : onPlanFormSubmitted()\norigin, destination, arriveBy, ACCESSIBLE
+activate UI
+UI -> TC : planFromForm(q: TripQuery)
+activate TC
+TC -> AS : currentDisruptions()
+activate AS
+AS --> TC : List<Disruption>
+deactivate AS
+TC -> JP : plan(q, ds, strategies.get(ACCESSIBLE))
+activate JP
+JP -> NET : withDisruptions(ds)
+activate NET
+NET -> NV ** : <<create>>
+NET --> JP : view
+deactivate NET
+loop round k = 1 .. maxRounds while some stop improved
+  JP -> JP : raptorRounds(q, view, s)
+  activate JP
+  JP -> NV : isUsable(trip, from, to)
+  NV --> JP : boolean
+  JP -> ST : admissible(leg, q, view)
+  activate ST
+  ST -> NV : isStepFree(stop)
+  NV --> ST : boolean
+  ST --> JP : boolean
+  deactivate ST
+  deactivate JP
+end
+JP -> JP : reconstruct(paretoSet)
+loop each candidate itinerary
+  JP -> ST : score(i)
+  ST --> JP : double
+end
+JP --> TC : List<Itinerary> (sorted by score)
+deactivate JP
+alt list is empty
+  TC --> UI : PlanResult(message: "no step-free route before 10:00")
+  UI --> R : show message and suggest a later arrival
+else at least one itinerary
+  TC -> EB : publish(ITINERARY_UPDATED)
+  TC --> UI : PlanResult(options)
+  UI --> R : options with duration, transfers, walking
+end
+deactivate TC
+deactivate UI
+@enduml

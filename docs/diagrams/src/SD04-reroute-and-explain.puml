@@ -1,0 +1,57 @@
+@startuml SD04-reroute-and-explain
+!include _seq.iuml
+title SD04 — Re-route Around Disruption and Explain Options (F05, F06 / UC06, UC07, UC16, UC18)
+
+actor ":Rider" as R
+participant "__:AlertsPanel__" as UI
+participant "__:TripController__" as TC
+participant "__:ConversationSession__" as CS
+participant "__:JourneyPlanner__" as JP
+participant "__:ExplanationAgent__" as EA
+participant "__:ResponseParser__" as RP
+participant "__:GroundingValidator__" as GV
+participant "__:EventBus__" as EB
+participant "__:MapPanel__" as MAP
+
+R -> UI : onRerouteClicked(d)
+activate UI
+UI -> TC : rerouteAround(d)
+activate TC
+TC -> CS : currentQuery
+CS --> TC : TripQuery
+TC -> JP : plan(q, ds + d, strategy)
+activate JP
+JP --> TC : List<Itinerary>
+deactivate JP
+alt no feasible itinerary
+  TC --> UI : PlanResult(message: "no route avoids the closure")
+  UI --> R : show message and nearest shuttle stop
+else options found
+  TC -> CS : rememberOptions(options)
+  TC -> EA : run(req with options, d)
+  activate EA
+  note right of EA : LLM compares options using only\nthe numbers in AgentContext.options
+  EA -> RP : toExplanation(json)
+  RP --> EA : Explanation
+  EA -> GV : validateExplanation(e, options)
+  GV --> EA : ValidationReport
+  alt every cited itinerary id and minute value exists
+    EA --> TC : AgentResult(Explanation)
+  else cites a route or time that was not computed
+    EA -> EA : onInvalid(report, req)\n(one retry with the errors appended)
+    EA --> TC : AgentResult(Explanation) or fallback table text
+  end
+  deactivate EA
+  TC -> EB : publish(ITINERARY_UPDATED)
+  activate EB
+  EB -> MAP : onEvent(e)
+  activate MAP
+  MAP -> MAP : drawItinerary(i)\nhighlightDisruption(d)
+  deactivate MAP
+  deactivate EB
+  TC --> UI : PlanResult(options, disruptionsApplied, message)
+  UI --> R : new options plus explanation of trade-offs
+end
+deactivate TC
+deactivate UI
+@enduml

@@ -1,0 +1,19 @@
+@startuml pattern-adapter
+!include _style.iuml
+title Adapter — LLMClient and RealtimeFeed
+!include model.iuml
+remove *
+restore LLMClient
+restore BedrockClaudeAdapter
+restore BedrockRuntimeClient
+restore ScriptedLLMClient
+restore RealtimeFeed
+restore GtfsRealtimeAdapter
+restore FeedMessage
+restore TransitAgent
+restore AlertService
+hide TransitAgent members
+hide AlertService members
+note "Target: LLMClient / RealtimeFeed\nAdapter: BedrockClaudeAdapter / GtfsRealtimeAdapter\nAdaptee: AWS SDK BedrockRuntimeClient /\ngtfs-realtime-bindings FeedMessage" as N1
+N1 .. LLMClient
+@enduml

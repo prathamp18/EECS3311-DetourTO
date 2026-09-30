@@ -1,0 +1,57 @@
+@startuml SD09-preferences-memory
+!include _seq.iuml
+title SD09 — Saved Places and Preference Memory (F09 / UC10, UC18)
+
+actor ":Rider" as R
+participant "__:CommutePanel__" as UI
+participant "__:TripPlannerPanel__" as CHAT
+participant "__:TripController__" as TC
+participant "__:PlaceResolver__" as PR
+participant "__:PreferenceExtractorAgent__" as PA
+participant "__:ResponseParser__" as RP
+participant "__:ProfileRepository__" as REPO
+participant "__p:RiderProfile__" as P
+
+== Explicit: save a place from the form ==
+R -> UI : onSavePlaceClicked()\nlabel "school", "York University Station"
+activate UI
+UI -> TC : savePlace("school", "York University Station")
+activate TC
+TC -> PR : resolve(stopQuery)
+PR --> TC : List<Stop>
+alt exactly one stop
+  TC -> REPO : load()
+  REPO --> TC : p
+  TC -> P : apply(PreferenceUpdate("place:school", stopId))
+  TC -> REPO : save(p)
+  TC --> UI : ok
+else zero or several stops
+  TC --> UI : candidates
+  UI --> R : ask the rider to pick one
+end
+deactivate TC
+deactivate UI
+
+== Implicit: learn a preference from chat ==
+R -> CHAT : onSendClicked()\n"never put me on the 29, it's always packed"
+activate CHAT
+CHAT -> TC : planFromText(text, now)
+activate TC
+TC -> PA : run(req)
+activate PA
+note right of PA : LLM call, then parseFinal() uses\nResponseParser.toPreferences(json)
+PA -> RP : toPreferences(json)
+RP --> PA : [avoidRoute = "29"]
+PA --> TC : AgentResult(List<PreferenceUpdate>)
+deactivate PA
+opt route "29" exists and update is not a duplicate
+  TC -> REPO : load()
+  REPO --> TC : p
+  TC -> P : apply(u)
+  TC -> REPO : save(p)
+end
+TC --> CHAT : PlanResult(options avoiding route 29,\nmessage: "I'll avoid the 29 from now on")
+deactivate TC
+CHAT --> R : options + visible note (can be undone in Preferences)
+deactivate CHAT
+@enduml
