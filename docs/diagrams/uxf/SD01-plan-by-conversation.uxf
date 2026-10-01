@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>2470</w><h>1964</h></coordinates>
+    <panel_attributes>title=SD01 — Plan Trip by Conversation (F01, F02, F06 / UC02, UC16, UC17, UC18)
+obj=:Rider~R ACTOR
+obj=_:TripPlannerPanel_~UI
+obj=_:TripController_~TC
+obj=_:TripRequestAgent_~AG
+obj=_llm:BedrockClaudeAdapter_~LLM
+obj=_:ToolRegistry_~REG
+obj=_:FindStopTool_~FST
+obj=_:PlanJourneyTool_~PJT
+obj=_:JourneyPlanner_~JP
+obj=_:ResponseParser_~RP
+obj=_:GroundingValidator_~GV
+obj=_:EventBus_~EB
+obj=Amazon Bedrock\n«external»~BR
+R-&gt;&gt;&gt;UI : onSendClicked() "York U by 10, no streetcars"; on=UI
+UI-&gt;&gt;&gt;TC : planFromText(text, now); on=TC
+TC-&gt;&gt;&gt;AG : run(req: AgentRequest); on=AG
+AG-&gt;AG + : buildMessages(req)
+combinedFragment=loop~f1 AG BR
+AG:[response has tool calls and round &lt; maxToolRounds]
+AG-&gt;&gt;&gt;LLM : complete(msgs, tools, systemPrompt()); on=LLM
+LLM-&gt;&gt;&gt;BR : converse(ConverseRequest)
+BR.&gt;LLM : ConverseResponse(toolUse)
+LLM.&gt;AG : LLMResponse(toolCalls); off=LLM
+AG-&gt;&gt;&gt;REG : execute(call, ctx); on=REG
+combinedFragment=alt~f2 AG JP
+AG:[call.toolName == "find_stop"]
+REG-&gt;&gt;&gt;FST : execute(call, ctx); on=FST
+FST.&gt;REG : ToolResult(List&lt;Stop&gt;); off=FST
+REG.&gt;AG : ToolResult
+..=f2
+AG:[call.toolName == "plan_journey"]
+REG-&gt;&gt;&gt;PJT : execute(call, ctx); on=PJT
+PJT-&gt;&gt;&gt;JP : plan(q, ds, strategy)
+JP.&gt;PJT : List&lt;Itinerary&gt;
+PJT.&gt;REG : ToolResult(summary); off=PJT
+REG.&gt;AG : ToolResult
+..=f2
+AG:[unknown tool or bad arguments]
+REG.&gt;AG : ToolResult(ok=false, error)
+--=f2; off=REG
+AG-&gt;&gt;&gt;EB : publish(AGENT_STEP)
+--=f1
+AG-&gt;&gt;&gt;RP : toTripQuery(json, resolver)
+RP.&gt;AG : TripQuery
+AG-&gt;&gt;&gt;GV : validateQuery(q)
+GV.&gt;AG : ValidationReport
+combinedFragment=alt~f3 R AG
+R:[report.valid]
+AG.&gt;TC : AgentResult(success, TripQuery)
+..=f3
+R:[ambiguous place (UC17 extends UC02)]
+AG.&gt;TC : AgentResult(ClarificationRequest)
+TC.&gt;UI : PlanResult(clarification)
+UI.&gt;R : "York University Stn or York Mills Stn?"
+..=f3
+R:[invalid after one retry, or LLM timeout]
+AG.&gt;TC : AgentResult(success=false, errors)
+TC.&gt;UI : PlanResult(message: use the form instead)
+--=f3; off=AG
+TC-&gt;&gt;&gt;JP : plan(q, disruptions, strategies.get(q.strategyKind)); on=JP
+JP.&gt;TC : List&lt;Itinerary&gt;; off=JP
+TC-&gt;&gt;&gt;EB : publish(ITINERARY_UPDATED)
+TC.&gt;UI : PlanResult(options); off=TC
+UI.&gt;R : ranked options on list and map; off=UI</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

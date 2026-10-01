@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>1900</w><h>1318</h></coordinates>
+    <panel_attributes>title=SD04 — Re-route Around Disruption and Explain Options (F05, F06 / UC06, UC07, UC16, UC18)
+obj=:Rider~R ACTOR
+obj=_:AlertsPanel_~UI
+obj=_:TripController_~TC
+obj=_:ConversationSession_~CS
+obj=_:JourneyPlanner_~JP
+obj=_:ExplanationAgent_~EA
+obj=_:ResponseParser_~RP
+obj=_:GroundingValidator_~GV
+obj=_:EventBus_~EB
+obj=_:MapPanel_~MAP
+R-&gt;&gt;&gt;UI : onRerouteClicked(d); on=UI
+UI-&gt;&gt;&gt;TC : rerouteAround(d); on=TC
+TC-&gt;&gt;&gt;CS : currentQuery
+CS.&gt;TC : TripQuery
+TC-&gt;&gt;&gt;JP : plan(q, ds + d, strategy); on=JP
+JP.&gt;TC : List&lt;Itinerary&gt;; off=JP
+combinedFragment=alt~f1 R MAP
+R:[no feasible itinerary]
+TC.&gt;UI : PlanResult(message: "no route avoids the closure")
+UI.&gt;R : show message and nearest shuttle stop
+..=f1
+R:[options found]
+TC-&gt;&gt;&gt;CS : rememberOptions(options)
+TC-&gt;&gt;&gt;EA : run(req with options, d); on=EA
+EA-&gt;&gt;&gt;RP : toExplanation(json)
+RP.&gt;EA : Explanation
+EA-&gt;&gt;&gt;GV : validateExplanation(e, options)
+GV.&gt;EA : ValidationReport
+combinedFragment=alt~f2 TC EA
+TC:[every cited itinerary id and minute value exists]
+EA.&gt;TC : AgentResult(Explanation)
+..=f2
+TC:[cites a route or time that was not computed]
+EA-&gt;EA + : onInvalid(report, req) (one retry with the errors appended)
+EA.&gt;TC : AgentResult(Explanation) or fallback table text
+--=f2; off=EA
+TC-&gt;&gt;&gt;EB : publish(ITINERARY_UPDATED); on=EB
+EB-&gt;&gt;&gt;MAP : onEvent(e); on=MAP
+MAP-&gt;MAP + : drawItinerary(i) highlightDisruption(d); off=MAP; off=EB
+TC.&gt;UI : PlanResult(options, disruptionsApplied, message)
+UI.&gt;R : new options plus explanation of trade-offs
+--=f1; off=TC; off=UI</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

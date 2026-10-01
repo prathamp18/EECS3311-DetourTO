@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>10</y><w>1200</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*Class Diagram — Agent Tools (what the LLM is allowed to call)*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>767</x><y>85</y><w>160</w><h>50</h></coordinates>
+    <panel_attributes>«Template Method»
+/TransitAgent/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>612</x><y>225</y><w>470</w><h>120</h></coordinates>
+    <panel_attributes>ToolRegistry
+--
+- tools : Map&lt;String, Tool&gt;
+--
++ register(t: Tool)
++ specsFor(names: List&lt;String&gt;): List&lt;ToolSpec&gt;
++ execute(call: ToolCall, ctx: AgentContext): ToolResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>612</x><y>410</y><w>470</w><h>100</h></coordinates>
+    <panel_attributes>«interface»
+/Tool/
+--
+--
++ spec(): ToolSpec
++ execute(call: ToolCall, ctx: AgentContext): ToolResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>612</x><y>575</y><w>470</w><h>100</h></coordinates>
+    <panel_attributes>FindStopTool
+--
+- resolver : PlaceResolver
+--
++ spec(): ToolSpec
++ execute(call: ToolCall, ctx: AgentContext): ToolResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>740</y><w>470</w><h>100</h></coordinates>
+    <panel_attributes>PlanJourneyTool
+--
+- planner : JourneyPlanner
+--
++ spec(): ToolSpec
++ execute(call: ToolCall, ctx: AgentContext): ToolResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>316</x><y>905</y><w>470</w><h>100</h></coordinates>
+    <panel_attributes>GetAlertsTool
+--
+- alertService : AlertService
+--
++ spec(): ToolSpec
++ execute(call: ToolCall, ctx: AgentContext): ToolResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1418</x><y>1070</y><w>470</w><h>100</h></coordinates>
+    <panel_attributes>GetArrivalsTool
+--
+- feed : RealtimeFeed
+--
++ spec(): ToolSpec
++ execute(call: ToolCall, ctx: AgentContext): ToolResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1122</x><y>575</y><w>470</w><h>100</h></coordinates>
+    <panel_attributes>GetProfileTool
+--
+- profiles : ProfileRepository
+--
++ spec(): ToolSpec
++ execute(call: ToolCall, ctx: AgentContext): ToolResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1714</x><y>740</y><w>210</w><h>100</h></coordinates>
+    <panel_attributes>ToolResult
+--
+- ok : boolean
+- data : Object [0..1]
+- error : String [0..1]
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1830</x><y>905</y><w>310</w><h>100</h></coordinates>
+    <panel_attributes>ToolSpec
+--
+- name : String
+- description : String
+- inputSchema : Map&lt;String, Object&gt;
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1037</x><y>60</y><w>290</w><h>100</h></coordinates>
+    <panel_attributes>ToolCall
+--
+- id : String
+- toolName : String
+- arguments : Map&lt;String, Object&gt;
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1122</x><y>265</y><w>120</w><h>40</h></coordinates>
+    <panel_attributes>AgentContext</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>974</x><y>770</y><w>130</w><h>40</h></coordinates>
+    <panel_attributes>PlaceResolver</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>136</x><y>935</y><w>140</w><h>40</h></coordinates>
+    <panel_attributes>JourneyPlanner</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>874</x><y>1100</y><w>120</w><h>40</h></coordinates>
+    <panel_attributes>AlertService</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1223</x><y>1235</y><w>140</w><h>50</h></coordinates>
+    <panel_attributes>«interface»
+/RealtimeFeed/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1060</x><y>930</y><w>180</w><h>50</h></coordinates>
+    <panel_attributes>«interface»
+/ProfileRepository/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>837</x><y>125</y><w>20</w><h>110</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;99.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>837</x><y>500</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.5</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>245</x><y>434</y><w>377</w><h>316</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>366.8;10.0;10.0;10.0;10.0;305.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>541</x><y>467</y><w>81</w><h>448</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>71.0;10.0;10.0;10.0;10.0;437.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1072</x><y>460</y><w>591</w><h>620</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;581.0;10.0;581.0;609.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1072</x><y>480</y><w>120</w><h>105</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;109.6;10.0;109.6;94.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>837</x><y>335</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1072</x><y>420</y><w>970</w><h>495</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>959.8;484.7;959.8;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1072</x><y>440</y><w>757</w><h>310</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>746.7;299.8;746.7;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1018</x><y>665</y><w>20</w><h>115</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;104.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>196</x><y>830</y><w>20</w><h>115</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;104.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>776</x><y>983</y><w>158</w><h>127</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>147.8;116.9;147.8;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1292</x><y>1145</y><w>136</w><h>100</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;89.8;10.0;10.0;126.1;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1171</x><y>665</y><w>20</w><h>275</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;264.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>984</x><y>1110</y><w>257</w><h>135</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>247.3;125.0;247.3;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1072</x><y>800</y><w>20</w><h>140</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;129.5;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

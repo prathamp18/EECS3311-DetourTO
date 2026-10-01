@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>10</y><w>1200</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*Observer — EventBus and EventListener*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>360</x><y>320</y><w>420</w><h>130</h></coordinates>
+    <panel_attributes>«Subject»
+EventBus
+--
+- listeners : Map&lt;EventType, List&lt;EventListener&gt;&gt;
+--
++ subscribe(type: EventType, l: EventListener)
++ unsubscribe(type: EventType, l: EventListener)
++ publish(e: TransitEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>330</x><y>525</y><w>230</w><h>80</h></coordinates>
+    <panel_attributes>«interface»
+/EventListener/
+--
+--
++ onEvent(e: TransitEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>730</x><y>515</y><w>190</w><h>100</h></coordinates>
+    <panel_attributes>TransitEvent
+--
+- type : EventType
+- payload : Object
+- timestamp : Instant
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>870</x><y>680</y><w>170</w><h>160</h></coordinates>
+    <panel_attributes>«enumeration»
+EventType
+--
+ALERTS_UPDATED
+ITINERARY_UPDATED
+TRIP_STATE_CHANGED
+TRIP_AT_RISK
+LEAVE_BY_ALERT
+AGENT_STEP</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>695</y><w>270</w><h>130</h></coordinates>
+    <panel_attributes>«Observer»
+/BasePanel/
+--
+# controller : TripController
+--
++ onEvent(e: TransitEvent)
+/+ render()/
+# runOnFxThread(task: Runnable)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>330</x><y>710</y><w>230</w><h>100</h></coordinates>
+    <panel_attributes>«Observer»
+ConsoleNotifier
+--
+- out : PrintStream
+--
++ onEvent(e: TransitEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>600</x><y>710</y><w>230</w><h>100</h></coordinates>
+    <panel_attributes>«Observer»
+TraceLogger
+--
+- traceFile : Path
+--
++ onEvent(e: TransitEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>450</x><y>210</y><w>120</w><h>40</h></coordinates>
+    <panel_attributes>AlertService</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>311</x><y>80</y><w>170</w><h>40</h></coordinates>
+    <panel_attributes>TripMonitorService</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>524</x><y>80</y><w>150</w><h>40</h></coordinates>
+    <panel_attributes>CommuteScheduler</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>692</x><y>205</y><w>160</w><h>50</h></coordinates>
+    <panel_attributes>«Template Method»
+/TransitAgent/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates><x>716</x><y>60</y><w>390</w><h>80</h></coordinates>
+    <panel_attributes>Subject: EventBus.publish() notifies every
+subscribed listener. Publishers (AlertService,
+TripMonitorService, agents) never reference
+the GUI, the console or the trace file.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>280</x><y>595</y><w>137</w><h>118</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>126.6;10.0;126.6;107.7;10.0;107.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>473</x><y>595</y><w>20</w><h>125</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;114.5</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>550</x><y>555</y><w>125</w><h>165</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;114.9;10.0;114.9;154.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>450</x><y>440</y><w>20</w><h>95</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;84.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>745</x><y>440</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«use»</panel_attributes>
+    <additional_attributes>10.0;74.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>885</x><y>605</y><w>20</w><h>84</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;74.5;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>456</x><y>110</y><w>20</w><h>110</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;99.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>726</x><y>245</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+publishes &gt;</panel_attributes>
+    <additional_attributes>10.0;74.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>500</x><y>240</y><w>20</w><h>89</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+publishes &gt;</panel_attributes>
+    <additional_attributes>10.0;79.5;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>395</x><y>110</y><w>20</w><h>220</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+publishes &gt;</panel_attributes>
+    <additional_attributes>10.0;209.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>612</x><y>110</y><w>20</w><h>220</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+publishes &gt;</panel_attributes>
+    <additional_attributes>10.0;209.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>537</x><y>110</y><w>20</w><h>110</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;99.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>673</x><y>120</y><w>53</w><h>210</h></coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>42.7;10.0;10.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+</diagram>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>1520</w><h>1148</h></coordinates>
+    <panel_attributes>title=SD11 — Refresh Transit Data (F13 / UC15)
+obj=:Evaluator~E ACTOR
+obj=_:DetourCli_~CLI
+obj=_:TripController_~TC
+obj=_:OpenDataDownloader_~DL
+obj=_:GtfsStaticLoader_~LD
+obj=_fresh:TransitNetwork_~NEW CREATED_LATER
+obj=_live:TransitNetwork_~LIVE
+obj=City of Toronto\nOpen Data «external»~OD
+E-&gt;&gt;&gt;CLI : detour refresh-data; on=CLI
+CLI-&gt;&gt;&gt;TC : refreshTransitData(); on=TC
+TC-&gt;&gt;&gt;DL : download(dataDir); on=DL
+DL-&gt;&gt;&gt;OD : GET TTC Routes and Schedules (GTFS zip)
+combinedFragment=alt~f1 TC OD
+TC:[download ok]
+OD.&gt;DL : zip
+DL.&gt;TC : Path zip; off=DL
+TC-&gt;&gt;&gt;LD : load(zip); on=LD
+LD-&gt;&gt;&gt;NEW : «create»
+LD.&gt;TC : fresh
+TC-&gt;&gt;&gt;LD : validate(fresh)
+LD.&gt;TC : FeedValidationReport; off=LD
+combinedFragment=alt~f2 TC LIVE
+TC:[report.ok (stops, trips, calendar consistent)]
+TC-&gt;&gt;&gt;LIVE : replaceWith(fresh)
+..=f2
+TC:[validation failed]
+TC-&gt;TC + : keep current network
+--=f2
+..=f1
+TC:[network error]
+DL.&gt;TC : IOException; off=DL
+TC-&gt;TC + : keep current network, report(ok = false)
+--=f1
+TC.&gt;CLI : FeedValidationReport; off=TC
+CLI.&gt;E : "Loaded N stops, M trips, K warnings"; off=CLI</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
