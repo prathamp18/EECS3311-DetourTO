@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>10</y><w>1200</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*Class Diagram — Presentation Layer (JavaFX GUI and picocli CLI)*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1113</x><y>120</y><w>260</w><h>130</h></coordinates>
+    <panel_attributes>«JavaFX Application»
+MainWindow
+--
+- controller : TripController
+- panels : List&lt;BasePanel&gt;
+--
++ start(stage: Stage)
+_+ main(args: String[])_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1100</x><y>375</y><w>270</w><h>130</h></coordinates>
+    <panel_attributes>«Observer»
+/BasePanel/
+--
+# controller : TripController
+--
++ onEvent(e: TransitEvent)
+/+ render()/
+# runOnFxThread(task: Runnable)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>570</y><w>340</w><h>250</h></coordinates>
+    <panel_attributes>TripPlannerPanel
+--
+- chatInput : TextField
+- optionsList : ListView&lt;Itinerary&gt;
+- strategyBox : ComboBox&lt;StrategyKind&gt;
+--
++ onSendClicked()
++ onPlanFormSubmitted()
++ onStrategyChanged(kind: StrategyKind)
++ onUndoClicked()
++ onRedoClicked()
++ onExplainClicked()
++ onStartTripClicked()
++ onAcceptRerouteClicked()
++ render()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>400</x><y>635</y><w>310</w><h>120</h></coordinates>
+    <panel_attributes>MapPanel
+--
+- webView : WebView
+--
++ drawItinerary(i: Itinerary)
++ highlightDisruption(d: Disruption)
++ render()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>750</x><y>635</y><w>310</w><h>120</h></coordinates>
+    <panel_attributes>AlertsPanel
+--
+- alertTable : TableView&lt;Disruption&gt;
+--
++ onRefreshClicked()
++ onRerouteClicked(d: Disruption)
++ render()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1100</x><y>645</y><w>270</w><h>100</h></coordinates>
+    <panel_attributes>ArrivalsPanel
+--
+- stopField : TextField
+--
++ onStopSearched(query: String)
++ render()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1410</x><y>635</y><w>220</w><h>120</h></coordinates>
+    <panel_attributes>CommutePanel
+--
+- commuteForm : GridPane
+--
++ onSaveCommuteClicked()
++ onSavePlaceClicked()
++ render()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1670</x><y>645</y><w>370</w><h>100</h></coordinates>
+    <panel_attributes>BenchmarkPanel
+--
+- resultsTable : TableView&lt;BenchmarkReport&gt;
+--
++ onRunReplayClicked(file: Path)
++ render()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1692</x><y>60</y><w>490</w><h>250</h></coordinates>
+    <panel_attributes>«picocli»
+DetourCli
+--
+- controller : TripController
+- json : boolean
+--
++ plan(request: String, at: LocalDateTime): int
++ alerts(): int
++ arrivals(stop: String): int
++ monitor(itineraryId: String): int
++ commute(action: String, name: String): int
++ places(action: String, label: String, stop: String): int
++ replay(scenarioFile: Path): int
++ refreshData(): int
+_+ main(args: String[])_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1492</x><y>390</y><w>230</w><h>100</h></coordinates>
+    <panel_attributes>«Observer»
+ConsoleNotifier
+--
+- out : PrintStream
+--
++ onEvent(e: TransitEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1762</x><y>405</y><w>350</w><h>70</h></coordinates>
+    <panel_attributes>JsonResultWriter
+--
+--
++ write(result: Object, out: PrintStream)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2080</x><y>670</y><w>140</w><h>50</h></coordinates>
+    <panel_attributes>«Facade»
+TripController</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1418</x><y>145</y><w>230</w><h>80</h></coordinates>
+    <panel_attributes>«interface»
+/EventListener/
+--
+--
++ onEvent(e: TransitEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1189</x><y>240</y><w>20</w><h>145</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=6</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;134.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>350</x><y>495</y><w>827</w><h>118</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>817.2;10.0;817.2;107.6;10.0;107.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>545</x><y>430</y><w>565</w><h>215</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>554.8;10.0;10.0;10.0;10.0;204.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1050</x><y>495</y><w>195</w><h>155</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>184.7;10.0;184.7;144.8;10.0;144.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1292</x><y>495</y><w>20</w><h>160</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;149.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1360</x><y>492</y><w>64</w><h>153</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;53.8;10.0;53.8;143.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1360</x><y>488</y><w>346</w><h>167</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;335.8;10.0;335.8;156.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1360</x><y>215</y><w>105</w><h>178</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>94.7;10.0;94.7;167.9;10.0;167.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1560</x><y>215</y><w>20</w><h>184</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;174.5</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1274</x><y>240</y><w>871</w><h>440</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>861.0;429.8;861.0;102.8;10.0;102.8;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1360</x><y>484</y><w>746</w><h>196</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>736.0;186.0;736.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2149</x><y>300</y><w>20</w><h>380</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;369.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1927</x><y>300</y><w>20</w><h>115</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«use»</panel_attributes>
+    <additional_attributes>10.0;104.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1697</x><y>300</y><w>20</w><h>100</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>10.0;89.6;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

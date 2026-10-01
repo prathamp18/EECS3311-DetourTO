@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>1520</w><h>1148</h></coordinates>
+    <panel_attributes>title=SD07 — View Stop Arrivals (F08 / UC09)
+obj=:Rider~R ACTOR
+obj=_:ArrivalsPanel_~UI
+obj=_:TripController_~TC
+obj=_:PlaceResolver_~PR
+obj=_feed:CachingRealtimeFeed_~CF
+obj=_:GtfsRealtimeAdapter_~AD
+obj=_:JourneyPlanner_~JP
+obj=TTC GTFS-RT feed\n«external»~TTC
+R-&gt;&gt;&gt;UI : onStopSearched("Spadina"); on=UI
+UI-&gt;&gt;&gt;TC : getArrivals("Spadina"); on=TC
+TC-&gt;&gt;&gt;PR : resolve("Spadina"); on=PR
+PR-&gt;PR + : similarity(text, stop.name)
+PR.&gt;TC : List&lt;Stop&gt;; off=PR
+combinedFragment=alt~f1 R TTC
+R:[several candidate stops]
+TC.&gt;UI : empty list + candidates
+UI.&gt;R : "Spadina Stn, Spadina Ave / King, ...?"
+..=f1
+R:[one stop resolved]
+combinedFragment=alt~f2 TC TTC
+TC:[surface stop (bus or streetcar)]
+TC-&gt;&gt;&gt;CF : arrivals(stopId); on=CF
+CF-&gt;&gt;&gt;AD : arrivals(stopId); on=AD
+AD-&gt;&gt;&gt;TTC : GET /gtfsrt/trips
+TTC.&gt;AD : protobuf bytes
+AD.&gt;CF : List&lt;Arrival&gt; (with delaySeconds); off=AD
+CF.&gt;TC : List&lt;Arrival&gt;; off=CF
+..=f2
+TC:[subway platform (TTC publishes no subway real-time)]
+TC-&gt;&gt;&gt;JP : scheduledDepartures(stopId, now, 6)
+JP.&gt;TC : List&lt;Arrival&gt; (scheduled)
+--=f2
+TC.&gt;UI : List&lt;Arrival&gt;
+UI.&gt;R : next vehicles, predicted time, delay
+--=f1; off=TC; off=UI</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

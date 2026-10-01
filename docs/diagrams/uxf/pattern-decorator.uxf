@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>10</y><w>1200</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*Decorator — RealtimeFeedDecorator*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>450</x><y>60</y><w>350</w><h>120</h></coordinates>
+    <panel_attributes>«interface»
+/RealtimeFeed/
+--
+--
++ alerts(): List&lt;ServiceAlert&gt;
++ snapshot(): RealtimeSnapshot
++ arrivals(stopId: String): List&lt;Arrival&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>245</y><w>390</w><h>180</h></coordinates>
+    <panel_attributes>«Adapter»
+GtfsRealtimeAdapter
+--
+- http : HttpClient
+- baseUrl : String
+--
++ alerts(): List&lt;ServiceAlert&gt;
++ snapshot(): RealtimeSnapshot
++ arrivals(stopId: String): List&lt;Arrival&gt;
+- fetch(path: String): FeedMessage
+- toServiceAlert(e: FeedEntity): ServiceAlert</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>450</x><y>270</y><w>350</w><h>130</h></coordinates>
+    <panel_attributes>«Decorator»
+/RealtimeFeedDecorator/
+--
+# inner : RealtimeFeed
+--
++ alerts(): List&lt;ServiceAlert&gt;
++ snapshot(): RealtimeSnapshot
++ arrivals(stopId: String): List&lt;Arrival&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>305</x><y>490</y><w>310</w><h>130</h></coordinates>
+    <panel_attributes>CachingRealtimeFeed
+--
+- ttl : Duration
+- cachedAlerts : List&lt;ServiceAlert&gt;
+- fetchedAt : Instant
+--
++ alerts(): List&lt;ServiceAlert&gt;
++ snapshot(): RealtimeSnapshot</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>655</x><y>495</y><w>270</w><h>120</h></coordinates>
+    <panel_attributes>ResilientRealtimeFeed
+--
+- breaker : CircuitBreaker
+- lastGood : RealtimeSnapshot
+--
++ alerts(): List&lt;ServiceAlert&gt;
++ snapshot(): RealtimeSnapshot</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>675</x><y>685</y><w>230</w><h>180</h></coordinates>
+    <panel_attributes>CircuitBreaker
+--
+- status : BreakerStatus
+- failures : int
+- threshold : int = 3
+- cooldown : Duration
+- openedAt : Instant
+--
++ allowRequest(): boolean
++ recordSuccess()
++ recordFailure()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates><x>840</x><y>80</y><w>310</w><h>80</h></coordinates>
+    <panel_attributes>Runtime chain built once at startup:
+new CachingRealtimeFeed(
+  new ResilientRealtimeFeed(
+    new GtfsRealtimeAdapter(url)))</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>400</x><y>170</y><w>147</w><h>98</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>137.5;10.0;137.5;87.9;10.0;87.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>615</x><y>170</y><w>20</w><h>110</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;99.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>702</x><y>170</y><w>20</w><h>110</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+inner</panel_attributes>
+    <additional_attributes>10.0;99.8;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>522</x><y>390</y><w>20</w><h>110</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;99.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>718</x><y>390</y><w>20</w><h>115</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;104.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>780</x><y>605</y><w>20</w><h>90</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;79.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>790</x><y>150</y><w>102</w><h>195</h></coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>92.2;10.0;92.2;184.8;10.0;184.8</additional_attributes>
+  </element>
+</diagram>

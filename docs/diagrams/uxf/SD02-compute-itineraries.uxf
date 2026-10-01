@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>1710</w><h>1420</h></coordinates>
+    <panel_attributes>title=SD02 — Plan Trip by Form and Compute Itineraries (F02, F03 / UC03, UC04, UC16)
+obj=:Rider~R ACTOR
+obj=_:TripPlannerPanel_~UI
+obj=_:TripController_~TC
+obj=_:AlertService_~AS
+obj=_:JourneyPlanner_~JP
+obj=_:TransitNetwork_~NET
+obj=_view:NetworkView_~NV CREATED_LATER
+obj=_s:AccessibleStrategy_~ST
+obj=_:EventBus_~EB
+R-&gt;&gt;&gt;UI : onPlanFormSubmitted() origin, destination, arriveBy, ACCESSIBLE; on=UI
+UI-&gt;&gt;&gt;TC : planFromForm(q: TripQuery); on=TC
+TC-&gt;&gt;&gt;AS : currentDisruptions(); on=AS
+AS.&gt;TC : List&lt;Disruption&gt;; off=AS
+TC-&gt;&gt;&gt;JP : plan(q, ds, strategies.get(ACCESSIBLE)); on=JP
+JP-&gt;&gt;&gt;NET : withDisruptions(ds); on=NET
+NET-&gt;&gt;&gt;NV : «create»
+NET.&gt;JP : view; off=NET
+combinedFragment=loop~f1 JP ST
+JP:[round k = 1 .. maxRounds while some stop improved]
+JP-&gt;JP + : raptorRounds(q, view, s); on=JP
+JP-&gt;&gt;&gt;NV : isUsable(trip, from, to)
+NV.&gt;JP : boolean
+JP-&gt;&gt;&gt;ST : admissible(leg, q, view); on=ST
+ST-&gt;&gt;&gt;NV : isStepFree(stop)
+NV.&gt;ST : boolean
+ST.&gt;JP : boolean; off=ST; off=JP
+--=f1
+JP-&gt;JP + : reconstruct(paretoSet)
+combinedFragment=loop~f2 JP ST
+JP:[each candidate itinerary]
+JP-&gt;&gt;&gt;ST : score(i)
+ST.&gt;JP : double
+--=f2
+JP.&gt;TC : List&lt;Itinerary&gt; (sorted by score); off=JP
+combinedFragment=alt~f3 R EB
+R:[list is empty]
+TC.&gt;UI : PlanResult(message: "no step-free route before 10:00")
+UI.&gt;R : show message and suggest a later arrival
+..=f3
+R:[at least one itinerary]
+TC-&gt;&gt;&gt;EB : publish(ITINERARY_UPDATED)
+TC.&gt;UI : PlanResult(options)
+UI.&gt;R : options with duration, transfers, walking
+--=f3; off=TC; off=UI</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

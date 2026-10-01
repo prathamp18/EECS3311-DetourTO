@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>1900</w><h>1012</h></coordinates>
+    <panel_attributes>title=SD08 — Commute Watch and Leave-By Alert (F11 / UC12, UC13, UC16, UC19)
+obj=:Rider~R ACTOR
+obj=:Clock~CLK ACTOR
+obj=_:CommutePanel_~UI
+obj=_:TripController_~TC
+obj=_:CommuteScheduler_~CS
+obj=_:CommuteRepository_~REPO
+obj=_:AlertService_~AS
+obj=_:JourneyPlanner_~JP
+obj=_:EventBus_~EB
+obj=_:ConsoleNotifier_~CN
+R-&gt;&gt;&gt;UI : onSaveCommuteClicked() Home -&gt; York U, arrive 10:00, Mon-Thu; on=UI
+UI-&gt;&gt;&gt;TC : saveCommute(c); on=TC
+TC-&gt;&gt;&gt;CS : schedule(c); on=CS
+CS-&gt;&gt;&gt;REPO : save(c); off=CS; off=TC
+UI.&gt;R : commute saved; off=UI
+CLK-&gt;&gt;&gt;CS : checkDue(now)   [every minute]; on=CS
+CS-&gt;&gt;&gt;REPO : findAll()
+REPO.&gt;CS : List&lt;Commute&gt;
+combinedFragment=loop~f1 R CN
+R:[each commute c with today in c.days]
+CS-&gt;&gt;&gt;AS : currentDisruptions()
+AS.&gt;CS : List&lt;Disruption&gt;
+CS-&gt;CS + : leaveByTime(c, ds); on=CS
+CS-&gt;&gt;&gt;JP : plan(arriveBy query, ds, FASTEST)
+JP.&gt;CS : List&lt;Itinerary&gt;; off=CS
+combinedFragment=opt~f2 R CN
+R:[now &gt;= leaveBy - c.warnMinutesBefore and not yet warned today]
+CS-&gt;&gt;&gt;EB : publish(LEAVE_BY_ALERT); on=EB
+EB-&gt;&gt;&gt;UI : onEvent(e)
+EB-&gt;&gt;&gt;CN : onEvent(e); off=EB
+UI.&gt;R : "Leave by 08:52 - Line 1 delay adds 9 min"
+--=f2
+--=f1; off=CS</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

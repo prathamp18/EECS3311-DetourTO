@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>0</y><w>600</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*Use Case Diagram — DetourTO*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates><x>247</x><y>111</y><w>1274</w><h>1372</h></coordinates>
+    <panel_attributes>*DetourTO (JavaFX GUI and CLI)*
+halign=left
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>142</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC04 Set Route Preference</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>233</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC10 Manage Saved Places
+and Preferences</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>324</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC07 Compare and
+Explain Options</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>415</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC05 View Service Alerts</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>506</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC13 Receive Leave-By Alert</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>597</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC11 Ask What-If Follow-up
+(undo / redo)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>696</y><w>273</w><h>72</h></coordinates>
+    <panel_attributes>UC08 Monitor Active Trip
+--
+ext. point: trip at risk
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>805</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC06 Re-route Around
+Disruption</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>896</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC09 View Stop Arrivals</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>987</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC12 Set Up Commute Watch</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>1163</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC01 Plan Trip</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>1286</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC14 Replay Disruption
+Scenario and Benchmark</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>312</x><y>1384</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC15 Refresh Transit Data</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>760</x><y>773</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC16 Compute Itineraries</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>1183</x><y>1091</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC17 Clarify Ambiguous
+Request</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>760</x><y>1089</y><w>273</w><h>72</h></coordinates>
+    <panel_attributes>UC02 Plan Trip by Conversation
+--
+ext. point: ambiguous place
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>760</x><y>1234</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC03 Plan Trip by Form</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>1183</x><y>285</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC18 Run Agent Task</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates><x>1183</x><y>558</y><w>273</w><h>68</h></coordinates>
+    <panel_attributes>UC19 Interpret Service Alert</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates><x>54</x><y>576</y><w>100</w><h>88</h></coordinates>
+    <panel_attributes>Rider</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates><x>54</x><y>290</y><w>100</w><h>106</h></coordinates>
+    <panel_attributes>Clock
+«timer»</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates><x>54</x><y>1213</y><w>100</w><h>88</h></coordinates>
+    <panel_attributes>Evaluator</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates><x>30</x><y>1382</y><w>149</w><h>124</h></coordinates>
+    <panel_attributes>City of Toronto
+Open Data Portal
+«external system»</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates><x>1654</x><y>264</y><w>149</w><h>124</h></coordinates>
+    <panel_attributes>Amazon Bedrock
+(Claude LLM)
+«external system»</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates><x>1654</x><y>693</y><w>149</w><h>124</h></coordinates>
+    <panel_attributes>TTC GTFS-Realtime
+Feed
+«external system»</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>166</y><w>208</w><h>459</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;449.4;198.5;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>257</y><w>208</w><h>368</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;358.4;198.5;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>348</y><w>208</w><h>277</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;267.4;198.5;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>605</y><w>208</w><h>36</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;198.5;25.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>439</y><w>208</w><h>186</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;176.4;198.5;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>530</y><w>208</w><h>95</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;85.4;198.5;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>605</y><w>208</w><h>137</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;198.5;127.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>605</y><w>208</w><h>244</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;198.5;233.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>605</y><w>208</w><h>335</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;198.5;324.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>605</y><w>208</w><h>426</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;198.5;415.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>605</y><w>208</w><h>601</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;198.5;591.1</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>319</y><w>208</w><h>231</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;198.5;220.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>1242</y><w>208</w><h>88</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;198.5;77.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>1242</y><w>208</w><h>185</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;198.5;175.1</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>115</x><y>1408</y><w>208</w><h>24</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;13.9;198.5;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1443</x><y>293</y><w>275</w><h>30</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>265.3;10.0;10.0;20.2</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1384</x><y>609</y><w>334</w><h>133</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>323.8;123.3;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>574</x><y>722</y><w>1144</w><h>20</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1134.5;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>552</x><y>722</y><w>1166</w><h>200</h></coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1156.5;10.0;10.0;189.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>570</x><y>265</y><w>629</w><h>56</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;10.0;618.6;46.3</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>571</x><y>315</y><w>625</w><h>47</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;37.1;615.2;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>514</x><y>336</y><w>740</w><h>278</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;268.0;730.3;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>509</x><y>649</y><w>327</w><h>140</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;10.0;317.0;130.1</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>550</x><y>457</y><w>668</w><h>126</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;10.0;657.7;116.3</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>570</x><y>538</y><w>629</w><h>56</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;10.0;618.6;46.3</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>489</x><y>560</y><w>367</w><h>226</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;10.0;357.1;216.2</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>551</x><y>600</y><w>666</w><h>124</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;114.2;656.4;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>568</x><y>806</y><w>210</w><h>34</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;23.7;199.6;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>489</x><y>339</y><w>790</w><h>480</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;469.7;780.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>475</x><y>828</y><w>396</w><h>347</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;337.3;386.5;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>904</x><y>341</y><w>409</w><h>762</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;751.5;398.7;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1310</x><y>342</y><w>20</w><h>228</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;218.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>504</x><y>1143</y><w>338</w><h>158</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«include»</panel_attributes>
+    <additional_attributes>10.0;148.1;327.7;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>438</x><y>755</y><w>20</w><h>62</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«extend»
+[trip at risk]</panel_attributes>
+    <additional_attributes>10.0;51.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1022</x><y>1115</y><w>172</w><h>20</h></coordinates>
+    <panel_attributes>lt=.&gt;
+«extend»
+[ambiguous place]</panel_attributes>
+    <additional_attributes>162.1;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>551</x><y>1133</y><w>243</w><h>56</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;45.6;233.2;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>551</x><y>1204</y><w>243</w><h>56</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;233.2;45.6</additional_attributes>
+  </element>
+</diagram>

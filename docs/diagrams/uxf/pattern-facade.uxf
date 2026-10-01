@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>10</y><w>1200</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*Facade — TripController*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>103</x><y>310</y><w>500</w><h>560</h></coordinates>
+    <panel_attributes>«Facade»
+TripController
+--
+- planner : JourneyPlanner
+- places : PlaceResolver
+- strategies : Map&lt;StrategyKind, RouteScoringStrategy&gt;
+- tripAgent : TripRequestAgent
+- explainAgent : ExplanationAgent
+- preferenceAgent : PreferenceExtractorAgent
+- alertService : AlertService
+- monitor : TripMonitorService
+- commuteScheduler : CommuteScheduler
+- profiles : ProfileRepository
+- history : CommandHistory
+- commandFactory : QueryCommandFactory
+- eventBus : EventBus
+- session : ConversationSession
+--
++ planFromText(text: String, at: LocalDateTime): PlanResult
++ planFromForm(q: TripQuery): PlanResult
++ setStrategy(kind: StrategyKind): PlanResult
++ followUp(text: String): PlanResult
++ undo(): PlanResult
++ redo(): PlanResult
++ explain(): Explanation
++ getAlerts(): List&lt;Disruption&gt;
++ rerouteAround(d: Disruption): PlanResult
++ startTrip(itineraryId: String): ActiveTrip
++ acceptReroute(tripId: String): PlanResult
++ getArrivals(stopQuery: String): List&lt;Arrival&gt;
++ savePlace(label: String, stopQuery: String)
++ saveCommute(c: Commute)
++ runReplay(s: ReplayScenario): BenchmarkReport
++ refreshTransitData(): FeedValidationReport</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>160</x><y>70</y><w>190</w><h>50</h></coordinates>
+    <panel_attributes>«JavaFX Application»
+MainWindow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>448</x><y>195</y><w>110</w><h>50</h></coordinates>
+    <panel_attributes>«picocli»
+DetourCli</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>298</x><y>195</y><w>110</w><h>50</h></coordinates>
+    <panel_attributes>«Observer»
+/BasePanel/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>35</x><y>1050</y><w>140</w><h>40</h></coordinates>
+    <panel_attributes>JourneyPlanner</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>940</y><w>150</w><h>40</h></coordinates>
+    <panel_attributes>TripRequestAgent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>361</x><y>1050</y><w>120</w><h>40</h></coordinates>
+    <panel_attributes>AlertService</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>482</x><y>940</y><w>170</w><h>40</h></coordinates>
+    <panel_attributes>TripMonitorService</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>210</x><y>940</y><w>150</w><h>40</h></coordinates>
+    <panel_attributes>CommuteScheduler</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>692</x><y>935</y><w>180</w><h>50</h></coordinates>
+    <panel_attributes>«interface»
+/ProfileRepository/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates><x>426</x><y>60</y><w>350</w><h>70</h></coordinates>
+    <panel_attributes>Facade: one entry point for GUI and CLI.
+Clients never touch the planner, agents,
+feeds or repositories directly.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>314</x><y>110</y><w>20</w><h>94</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=6</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;84.4</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>219</x><y>110</y><w>20</w><h>210</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;199.5;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>343</x><y>235</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;74.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>493</x><y>235</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;74.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>165</x><y>860</y><w>37</w><h>214</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>27.3;10.0;27.3;203.8;10.0;203.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>126</x><y>860</y><w>20</w><h>89</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;79.5</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>411</x><y>860</y><w>20</w><h>200</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;189.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>532</x><y>860</y><w>20</w><h>89</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;79.5</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>275</x><y>860</y><w>20</w><h>89</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;79.5</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>593</x><y>580</y><w>151</w><h>365</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;140.9;10.0;140.9;354.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>441</x><y>944</y><w>51</w><h>116</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;105.8;10.0;10.0;40.8;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>165</x><y>970</y><w>130</w><h>117</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;106.9;119.9;106.9;119.9;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>350</x><y>957</y><w>51</w><h>103</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>40.9;92.7;40.9;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>570</x><y>120</y><w>20</w><h>200</h></coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;189.8</additional_attributes>
+  </element>
+</diagram>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>2280</w><h>1964</h></coordinates>
+    <panel_attributes>title=SD03 — View and Interpret Service Alerts (F04 / UC05, UC19, UC18)
+obj=:Rider~R ACTOR
+obj=_:AlertsPanel_~UI
+obj=_:TripController_~TC
+obj=_:AlertService_~AS
+obj=_:CachingRealtimeFeed_~CF
+obj=_:ResilientRealtimeFeed_~RF
+obj=_:CircuitBreaker_~CB
+obj=_:GtfsRealtimeAdapter_~AD
+obj=_:AlertInterpreterAgent_~AG
+obj=_:GroundingValidator_~GV
+obj=_:EventBus_~EB
+obj=TTC GTFS-RT feed\n«external»~TTC
+R-&gt;&gt;&gt;UI : onRefreshClicked(); on=UI
+UI-&gt;&gt;&gt;TC : getAlerts(); on=TC
+TC-&gt;&gt;&gt;AS : currentDisruptions(); on=AS
+AS-&gt;&gt;&gt;CF : alerts(); on=CF
+combinedFragment=alt~f1 AS TTC
+AS:[cached copy younger than ttl]
+CF.&gt;AS : cachedAlerts
+..=f1
+AS:[cache expired]
+CF-&gt;&gt;&gt;RF : alerts(); on=RF
+RF-&gt;&gt;&gt;CB : allowRequest()
+CB.&gt;RF : boolean
+combinedFragment=alt~f2 CF TTC
+CF:[breaker CLOSED or HALF_OPEN]
+RF-&gt;&gt;&gt;AD : alerts(); on=AD
+AD-&gt;&gt;&gt;TTC : GET /gtfsrt/alerts
+TTC.&gt;AD : protobuf bytes
+AD-&gt;AD + : fetch(path) / toServiceAlert(e)
+AD.&gt;RF : List&lt;ServiceAlert&gt;; off=AD
+RF-&gt;&gt;&gt;CB : recordSuccess()
+..=f2
+CF:[breaker OPEN (feed failed 3 times)]
+RF.&gt;CF : last good alerts, marked stale
+--=f2
+RF.&gt;CF : List&lt;ServiceAlert&gt;; off=RF
+CF.&gt;AS : List&lt;ServiceAlert&gt;
+--=f1; off=CF
+combinedFragment=loop~f3 AS GV
+AS:[each alert not already in cache]
+combinedFragment=alt~f4 AS GV
+AS:[informed route and stop ids are enough]
+AS-&gt;AS + : fromStructuredFields(a)
+..=f4
+AS:[free-text only (typical for subway alerts)]
+AS-&gt;&gt;&gt;AG : run(req with a.header, a.description); on=AG
+AG-&gt;&gt;&gt;GV : validateDisruption(d)
+GV.&gt;AG : ValidationReport
+combinedFragment=alt~f5 AS AG
+AS:[stop and route ids exist in TransitNetwork]
+AG.&gt;AS : AgentResult(Disruption, llmDerived = true)
+..=f5
+AS:[hallucinated station or malformed JSON]
+AG.&gt;AS : AgentResult(success = false)
+AS-&gt;AS + : keep Disruption(kind = UNKNOWN, confidence = 0)
+--=f5; off=AG
+--=f4
+--=f3
+AS-&gt;&gt;&gt;EB : publish(ALERTS_UPDATED)
+AS.&gt;TC : List&lt;Disruption&gt;; off=AS
+TC.&gt;UI : List&lt;Disruption&gt;; off=TC
+UI.&gt;R : alert table (plain summary, affected stops, source text); off=UI</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

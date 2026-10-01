@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>2090</w><h>1284</h></coordinates>
+    <panel_attributes>title=SD10 — Replay Disruption Scenario and Benchmark via CLI (F12 / UC14, UC02)
+obj=:Evaluator~E ACTOR
+obj=_:DetourCli_~CLI
+obj=_:TripController_~TC
+obj=_:BenchmarkRunner_~BR
+obj=_rf:ReplayRealtimeFeed_~RF CREATED_LATER
+obj=_as:AlertService_~AS CREATED_LATER
+obj=_:TripRequestAgent_~AG
+obj=_:JourneyPlanner_~JP
+obj=_:EventBus_~EB
+obj=_:TraceLogger_~TL
+obj=_:JsonResultWriter_~JW
+E-&gt;&gt;&gt;CLI : detour replay scenarios/line1-closure.json --json; on=CLI
+CLI-&gt;&gt;&gt;TC : runReplay(s); on=TC
+TC-&gt;&gt;&gt;BR : run(s); on=BR
+BR-&gt;&gt;&gt;RF : «create»(s)
+BR-&gt;&gt;&gt;AS : «create»(rf, interpreter)
+BR-&gt;&gt;&gt;AS : currentDisruptions(); on=AS
+AS-&gt;&gt;&gt;RF : alerts()
+RF.&gt;AS : s.alerts
+AS.&gt;BR : List&lt;Disruption&gt;; off=AS
+BR-&gt;&gt;&gt;AG : run(req: s.request at s.at); on=AG
+combinedFragment=loop~f1 AG TL
+AG:[each LLM call, tool call and validation]
+AG-&gt;&gt;&gt;EB : publish(AGENT_STEP)
+EB-&gt;&gt;&gt;TL : onEvent(e)
+--=f1
+AG.&gt;BR : AgentResult(TripQuery); off=AG
+BR-&gt;&gt;&gt;JP : plan(q, ds, FASTEST)
+JP.&gt;BR : List&lt;Itinerary&gt;
+BR-&gt;&gt;&gt;JP : plan(q, emptyList, FASTEST)
+JP.&gt;BR : baseline List&lt;Itinerary&gt;
+BR-&gt;BR + : compare closed stops with s.expectedClosedStopIds, arrival delay vs baseline
+BR.&gt;TC : BenchmarkReport; off=BR
+TC.&gt;CLI : BenchmarkReport; off=TC
+combinedFragment=alt~f2 E JW
+E:[--json flag]
+CLI-&gt;&gt;&gt;JW : write(report, System.out)
+..=f2
+E:[human-readable]
+CLI.&gt;E : table: feasible, delay, grounding violations, LLM calls, latency
+--=f2
+CLI.&gt;E : exit code 0 (1 if scenario file invalid); off=CLI</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>1710</w><h>1420</h></coordinates>
+    <panel_attributes>title=SD09 — Saved Places and Preference Memory (F09 / UC10, UC18)
+obj=:Rider~R ACTOR
+obj=_:CommutePanel_~UI
+obj=_:TripPlannerPanel_~CHAT
+obj=_:TripController_~TC
+obj=_:PlaceResolver_~PR
+obj=_:PreferenceExtractorAgent_~PA
+obj=_:ResponseParser_~RP
+obj=_:ProfileRepository_~REPO
+obj=_p:RiderProfile_~P
+combinedFragment=Explicit: save a place from the form~f1 R P
+R-&gt;&gt;&gt;UI : onSavePlaceClicked() label "school", "York University Station"; on=UI
+UI-&gt;&gt;&gt;TC : savePlace("school", "York University Station"); on=TC
+TC-&gt;&gt;&gt;PR : resolve(stopQuery)
+PR.&gt;TC : List&lt;Stop&gt;
+combinedFragment=alt~f2 R P
+R:[exactly one stop]
+TC-&gt;&gt;&gt;REPO : load()
+REPO.&gt;TC : p
+TC-&gt;&gt;&gt;P : apply(PreferenceUpdate("place:school", stopId))
+TC-&gt;&gt;&gt;REPO : save(p)
+TC.&gt;UI : ok
+..=f2
+R:[zero or several stops]
+TC.&gt;UI : candidates
+UI.&gt;R : ask the rider to pick one
+--=f2; off=TC; off=UI
+--=f1
+combinedFragment=Implicit: learn a preference from chat~f3 R P
+R-&gt;&gt;&gt;CHAT : onSendClicked() "never put me on the 29, it's always packed"; on=CHAT
+CHAT-&gt;&gt;&gt;TC : planFromText(text, now); on=TC
+TC-&gt;&gt;&gt;PA : run(req); on=PA
+PA-&gt;&gt;&gt;RP : toPreferences(json)
+RP.&gt;PA : [avoidRoute = "29"]
+PA.&gt;TC : AgentResult(List&lt;PreferenceUpdate&gt;); off=PA
+combinedFragment=opt~f4 TC P
+TC:[route "29" exists and update is not a duplicate]
+TC-&gt;&gt;&gt;REPO : load()
+REPO.&gt;TC : p
+TC-&gt;&gt;&gt;P : apply(u)
+TC-&gt;&gt;&gt;REPO : save(p)
+--=f4
+TC.&gt;CHAT : PlanResult(options avoiding route 29, message: "I'll avoid the 29 from now on"); off=TC
+CHAT.&gt;R : options + visible note (can be undone in Preferences); off=CHAT
+--=f3</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

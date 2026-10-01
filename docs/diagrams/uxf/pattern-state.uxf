@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>10</y><w>1200</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*State — ActiveTrip and TripState*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1567</x><y>325</y><w>460</w><h>200</h></coordinates>
+    <panel_attributes>«Context»
+ActiveTrip
+--
+- id : String
+- itinerary : Itinerary
+- state : TripState
+- projectedArrival : LocalDateTime
+--
++ update(snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ setState(s: TripState)
++ getState(): TripState
++ replaceItinerary(i: Itinerary)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1300</x><y>590</y><w>600</w><h>100</h></coordinates>
+    <panel_attributes>«interface»
+/TripState/
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>755</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>PlannedState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>660</x><y>755</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>OnTrackState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1300</x><y>755</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>AtRiskState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1940</x><y>755</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>ReroutedState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2580</x><y>755</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>CompletedState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1607</x><y>60</y><w>380</w><h>200</h></coordinates>
+    <panel_attributes>TripMonitorService
+--
+- trips : List&lt;ActiveTrip&gt;
+- feed : RealtimeFeed
+- alertService : AlertService
+- eventBus : EventBus
+- pollSeconds : int = 30
+--
++ start(i: Itinerary): ActiveTrip
++ poll()
++ applyReroute(tripId: String, i: Itinerary)
++ stop(tripId: String)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1940</x><y>620</y><w>110</w><h>40</h></coordinates>
+    <panel_attributes>Itinerary</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates><x>2027</x><y>120</y><w>360</w><h>80</h></coordinates>
+    <panel_attributes>Context: ActiveTrip.update() delegates to
+state.handle(), which may call setState().
+Planned -&gt; OnTrack -&gt; AtRisk -&gt; Rerouted
+-&gt; Completed</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1787</x><y>250</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1636</x><y>515</y><w>80</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;74.8;69.9;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1879</x><y>515</y><w>108</w><h>115</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>98.0;104.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>610</x><y>667</y><w>699</w><h>101</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>689.4;10.0;29.5;88.4;10.0;90.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1113</x><y>680</y><w>292</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>281.7;10.0;10.0;74.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1590</x><y>680</y><w>20</w><h>84</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.3</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1795</x><y>680</y><w>292</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;281.7;74.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1890</x><y>677</y><w>699</w><h>90</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;29.5;13.0;669.5;78.0;689.0;80.4</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1941</x><y>190</y><w>215</w><h>145</h></coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>204.8;10.0;10.0;134.9</additional_attributes>
+  </element>
+</diagram>

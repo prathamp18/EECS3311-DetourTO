@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>10</y><w>1200</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*Template Method — TransitAgent.run()*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>890</x><y>275</y><w>580</w><h>280</h></coordinates>
+    <panel_attributes>«Template Method»
+/TransitAgent/
+--
+# llm : LLMClient
+# tools : ToolRegistry
+# parser : ResponseParser
+# validator : GroundingValidator
+# eventBus : EventBus
+# maxToolRounds : int = 6
+--
++ run(req: AgentRequest): AgentResult
+# buildMessages(req: AgentRequest): List&lt;Message&gt;
+/# systemPrompt(): String/
+/# toolNames(): List&lt;String&gt;/
+/# parseFinal(r: LLMResponse, ctx: AgentContext): Object/
+/# validate(output: Object, ctx: AgentContext): ValidationReport/
+# onInvalid(report: ValidationReport, req: AgentRequest): AgentResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>620</y><w>570</w><h>130</h></coordinates>
+    <panel_attributes>TripRequestAgent
+--
+--
+# systemPrompt(): String
+# toolNames(): List&lt;String&gt;
+# parseFinal(r: LLMResponse, ctx: AgentContext): Object
+# validate(output: Object, ctx: AgentContext): ValidationReport
++ interpretFollowUp(text: String, ctx: AgentContext): FollowUpIntent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>630</x><y>625</y><w>530</w><h>120</h></coordinates>
+    <panel_attributes>AlertInterpreterAgent
+--
+--
+# systemPrompt(): String
+# toolNames(): List&lt;String&gt;
+# parseFinal(r: LLMResponse, ctx: AgentContext): Object
+# validate(output: Object, ctx: AgentContext): ValidationReport</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1200</x><y>625</y><w>530</w><h>120</h></coordinates>
+    <panel_attributes>ExplanationAgent
+--
+--
+# systemPrompt(): String
+# toolNames(): List&lt;String&gt;
+# parseFinal(r: LLMResponse, ctx: AgentContext): Object
+# validate(output: Object, ctx: AgentContext): ValidationReport</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1770</x><y>625</y><w>530</w><h>120</h></coordinates>
+    <panel_attributes>PreferenceExtractorAgent
+--
+--
+# systemPrompt(): String
+# toolNames(): List&lt;String&gt;
+# parseFinal(r: LLMResponse, ctx: AgentContext): Object
+# validate(output: Object, ctx: AgentContext): ValidationReport</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates><x>985</x><y>60</y><w>390</w><h>150</h></coordinates>
+    <panel_attributes>run() is final and fixes the agent loop:
+1. buildMessages(req)
+2. llm.complete(msgs, tools, systemPrompt())
+3. while tool calls and round &lt; maxToolRounds:
+   execute via ToolRegistry, append results
+4. output = parseFinal(response, ctx)
+5. report = validate(output, ctx)
+6. valid ? success : onInvalid(report, req)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>295</x><y>405</y><w>605</w><h>225</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>594.9;10.0;10.0;10.0;10.0;215.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1015</x><y>545</y><w>20</w><h>90</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;79.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1325</x><y>545</y><w>20</w><h>90</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;79.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1460</x><y>405</y><w>585</w><h>230</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;574.9;10.0;574.9;219.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1170</x><y>200</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.9</additional_attributes>
+  </element>
+</diagram>

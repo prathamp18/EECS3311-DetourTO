@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>2090</w><h>1862</h></coordinates>
+    <panel_attributes>title=SD05 — Monitor Active Trip (F07 / UC08, extended by UC06)
+obj=:Rider~R ACTOR
+obj=_:TripPlannerPanel_~UI
+obj=_:TripController_~TC
+obj=_:TripMonitorService_~MON
+obj=_trip:ActiveTrip_~AT CREATED_LATER
+obj=_st:TripState_~ST
+obj=_feed:RealtimeFeed_~FEED
+obj=_:AlertService_~AS
+obj=_:JourneyPlanner_~JP
+obj=_:EventBus_~EB
+obj=_:ConsoleNotifier_~CN
+R-&gt;&gt;&gt;UI : onStartTripClicked(); on=UI
+UI-&gt;&gt;&gt;TC : startTrip(itineraryId); on=TC
+TC-&gt;&gt;&gt;MON : start(i); on=MON
+MON-&gt;&gt;&gt;AT : «create»(i, new PlannedState())
+MON.&gt;TC : trip; off=MON
+TC.&gt;UI : trip; off=TC; off=UI
+combinedFragment=loop~f1 R CN
+R:[every pollSeconds until trip state is CompletedState]
+MON-&gt;MON + : poll(); on=MON
+MON-&gt;&gt;&gt;FEED : snapshot()
+FEED.&gt;MON : RealtimeSnapshot
+MON-&gt;&gt;&gt;AS : currentDisruptions()
+AS.&gt;MON : List&lt;Disruption&gt;
+MON-&gt;&gt;&gt;AT : update(snap, ds); on=AT
+AT-&gt;&gt;&gt;ST : handle(this, snap, ds); on=ST
+combinedFragment=alt~f2 AT ST
+AT:[disruption on a remaining leg, or projected arrival &gt; arriveBy]
+ST-&gt;&gt;&gt;AT : setState(new AtRiskState())
+..=f2
+AT:[delays within slack]
+ST-&gt;&gt;&gt;AT : setState(new OnTrackState())
+..=f2
+AT:[final leg finished]
+ST-&gt;&gt;&gt;AT : setState(new CompletedState())
+--=f2; off=ST; off=AT
+MON-&gt;&gt;&gt;AT : getState()
+AT.&gt;MON : state
+MON-&gt;&gt;&gt;EB : publish(TRIP_STATE_CHANGED)
+combinedFragment=opt~f3 R CN
+R:[state is AtRiskState]
+MON-&gt;&gt;&gt;EB : publish(TRIP_AT_RISK); on=EB
+EB-&gt;&gt;&gt;UI : onEvent(e)
+EB-&gt;&gt;&gt;CN : onEvent(e); off=EB
+UI.&gt;R : "Line 1 closed at St George. Re-route?"
+combinedFragment=opt~f4 R JP
+R:[rider accepts (UC06 extends UC08 at "trip at risk")]
+R-&gt;&gt;&gt;UI : onAcceptRerouteClicked(); on=UI
+UI-&gt;&gt;&gt;TC : acceptReroute(tripId); on=TC
+TC-&gt;&gt;&gt;JP : plan(remaining query from current position, ds, strategy)
+JP.&gt;TC : List&lt;Itinerary&gt;
+TC-&gt;&gt;&gt;MON : applyReroute(tripId, best)
+MON-&gt;&gt;&gt;AT : replaceItinerary(best)
+MON-&gt;&gt;&gt;AT : setState(new ReroutedState())
+TC.&gt;UI : PlanResult(options); off=TC
+UI.&gt;R : new route drawn on map; off=UI
+--=f4
+--=f3; off=MON
+--=f1</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

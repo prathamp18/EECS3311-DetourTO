@@ -1,4 +1,8 @@
-"""Draws the DetourTO use case diagram with a fixed layout.
+"""Hand-made layout for the DetourTO use case diagram (build input).
+
+generators/usecase_to_uxf.py reads UC, ACTORS, ASSOC, INCLUDE, EXTEND and
+GENERAL from this file to write uxf/usecase.uxf, which UMLet then exports.
+Run on its own, this script only draws a quick SVG preview of the layout.
 
 Graphviz scatters 19 use cases and 6 actors badly, so this script places every
 element by hand and emits plain UML notation (stick-figure actors, a system
@@ -6,12 +10,11 @@ boundary rectangle, ellipses, solid associations, dashed <<include>> /
 <<extend>> dependencies with open arrowheads, and generalization with a hollow
 triangle), matching the EECS 3311 UML slides.
 
-Usage:  python3 usecase_layout.py   ->  ../png/usecase.png and ../svg/usecase.svg
+Usage:  python3 usecase_layout.py   ->  usecase-layout-preview.svg (next to this file)
 """
 import math
 import os
 
-import cairosvg
 
 W, H = 1500, 1190
 BOX = (190, 70, 1170, 1125)  # x1, y1, x2, y2 of the system boundary
@@ -182,9 +185,6 @@ for name, (ax, ay, lines) in ACTORS.items():
 
 svg.append("</svg>")
 here = os.path.dirname(os.path.abspath(__file__))
-os.makedirs(os.path.join(here, "..", "svg"), exist_ok=True)
-svg_path = os.path.join(here, "..", "svg", "usecase.svg")
-with open(svg_path, "w") as f:
+with open(os.path.join(here, "usecase-layout-preview.svg"), "w") as f:
     f.write("\n".join(svg))
-cairosvg.svg2png(url=svg_path, write_to=os.path.join(here, "..", "png", "usecase.png"), scale=1.6)
-print("wrote usecase.svg and usecase.png")
+print("wrote usecase-layout-preview.svg")

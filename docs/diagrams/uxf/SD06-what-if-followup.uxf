@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates><x>10</x><y>10</y><w>1710</w><h>1556</h></coordinates>
+    <panel_attributes>title=SD06 — What-If Follow-up with Undo (F10 / UC11, UC16, UC18)
+obj=:Rider~R ACTOR
+obj=_:TripPlannerPanel_~UI
+obj=_:TripController_~TC
+obj=_:TripRequestAgent_~AG
+obj=_:QueryCommandFactory_~F
+obj=_:CommandHistory_~H
+obj=_cmd:ChangeDepartureCommand_~C CREATED_LATER
+obj=_q:TripQuery_~Q
+obj=_:JourneyPlanner_~JP
+R-&gt;&gt;&gt;UI : onSendClicked() "what if I leave 15 min later?"; on=UI
+UI-&gt;&gt;&gt;TC : followUp(text); on=TC
+TC-&gt;&gt;&gt;AG : interpretFollowUp(text, ctx); on=AG
+AG.&gt;TC : FollowUpIntent(DEPART_SHIFT, "+15"); off=AG
+combinedFragment=alt~f1 UI JP
+UI:[intent recognised]
+TC-&gt;&gt;&gt;F : create(intent, q); on=F
+F-&gt;&gt;&gt;C : «create»(q, newTime)
+F.&gt;TC : cmd; off=F
+TC-&gt;&gt;&gt;H : run(cmd); on=H
+H-&gt;&gt;&gt;C : execute(); on=C
+C-&gt;&gt;&gt;Q : departAt = newTime (oldTime saved); off=C
+H-&gt;H + : push cmd on undoStack, clear redoStack; off=H
+TC-&gt;&gt;&gt;JP : plan(q, ds, strategy)
+JP.&gt;TC : List&lt;Itinerary&gt;
+TC.&gt;UI : PlanResult(options, message: "Leaving 08:45")
+..=f1
+UI:[intent is really a new trip]
+TC-&gt;TC + : planFromText(text, now)
+TC.&gt;UI : PlanResult
+--=f1; off=TC
+UI.&gt;R : updated options; off=UI
+R-&gt;&gt;&gt;UI : onUndoClicked(); on=UI
+UI-&gt;&gt;&gt;TC : undo(); on=TC
+TC-&gt;&gt;&gt;H : undo(); on=H
+combinedFragment=alt~f2 UI JP
+UI:[undoStack not empty]
+H-&gt;&gt;&gt;C : undo(); on=C
+C-&gt;&gt;&gt;Q : departAt = oldTime; off=C
+H.&gt;TC : true
+TC-&gt;&gt;&gt;JP : plan(q, ds, strategy)
+JP.&gt;TC : List&lt;Itinerary&gt;
+TC.&gt;UI : PlanResult(options)
+..=f2
+UI:[nothing to undo]
+H.&gt;TC : false
+TC.&gt;UI : PlanResult(message: "Nothing to undo")
+--=f2; off=H; off=TC
+UI.&gt;R : previous options restored; off=UI</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

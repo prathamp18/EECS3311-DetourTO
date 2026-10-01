@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>10</y><w>1200</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*Strategy — RouteScoringStrategy*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>605</x><y>195</y><w>700</w><h>150</h></coordinates>
+    <panel_attributes>JourneyPlanner
+--
+- network : TransitNetwork
+- maxRounds : int = 5
+--
++ plan(q: TripQuery, ds: List&lt;Disruption&gt;, s: RouteScoringStrategy): List&lt;Itinerary&gt;
++ scheduledDepartures(stopId: String, from: LocalDateTime, n: int): List&lt;Arrival&gt;
+- raptorRounds(q: TripQuery, view: NetworkView, s: RouteScoringStrategy): ParetoSet
+- reconstruct(p: ParetoSet): List&lt;Itinerary&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>890</x><y>410</y><w>540</w><h>120</h></coordinates>
+    <panel_attributes>«interface»
+/RouteScoringStrategy/
+--
+--
++ admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
++ score(i: Itinerary): double
++ label(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>605</y><w>540</w><h>100</h></coordinates>
+    <panel_attributes>FastestStrategy
+--
+--
++ admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
++ score(i: Itinerary): double
++ label(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>600</x><y>595</y><w>540</w><h>120</h></coordinates>
+    <panel_attributes>FewestTransfersStrategy
+--
+- transferPenaltyMin : int = 10
+--
++ admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
++ score(i: Itinerary): double
++ label(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1180</x><y>595</y><w>540</w><h>120</h></coordinates>
+    <panel_attributes>LeastWalkingStrategy
+--
+- walkWeight : double = 3.0
+--
++ admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
++ score(i: Itinerary): double
++ label(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1760</x><y>605</y><w>540</w><h>100</h></coordinates>
+    <panel_attributes>AccessibleStrategy
+--
+--
++ admissible(leg: Leg, q: TripQuery, view: NetworkView): boolean
++ score(i: Itinerary): double
++ label(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1075</x><y>70</y><w>140</w><h>50</h></coordinates>
+    <panel_attributes>«Facade»
+TripController</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates><x>645</x><y>60</y><w>360</w><h>70</h></coordinates>
+    <panel_attributes>Context: JourneyPlanner calls admissible()
+and score() without knowing which
+concrete strategy the rider selected.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1135</x><y>110</y><w>20</w><h>95</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;84.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1205</x><y>85</y><w>172</w><h>335</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=4</panel_attributes>
+    <additional_attributes>10.0;10.0;162.4;10.0;162.4;324.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1088</x><y>335</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«use»</panel_attributes>
+    <additional_attributes>10.0;74.8;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>280</x><y>460</y><w>620</w><h>155</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>609.8;10.0;10.0;10.0;10.0;144.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1005</x><y>520</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1295</x><y>520</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1420</x><y>460</y><w>620</w><h>155</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;609.8;10.0;609.8;144.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>815</x><y>120</y><w>20</w><h>84</h></coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.5</additional_attributes>
+  </element>
+</diagram>

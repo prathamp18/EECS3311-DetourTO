@@ -302,6 +302,8 @@ The class diagram uses the notation from the EECS 3311 UML lectures:
 - multiplicities on association ends (`1`, `0..*`, `1..*`, `0..1`, `2`, `4`, `6`);
 - stereotypes such as `«Facade»`, `«Adapter»` and `«Decorator»` to mark pattern roles.
 
+**Tool.** All diagrams in this report are UMLet 15.1 diagrams (the `.uxf` files are in [`diagrams/uxf`](diagrams/uxf)); the images are UMLet's own exports. See Appendix D.
+
 **One model, several views.** The whole class model is a single file, [`diagrams/src/model.iuml`](diagrams/src/model.iuml). Each view below is generated from it by keeping one layer and a few neighbouring classes from other layers (those appear as name-only boxes). Because every view is cut from the same model, the views cannot contradict each other or the sequence diagrams. The model has 116 classes, interfaces and enumerations; a single diagram of all of them would not be readable, so it is shown layer by layer.
 
 ## 3.1 Presentation Layer
@@ -714,7 +716,7 @@ All 13 features are covered: see the *Related feature(s)* line of each descripti
 ---
 # 7. Sequence Diagrams
 
-Notation follows the UML II lecture: lifelines are named `:Class` or `name:Class` (underlined), the initiating actor is on the left, activation bars show when an object is executing, solid arrows with filled heads are calls, dashed arrows are returns, `«create»` messages point at the new object's box, self-calls loop back to the same lifeline, and `loop`, `alt` and `opt` frames carry guard conditions in square brackets. Every message is an operation from the class diagram in Section 3.
+Notation follows the UML II lecture: lifelines are named `:Class` or `name:Class` (underlined), the initiating actor is on the left, activation bars show when an object is executing, solid arrows with filled heads are calls, dashed arrows are returns, `«create»` messages point at the new object's box, self-calls loop back to the same lifeline, and `loop`, `alt` and `opt` frames carry guard conditions in square brackets. Every message is an operation from the class diagram in Section 3. The diagrams are UMLet "Sequence – All in one" elements; UMLet's all-in-one element has no note syntax, so remarks that would be notes are given in the text under each diagram.
 
 External systems (Amazon Bedrock, the TTC feed, the Open Data portal) appear as the rightmost participants. Each diagram shows the GUI path; the CLI path calls the same `TripController` method (see SD10 and SD11 for the CLI explicitly).
 
@@ -1042,14 +1044,22 @@ Initial behavioural requirements (to be refined in Stage 3):
 
 ## Appendix D — Diagram Files
 
-All diagrams are in [`docs/diagrams`](diagrams). `src/` holds the sources, `png/` the rendered images used in this report.
+All diagrams are in [`docs/diagrams`](diagrams) and are delivered as **UMLet 15.1 files** together with UMLet's own export. The three files for a diagram share one name, so `uxf/class-domain.uxf`, `svg/class-domain.svg` and `png/class-domain.png` are the same picture.
 
-| Diagram | Source | Image |
+| Folder | Contents |
+|---|---|
+| `uxf/` | 28 UMLet files: open and edit them in UMLet 15.1 or at umletino.com |
+| `svg/` | UMLet's SVG export of each `.uxf` |
+| `png/` | that SVG rasterised at 2x: the images shown in this report |
+| `src/` | the sources the `.uxf` files are generated from (build input) |
+| `generators/` | the scripts that write the UMLet XML and run UMLet's exporter |
+
+| Diagram | Source | UMLet file |
 |---|---|---|
-| Architecture overview | `src/architecture.puml` | `png/architecture.png` |
-| Class views (6) | `src/model.iuml` + `src/class-*.puml` | `png/class-*.png` |
-| Pattern views (9) | `src/model.iuml` + `src/pattern-*.puml` | `png/pattern-*.png` |
-| Use case diagram | `src/usecase_layout.py` | `png/usecase.png`, `svg/usecase.svg` |
-| Sequence diagrams (11) | `src/SD*.puml` | `png/SD*.png` |
+| Architecture overview | `generators/architecture_to_uxf.py` | `uxf/architecture.uxf` |
+| Class views (6) | `src/model.iuml` + `src/class-*.puml` | `uxf/class-*.uxf` |
+| Pattern views (9) | `src/model.iuml` + `src/pattern-*.puml` | `uxf/pattern-*.uxf` |
+| Use case diagram | `src/usecase_layout.py` | `uxf/usecase.uxf` |
+| Sequence diagrams (11) | `src/SD*.puml` | `uxf/SD*.uxf` |
 
-To regenerate everything, run `docs/diagrams/render.sh` (needs Java 17+, Graphviz, PlantUML 1.2025+ and Python 3 with `cairosvg`).
+UMLet has no PlantUML import, so the `.uxf` files are generated rather than redrawn: `generators/class_to_uxf.py` reads the single class model and each view's class list, lays the boxes out with Graphviz and sizes each box to its text; `sequence_to_uxf.py` turns each sequence diagram into a UMLet "Sequence – All in one" element; `usecase_to_uxf.py` uses the hand-made use case layout. Every `.uxf` was then opened and exported by UMLet 15.1 itself (headless `-action=convert`) to confirm it loads without errors, and those exports are the committed SVG and PNG files. To regenerate everything, run `docs/diagrams/render.sh` (needs Java, UMLet 15.1, Graphviz, and Python 3 with `cairosvg`; see `docs/diagrams/generators/README.md`).

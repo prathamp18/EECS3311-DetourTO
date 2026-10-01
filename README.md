@@ -81,7 +81,18 @@ tools/kuma/         Python harness for Stage 3 behaviour tests (no application l
 
 ## Diagrams
 
-All UML diagrams follow the notation from the course UML slides. Sources are in `docs/diagrams/src` and images in `docs/diagrams/png`. The class diagram is a single model (`model.iuml`) cut into views, so the views and sequence diagrams stay consistent. Run `docs/diagrams/render.sh` to regenerate the images.
+Every diagram is delivered in two formats that show the same picture: a **UMLet 15.1 `.uxf` file** and UMLet's own export (SVG, plus a 2x PNG that the report displays). Each set shares a name.
+
+```
+docs/diagrams/
+  uxf/          28 UMLet files (architecture, 6 class views, 9 pattern views, use case, 11 sequence diagrams)
+  svg/          UMLet's SVG export of each .uxf
+  png/          the same exports as PNG, what the report displays
+  src/          the sources the .uxf files are generated from (build input)
+  generators/   the scripts that turn those sources into UMLet XML and run UMLet's exporter
+```
+
+The class diagram is one model, `docs/diagrams/src/model.iuml`, cut into six layer views and nine pattern views, so the views cannot disagree with each other or with the sequence diagrams. UMLet has no PlantUML import, so the `.uxf` files are generated rather than redrawn. Every `.uxf` was opened and exported with UMLet 15.1 to confirm it loads without errors, and those exports are the committed images. See [`docs/diagrams/README.md`](docs/diagrams/README.md) for the regeneration commands.
 
 ## Data Licence
 

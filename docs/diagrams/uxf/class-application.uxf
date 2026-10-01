@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates><x>10</x><y>10</y><w>1200</w><h>40</h></coordinates>
+    <panel_attributes>fontsize=16
+*Class Diagram — Application Layer (facade, events, commands, trip monitoring)*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2835</x><y>60</y><w>500</w><h>560</h></coordinates>
+    <panel_attributes>«Facade»
+TripController
+--
+- planner : JourneyPlanner
+- places : PlaceResolver
+- strategies : Map&lt;StrategyKind, RouteScoringStrategy&gt;
+- tripAgent : TripRequestAgent
+- explainAgent : ExplanationAgent
+- preferenceAgent : PreferenceExtractorAgent
+- alertService : AlertService
+- monitor : TripMonitorService
+- commuteScheduler : CommuteScheduler
+- profiles : ProfileRepository
+- history : CommandHistory
+- commandFactory : QueryCommandFactory
+- eventBus : EventBus
+- session : ConversationSession
+--
++ planFromText(text: String, at: LocalDateTime): PlanResult
++ planFromForm(q: TripQuery): PlanResult
++ setStrategy(kind: StrategyKind): PlanResult
++ followUp(text: String): PlanResult
++ undo(): PlanResult
++ redo(): PlanResult
++ explain(): Explanation
++ getAlerts(): List&lt;Disruption&gt;
++ rerouteAround(d: Disruption): PlanResult
++ startTrip(itineraryId: String): ActiveTrip
++ acceptReroute(tripId: String): PlanResult
++ getArrivals(stopQuery: String): List&lt;Arrival&gt;
++ savePlace(label: String, stopQuery: String)
++ saveCommute(c: Commute)
++ runReplay(s: ReplayScenario): BenchmarkReport
++ refreshTransitData(): FeedValidationReport</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>627</x><y>720</y><w>390</w><h>130</h></coordinates>
+    <panel_attributes>PlanResult
+--
+- query : TripQuery
+- options : List&lt;Itinerary&gt;
+- clarification : ClarificationRequest [0..1]
+- disruptionsApplied : List&lt;Disruption&gt;
+- message : String
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>682</x><y>990</y><w>370</w><h>120</h></coordinates>
+    <panel_attributes>ConversationSession
+--
+- conversation : ConversationHistory
+- currentQuery : TripQuery [0..1]
+- lastOptions : List&lt;Itinerary&gt;
+--
++ rememberOptions(options: List&lt;Itinerary&gt;)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>950</x><y>1215</y><w>420</w><h>130</h></coordinates>
+    <panel_attributes>«Subject»
+EventBus
+--
+- listeners : Map&lt;EventType, List&lt;EventListener&gt;&gt;
+--
++ subscribe(type: EventType, l: EventListener)
++ unsubscribe(type: EventType, l: EventListener)
++ publish(e: TransitEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>1455</y><w>230</w><h>80</h></coordinates>
+    <panel_attributes>«interface»
+/EventListener/
+--
+--
++ onEvent(e: TransitEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>290</x><y>1655</y><w>190</w><h>100</h></coordinates>
+    <panel_attributes>TransitEvent
+--
+- type : EventType
+- payload : Object
+- timestamp : Instant
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>300</x><y>1830</y><w>170</w><h>160</h></coordinates>
+    <panel_attributes>«enumeration»
+EventType
+--
+ALERTS_UPDATED
+ITINERARY_UPDATED
+TRIP_STATE_CHANGED
+TRIP_AT_RISK
+LEAVE_BY_ALERT
+AGENT_STEP</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>20</x><y>1655</y><w>230</w><h>100</h></coordinates>
+    <panel_attributes>«Observer»
+TraceLogger
+--
+- traceFile : Path
+--
++ onEvent(e: TransitEvent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3490</x><y>1645</y><w>190</w><h>120</h></coordinates>
+    <panel_attributes>«interface»
+/QueryCommand/
+--
+--
++ execute()
++ undo()
++ describe(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3558</x><y>1835</y><w>230</w><h>150</h></coordinates>
+    <panel_attributes>ChangeDepartureCommand
+--
+- query : TripQuery
+- newTime : LocalDateTime
+- oldTime : LocalDateTime
+--
++ execute()
++ undo()
++ describe(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3754</x><y>2055</y><w>190</w><h>130</h></coordinates>
+    <panel_attributes>AvoidRouteCommand
+--
+- query : TripQuery
+- routeId : String
+--
++ execute()
++ undo()
++ describe(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3216</x><y>2250</y><w>220</w><h>150</h></coordinates>
+    <panel_attributes>ChangeStrategyCommand
+--
+- query : TripQuery
+- newKind : StrategyKind
+- oldKind : StrategyKind
+--
++ execute()
++ undo()
++ describe(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3387</x><y>2465</y><w>220</w><h>150</h></coordinates>
+    <panel_attributes>ChangeDestinationCommand
+--
+- query : TripQuery
+- newStop : Stop
+- oldStop : Stop
+--
++ execute()
++ undo()
++ describe(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3220</x><y>1410</y><w>290</w><h>170</h></coordinates>
+    <panel_attributes>«Invoker»
+CommandHistory
+--
+- undoStack : Deque&lt;QueryCommand&gt;
+- redoStack : Deque&lt;QueryCommand&gt;
+--
++ run(c: QueryCommand)
++ undo(): boolean
++ redo(): boolean
++ canUndo(): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3550</x><y>1455</y><w>510</w><h>80</h></coordinates>
+    <panel_attributes>«Factory»
+QueryCommandFactory
+--
+--
++ create(intent: FollowUpIntent, q: TripQuery): QueryCommand</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1716</x><y>685</y><w>380</w><h>200</h></coordinates>
+    <panel_attributes>TripMonitorService
+--
+- trips : List&lt;ActiveTrip&gt;
+- feed : RealtimeFeed
+- alertService : AlertService
+- eventBus : EventBus
+- pollSeconds : int = 30
+--
++ start(i: Itinerary): ActiveTrip
++ poll()
++ applyReroute(tripId: String, i: Itinerary)
++ stop(tripId: String)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1385</x><y>950</y><w>460</w><h>200</h></coordinates>
+    <panel_attributes>«Context»
+ActiveTrip
+--
+- id : String
+- itinerary : Itinerary
+- state : TripState
+- projectedArrival : LocalDateTime
+--
++ update(snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ setState(s: TripState)
++ getState(): TripState
++ replaceItinerary(i: Itinerary)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1410</x><y>1230</y><w>600</w><h>100</h></coordinates>
+    <panel_attributes>«interface»
+/TripState/
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1049</x><y>1455</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>PlannedState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1131</x><y>1665</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>OnTrackState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1492</x><y>1870</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>AtRiskState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1853</x><y>2080</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>ReroutedState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>409</x><y>1455</y><w>600</w><h>80</h></coordinates>
+    <panel_attributes>CompletedState
+--
+--
++ handle(trip: ActiveTrip, snap: RealtimeSnapshot, ds: List&lt;Disruption&gt;)
++ name(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2263</x><y>700</y><w>520</w><h>170</h></coordinates>
+    <panel_attributes>CommuteScheduler
+--
+- commutes : CommuteRepository
+- planner : JourneyPlanner
+- alertService : AlertService
+- eventBus : EventBus
+--
++ schedule(c: Commute)
++ checkDue(now: LocalDateTime)
+- leaveByTime(c: Commute, ds: List&lt;Disruption&gt;): LocalDateTime</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2905</x><y>710</y><w>360</w><h>150</h></coordinates>
+    <panel_attributes>BenchmarkRunner
+--
+- planner : JourneyPlanner
+- tripAgent : TripRequestAgent
+- interpreter : AlertInterpreterAgent
+- validator : GroundingValidator
+--
++ run(s: ReplayScenario): BenchmarkReport
++ runAll(dir: Path): List&lt;BenchmarkReport&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>1967</x><y>965</y><w>490</w><h>170</h></coordinates>
+    <panel_attributes>AlertService
+--
+- feed : RealtimeFeed
+- interpreter : AlertInterpreterAgent
+- cache : Map&lt;String, Disruption&gt;
+- eventBus : EventBus
+--
++ currentDisruptions(): List&lt;Disruption&gt;
+- fromStructuredFields(a: ServiceAlert): Disruption [0..1]
+- interpret(a: ServiceAlert): Disruption</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2717</x><y>1030</y><w>140</w><h>40</h></coordinates>
+    <panel_attributes>JourneyPlanner</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3172</x><y>1255</y><w>200</w><h>50</h></coordinates>
+    <panel_attributes>«interface»
+/RouteScoringStrategy/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3251</x><y>1030</y><w>150</w><h>40</h></coordinates>
+    <panel_attributes>TripRequestAgent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3687</x><y>765</y><w>150</w><h>40</h></coordinates>
+    <panel_attributes>ExplanationAgent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3788</x><y>1030</y><w>220</w><h>40</h></coordinates>
+    <panel_attributes>PreferenceExtractorAgent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2681</x><y>1260</y><w>190</w><h>40</h></coordinates>
+    <panel_attributes>AlertInterpreterAgent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2214</x><y>1475</y><w>120</w><h>40</h></coordinates>
+    <panel_attributes>ServiceAlert</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2462</x><y>1260</y><w>110</w><h>40</h></coordinates>
+    <panel_attributes>Disruption</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3979</x><y>1255</y><w>180</w><h>50</h></coordinates>
+    <panel_attributes>«interface»
+/ProfileRepository/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2497</x><y>1025</y><w>180</w><h>50</h></coordinates>
+    <panel_attributes>«interface»
+/CommuteRepository/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2282</x><y>1255</y><w>140</w><h>50</h></coordinates>
+    <panel_attributes>«interface»
+/RealtimeFeed/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2050</x><y>1260</y><w>110</w><h>40</h></coordinates>
+    <panel_attributes>Itinerary</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3530</x><y>2680</y><w>110</w><h>40</h></coordinates>
+    <panel_attributes>TripQuery</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>2374</x><y>1475</y><w>170</w><h>40</h></coordinates>
+    <panel_attributes>ReplayRealtimeFeed</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>3061</x><y>1030</y><w>150</w><h>40</h></coordinates>
+    <panel_attributes>BenchmarkReport</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates><x>730</x><y>1260</y><w>180</w><h>40</h></coordinates>
+    <panel_attributes>ConversationHistory</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>125</x><y>1526</y><w>20</w><h>140</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;129.5</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2840</x><y>610</y><w>20</w><h>430</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;419.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2886</x><y>610</y><w>295</w><h>674</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=4</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;663.8;285.4;663.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3278</x><y>610</y><w>20</w><h>430</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;419.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3302</x><y>610</y><w>395</w><h>185</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;174.8;385.2;174.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3325</x><y>330</y><w>607</w><h>710</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;597.4;10.0;597.4;699.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2447</x><y>610</y><w>409</w><h>385</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>398.9;10.0;398.9;374.9;10.0;374.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2086</x><y>610</y><w>763</w><h>93</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>752.6;10.0;752.6;82.7;10.0;82.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2773</x><y>610</y><w>79</w><h>105</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>69.3;10.0;69.3;94.7;10.0;94.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3325</x><y>190</y><w>768</w><h>1075</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;758.5;10.0;758.5;1064.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2870</x><y>610</y><w>360</w><h>833</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;822.9;350.5;822.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3325</x><y>470</y><w>303</w><h>995</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;293.2;10.0;293.2;984.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1360</x><y>610</y><w>1511</w><h>627</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>1501.3;10.0;1501.3;617.0;10.0;617.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1024</x><y>424</y><w>1820</w><h>576</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>1810.4;10.0;10.0;10.0;10.0;565.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>812</x><y>237</y><w>2033</w><h>493</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>10.0;482.8;10.0;10.0;2023.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3075</x><y>610</y><w>20</w><h>110</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«use»</panel_attributes>
+    <additional_attributes>10.0;99.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>810</x><y>1100</y><w>20</w><h>170</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;159.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>125</x><y>1313</y><w>835</w><h>152</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..*</panel_attributes>
+    <additional_attributes>824.8;10.0;10.0;10.0;10.0;141.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>470</x><y>1335</y><w>569</w><h>335</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«use»</panel_attributes>
+    <additional_attributes>10.0;324.7;559.0;324.7;559.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>375</x><y>1745</y><w>20</w><h>94</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;84.5;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3609</x><y>1755</y><w>20</w><h>90</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;79.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3531</x><y>1755</y><w>233</w><h>323</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;312.7;222.7;312.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3426</x><y>1755</y><w>91</w><h>580</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>80.8;10.0;80.8;570.0;10.0;570.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3514</x><y>1755</y><w>20</w><h>720</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;709.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3490</x><y>1570</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3605</x><y>1526</y><w>20</w><h>129</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>10.0;119.3;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3608</x><y>1975</y><w>20</w><h>715</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;704.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3619</x><y>2163</y><w>145</w><h>527</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;517.0;10.0;10.0;134.8;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3292</x><y>2390</y><w>248</w><h>320</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>238.2;309.6;10.0;309.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3558</x><y>2605</y><w>20</w><h>85</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;74.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1770</x><y>875</y><w>20</w><h>84</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;74.5</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1896</x><y>875</y><w>443</w><h>390</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>432.7;379.7;432.7;267.8;10.0;267.8;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2022</x><y>875</y><w>20</w><h>100</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;89.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1618</x><y>1140</y><w>20</w><h>100</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;89.8;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1835</x><y>1137</y><w>261</w><h>133</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>251.4;122.8;251.4;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1559</x><y>1320</y><w>20</w><h>145</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;134.8</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1680</x><y>1320</y><w>20</w><h>355</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;345.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1860</x><y>1320</y><w>20</w><h>559</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;549.5</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2000</x><y>1308</y><w>136</w><h>782</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;125.9;10.0;125.9;771.9</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>970</x><y>1320</y><w>530</w><h>145</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>520.2;10.0;520.2;57.9;10.0;57.9;10.0;134.6</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2577</x><y>860</y><w>20</w><h>174</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;164.5;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2740</x><y>860</y><w>20</w><h>180</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;169.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3248</x><y>850</y><w>20</w><h>190</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;179.8;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2534</x><y>850</y><w>485</w><h>655</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>10.0;644.7;475.0;644.7;475.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>3126</x><y>850</y><w>20</w><h>190</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>10.0;179.8;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2847</x><y>1040</y><w>335</w><h>257</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«use»</panel_attributes>
+    <additional_attributes>324.8;247.0;40.9;247.0;40.9;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2113</x><y>1060</y><w>684</w><h>210</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>10.0;199.6;10.0;78.8;673.7;78.8;673.7;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2365</x><y>1125</y><w>20</w><h>140</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;129.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2447</x><y>1095</y><w>262</w><h>175</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>251.7;164.9;251.7;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2430</x><y>1125</y><w>42</w><h>165</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;154.7;32.4;154.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2238</x><y>1125</y><w>20</w><h>360</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«use»</panel_attributes>
+    <additional_attributes>10.0;350.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2388</x><y>1295</y><w>20</w><h>190</h></coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;179.7</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1360</x><y>1126</y><w>638</w><h>104</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+publishes &gt;</panel_attributes>
+    <additional_attributes>10.0;93.5;628.4;93.5;628.4;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1201</x><y>858</y><w>525</w><h>367</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+publishes &gt;</panel_attributes>
+    <additional_attributes>10.0;356.7;10.0;10.0;514.6;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>1360</x><y>860</y><w>1129</w><h>373</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+publishes &gt;</panel_attributes>
+    <additional_attributes>10.0;362.8;1119.3;362.8;1119.3;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2350</x><y>860</y><w>20</w><h>115</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;104.6;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2298</x><y>1295</y><w>20</w><h>190</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>10.0;179.7;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2843</x><y>750</y><w>71</w><h>290</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;279.6;10.0;10.0;61.4;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2447</x><y>850</y><w>520</w><h>165</h></coordinates>
+    <panel_attributes>lt=&lt;.
+«create»</panel_attributes>
+    <additional_attributes>10.0;154.9;509.8;154.9;509.8;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates><x>2856</x><y>800</y><w>59</w><h>470</h></coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;459.8;10.0;10.0;48.6;10.0</additional_attributes>
+  </element>
+</diagram>
