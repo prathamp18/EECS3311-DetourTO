@@ -1,28 +1,31 @@
-# secrets — never commit AWS credentials
+# ---- secrets: never commit credentials ----
 .env
+.env.*
+!.env.example
+config.local.*
+config.local.json
 *.pem
 *.key
-config.local.*
 .aws/
 
-# Java / Maven
+# ---- Java / Maven ----
 target/
 *.class
 *.jar
 
-# Python harness
+# ---- Python (KUMA harness, diagram generators) ----
 __pycache__/
 *.py[cod]
 .venv/
 
-# runtime data
+# ---- runtime data ----
 data/local/
 *.db
 *.sqlite3
 trace.jsonl
 .kuma/
 
-# IDE / OS
+# ---- IDE / OS ----
 .idea/
 *.iml
 .vscode/
