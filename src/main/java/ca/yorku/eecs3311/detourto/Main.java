@@ -1,5 +1,6 @@
 package ca.yorku.eecs3311.detourto;
 
+import ca.yorku.eecs3311.detourto.presentation.ValidateFeedCommand;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
@@ -10,7 +11,8 @@ import picocli.CommandLine.Command;
 @Command(name = "detour",
         mixinStandardHelpOptions = true,
         version = "DetourTO 0.1.0",
-        description = "Disruption-aware TTC trip planning agent.")
+        description = "Disruption-aware TTC trip planning agent.",
+        subcommands = {ValidateFeedCommand.class})
 public class Main implements Runnable {
 
     @Override

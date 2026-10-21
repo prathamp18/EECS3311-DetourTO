@@ -1,0 +1,2697 @@
+route_id,service_id,trip_id,trip_headsign,direction_id
+1,WEEKDAY,1_WEEKDAY_0_0,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_1,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_2,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_3,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_4,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_5,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_6,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_7,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_8,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_9,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_10,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_11,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_12,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_13,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_14,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_15,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_16,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_17,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_18,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_19,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_20,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_21,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_22,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_23,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_24,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_25,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_26,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_27,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_28,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_29,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_30,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_31,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_32,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_33,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_34,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_35,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_36,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_37,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_38,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_39,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_40,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_41,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_42,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_43,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_44,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_45,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_46,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_47,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_48,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_49,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_50,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_51,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_52,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_53,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_54,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_55,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_56,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_57,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_58,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_59,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_60,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_61,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_62,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_63,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_64,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_65,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_66,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_67,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_68,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_69,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_70,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_71,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_72,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_73,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_74,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_75,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_76,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_77,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_78,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_79,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_80,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_81,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_82,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_83,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_84,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_85,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_86,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_87,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_88,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_89,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_90,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_91,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_92,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_93,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_94,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_95,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_96,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_97,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_98,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_99,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_100,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_101,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_102,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_103,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_104,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_105,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_106,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_107,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_108,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_109,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_110,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_111,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_112,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_113,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_114,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_115,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_116,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_117,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_118,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_119,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_120,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_121,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_122,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_123,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_124,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_125,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_126,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_127,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_128,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_129,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_130,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_131,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_132,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_133,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_134,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_135,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_136,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_137,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_138,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_139,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_140,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_141,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_142,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_143,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_144,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_145,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_146,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_147,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_148,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_149,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_150,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_151,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_152,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_153,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_154,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_155,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_156,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_157,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_158,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_159,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_160,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_161,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_162,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_163,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_164,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_165,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_166,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_167,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_168,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_169,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_170,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_171,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_172,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_173,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_174,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_175,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_176,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_177,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_178,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_179,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_180,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_181,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_182,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_183,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_184,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_185,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_186,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_187,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_188,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_189,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_190,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_191,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_192,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_193,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_194,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_195,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_196,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_197,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_198,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_199,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_200,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_201,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_202,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_203,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_204,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_205,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_206,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_207,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_208,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_209,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_0_210,Finch Station,0
+1,WEEKDAY,1_WEEKDAY_1_0,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_1,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_2,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_3,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_4,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_5,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_6,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_7,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_8,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_9,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_10,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_11,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_12,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_13,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_14,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_15,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_16,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_17,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_18,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_19,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_20,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_21,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_22,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_23,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_24,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_25,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_26,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_27,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_28,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_29,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_30,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_31,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_32,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_33,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_34,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_35,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_36,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_37,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_38,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_39,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_40,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_41,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_42,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_43,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_44,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_45,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_46,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_47,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_48,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_49,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_50,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_51,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_52,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_53,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_54,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_55,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_56,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_57,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_58,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_59,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_60,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_61,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_62,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_63,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_64,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_65,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_66,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_67,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_68,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_69,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_70,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_71,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_72,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_73,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_74,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_75,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_76,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_77,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_78,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_79,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_80,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_81,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_82,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_83,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_84,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_85,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_86,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_87,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_88,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_89,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_90,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_91,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_92,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_93,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_94,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_95,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_96,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_97,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_98,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_99,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_100,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_101,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_102,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_103,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_104,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_105,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_106,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_107,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_108,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_109,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_110,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_111,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_112,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_113,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_114,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_115,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_116,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_117,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_118,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_119,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_120,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_121,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_122,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_123,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_124,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_125,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_126,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_127,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_128,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_129,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_130,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_131,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_132,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_133,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_134,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_135,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_136,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_137,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_138,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_139,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_140,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_141,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_142,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_143,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_144,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_145,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_146,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_147,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_148,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_149,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_150,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_151,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_152,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_153,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_154,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_155,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_156,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_157,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_158,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_159,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_160,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_161,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_162,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_163,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_164,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_165,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_166,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_167,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_168,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_169,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_170,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_171,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_172,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_173,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_174,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_175,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_176,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_177,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_178,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_179,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_180,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_181,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_182,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_183,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_184,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_185,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_186,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_187,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_188,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_189,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_190,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_191,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_192,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_193,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_194,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_195,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_196,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_197,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_198,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_199,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_200,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_201,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_202,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_203,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_204,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_205,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_206,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_207,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_208,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_209,York University Station,1
+1,WEEKDAY,1_WEEKDAY_1_210,York University Station,1
+1,WEEKEND,1_WEEKEND_0_0,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_1,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_2,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_3,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_4,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_5,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_6,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_7,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_8,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_9,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_10,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_11,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_12,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_13,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_14,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_15,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_16,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_17,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_18,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_19,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_20,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_21,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_22,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_23,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_24,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_25,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_26,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_27,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_28,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_29,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_30,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_31,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_32,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_33,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_34,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_35,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_36,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_37,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_38,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_39,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_40,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_41,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_42,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_43,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_44,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_45,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_46,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_47,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_48,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_49,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_50,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_51,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_52,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_53,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_54,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_55,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_56,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_57,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_58,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_59,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_60,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_61,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_62,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_63,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_64,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_65,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_66,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_67,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_68,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_69,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_70,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_71,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_72,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_73,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_74,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_75,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_76,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_77,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_78,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_79,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_80,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_81,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_82,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_83,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_84,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_85,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_86,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_87,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_88,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_89,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_90,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_91,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_92,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_93,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_94,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_95,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_96,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_97,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_98,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_99,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_100,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_101,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_102,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_103,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_104,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_105,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_106,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_107,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_108,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_109,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_110,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_111,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_112,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_113,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_114,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_115,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_116,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_117,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_118,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_119,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_120,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_121,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_122,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_123,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_124,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_125,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_126,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_127,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_128,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_129,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_130,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_131,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_132,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_133,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_134,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_135,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_136,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_137,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_138,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_139,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_140,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_141,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_142,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_143,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_144,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_145,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_146,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_147,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_148,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_149,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_150,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_151,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_152,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_153,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_154,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_155,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_156,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_157,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_158,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_159,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_160,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_161,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_162,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_163,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_164,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_165,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_166,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_167,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_168,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_169,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_170,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_171,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_172,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_173,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_174,Finch Station,0
+1,WEEKEND,1_WEEKEND_0_175,Finch Station,0
+1,WEEKEND,1_WEEKEND_1_0,York University Station,1
+1,WEEKEND,1_WEEKEND_1_1,York University Station,1
+1,WEEKEND,1_WEEKEND_1_2,York University Station,1
+1,WEEKEND,1_WEEKEND_1_3,York University Station,1
+1,WEEKEND,1_WEEKEND_1_4,York University Station,1
+1,WEEKEND,1_WEEKEND_1_5,York University Station,1
+1,WEEKEND,1_WEEKEND_1_6,York University Station,1
+1,WEEKEND,1_WEEKEND_1_7,York University Station,1
+1,WEEKEND,1_WEEKEND_1_8,York University Station,1
+1,WEEKEND,1_WEEKEND_1_9,York University Station,1
+1,WEEKEND,1_WEEKEND_1_10,York University Station,1
+1,WEEKEND,1_WEEKEND_1_11,York University Station,1
+1,WEEKEND,1_WEEKEND_1_12,York University Station,1
+1,WEEKEND,1_WEEKEND_1_13,York University Station,1
+1,WEEKEND,1_WEEKEND_1_14,York University Station,1
+1,WEEKEND,1_WEEKEND_1_15,York University Station,1
+1,WEEKEND,1_WEEKEND_1_16,York University Station,1
+1,WEEKEND,1_WEEKEND_1_17,York University Station,1
+1,WEEKEND,1_WEEKEND_1_18,York University Station,1
+1,WEEKEND,1_WEEKEND_1_19,York University Station,1
+1,WEEKEND,1_WEEKEND_1_20,York University Station,1
+1,WEEKEND,1_WEEKEND_1_21,York University Station,1
+1,WEEKEND,1_WEEKEND_1_22,York University Station,1
+1,WEEKEND,1_WEEKEND_1_23,York University Station,1
+1,WEEKEND,1_WEEKEND_1_24,York University Station,1
+1,WEEKEND,1_WEEKEND_1_25,York University Station,1
+1,WEEKEND,1_WEEKEND_1_26,York University Station,1
+1,WEEKEND,1_WEEKEND_1_27,York University Station,1
+1,WEEKEND,1_WEEKEND_1_28,York University Station,1
+1,WEEKEND,1_WEEKEND_1_29,York University Station,1
+1,WEEKEND,1_WEEKEND_1_30,York University Station,1
+1,WEEKEND,1_WEEKEND_1_31,York University Station,1
+1,WEEKEND,1_WEEKEND_1_32,York University Station,1
+1,WEEKEND,1_WEEKEND_1_33,York University Station,1
+1,WEEKEND,1_WEEKEND_1_34,York University Station,1
+1,WEEKEND,1_WEEKEND_1_35,York University Station,1
+1,WEEKEND,1_WEEKEND_1_36,York University Station,1
+1,WEEKEND,1_WEEKEND_1_37,York University Station,1
+1,WEEKEND,1_WEEKEND_1_38,York University Station,1
+1,WEEKEND,1_WEEKEND_1_39,York University Station,1
+1,WEEKEND,1_WEEKEND_1_40,York University Station,1
+1,WEEKEND,1_WEEKEND_1_41,York University Station,1
+1,WEEKEND,1_WEEKEND_1_42,York University Station,1
+1,WEEKEND,1_WEEKEND_1_43,York University Station,1
+1,WEEKEND,1_WEEKEND_1_44,York University Station,1
+1,WEEKEND,1_WEEKEND_1_45,York University Station,1
+1,WEEKEND,1_WEEKEND_1_46,York University Station,1
+1,WEEKEND,1_WEEKEND_1_47,York University Station,1
+1,WEEKEND,1_WEEKEND_1_48,York University Station,1
+1,WEEKEND,1_WEEKEND_1_49,York University Station,1
+1,WEEKEND,1_WEEKEND_1_50,York University Station,1
+1,WEEKEND,1_WEEKEND_1_51,York University Station,1
+1,WEEKEND,1_WEEKEND_1_52,York University Station,1
+1,WEEKEND,1_WEEKEND_1_53,York University Station,1
+1,WEEKEND,1_WEEKEND_1_54,York University Station,1
+1,WEEKEND,1_WEEKEND_1_55,York University Station,1
+1,WEEKEND,1_WEEKEND_1_56,York University Station,1
+1,WEEKEND,1_WEEKEND_1_57,York University Station,1
+1,WEEKEND,1_WEEKEND_1_58,York University Station,1
+1,WEEKEND,1_WEEKEND_1_59,York University Station,1
+1,WEEKEND,1_WEEKEND_1_60,York University Station,1
+1,WEEKEND,1_WEEKEND_1_61,York University Station,1
+1,WEEKEND,1_WEEKEND_1_62,York University Station,1
+1,WEEKEND,1_WEEKEND_1_63,York University Station,1
+1,WEEKEND,1_WEEKEND_1_64,York University Station,1
+1,WEEKEND,1_WEEKEND_1_65,York University Station,1
+1,WEEKEND,1_WEEKEND_1_66,York University Station,1
+1,WEEKEND,1_WEEKEND_1_67,York University Station,1
+1,WEEKEND,1_WEEKEND_1_68,York University Station,1
+1,WEEKEND,1_WEEKEND_1_69,York University Station,1
+1,WEEKEND,1_WEEKEND_1_70,York University Station,1
+1,WEEKEND,1_WEEKEND_1_71,York University Station,1
+1,WEEKEND,1_WEEKEND_1_72,York University Station,1
+1,WEEKEND,1_WEEKEND_1_73,York University Station,1
+1,WEEKEND,1_WEEKEND_1_74,York University Station,1
+1,WEEKEND,1_WEEKEND_1_75,York University Station,1
+1,WEEKEND,1_WEEKEND_1_76,York University Station,1
+1,WEEKEND,1_WEEKEND_1_77,York University Station,1
+1,WEEKEND,1_WEEKEND_1_78,York University Station,1
+1,WEEKEND,1_WEEKEND_1_79,York University Station,1
+1,WEEKEND,1_WEEKEND_1_80,York University Station,1
+1,WEEKEND,1_WEEKEND_1_81,York University Station,1
+1,WEEKEND,1_WEEKEND_1_82,York University Station,1
+1,WEEKEND,1_WEEKEND_1_83,York University Station,1
+1,WEEKEND,1_WEEKEND_1_84,York University Station,1
+1,WEEKEND,1_WEEKEND_1_85,York University Station,1
+1,WEEKEND,1_WEEKEND_1_86,York University Station,1
+1,WEEKEND,1_WEEKEND_1_87,York University Station,1
+1,WEEKEND,1_WEEKEND_1_88,York University Station,1
+1,WEEKEND,1_WEEKEND_1_89,York University Station,1
+1,WEEKEND,1_WEEKEND_1_90,York University Station,1
+1,WEEKEND,1_WEEKEND_1_91,York University Station,1
+1,WEEKEND,1_WEEKEND_1_92,York University Station,1
+1,WEEKEND,1_WEEKEND_1_93,York University Station,1
+1,WEEKEND,1_WEEKEND_1_94,York University Station,1
+1,WEEKEND,1_WEEKEND_1_95,York University Station,1
+1,WEEKEND,1_WEEKEND_1_96,York University Station,1
+1,WEEKEND,1_WEEKEND_1_97,York University Station,1
+1,WEEKEND,1_WEEKEND_1_98,York University Station,1
+1,WEEKEND,1_WEEKEND_1_99,York University Station,1
+1,WEEKEND,1_WEEKEND_1_100,York University Station,1
+1,WEEKEND,1_WEEKEND_1_101,York University Station,1
+1,WEEKEND,1_WEEKEND_1_102,York University Station,1
+1,WEEKEND,1_WEEKEND_1_103,York University Station,1
+1,WEEKEND,1_WEEKEND_1_104,York University Station,1
+1,WEEKEND,1_WEEKEND_1_105,York University Station,1
+1,WEEKEND,1_WEEKEND_1_106,York University Station,1
+1,WEEKEND,1_WEEKEND_1_107,York University Station,1
+1,WEEKEND,1_WEEKEND_1_108,York University Station,1
+1,WEEKEND,1_WEEKEND_1_109,York University Station,1
+1,WEEKEND,1_WEEKEND_1_110,York University Station,1
+1,WEEKEND,1_WEEKEND_1_111,York University Station,1
+1,WEEKEND,1_WEEKEND_1_112,York University Station,1
+1,WEEKEND,1_WEEKEND_1_113,York University Station,1
+1,WEEKEND,1_WEEKEND_1_114,York University Station,1
+1,WEEKEND,1_WEEKEND_1_115,York University Station,1
+1,WEEKEND,1_WEEKEND_1_116,York University Station,1
+1,WEEKEND,1_WEEKEND_1_117,York University Station,1
+1,WEEKEND,1_WEEKEND_1_118,York University Station,1
+1,WEEKEND,1_WEEKEND_1_119,York University Station,1
+1,WEEKEND,1_WEEKEND_1_120,York University Station,1
+1,WEEKEND,1_WEEKEND_1_121,York University Station,1
+1,WEEKEND,1_WEEKEND_1_122,York University Station,1
+1,WEEKEND,1_WEEKEND_1_123,York University Station,1
+1,WEEKEND,1_WEEKEND_1_124,York University Station,1
+1,WEEKEND,1_WEEKEND_1_125,York University Station,1
+1,WEEKEND,1_WEEKEND_1_126,York University Station,1
+1,WEEKEND,1_WEEKEND_1_127,York University Station,1
+1,WEEKEND,1_WEEKEND_1_128,York University Station,1
+1,WEEKEND,1_WEEKEND_1_129,York University Station,1
+1,WEEKEND,1_WEEKEND_1_130,York University Station,1
+1,WEEKEND,1_WEEKEND_1_131,York University Station,1
+1,WEEKEND,1_WEEKEND_1_132,York University Station,1
+1,WEEKEND,1_WEEKEND_1_133,York University Station,1
+1,WEEKEND,1_WEEKEND_1_134,York University Station,1
+1,WEEKEND,1_WEEKEND_1_135,York University Station,1
+1,WEEKEND,1_WEEKEND_1_136,York University Station,1
+1,WEEKEND,1_WEEKEND_1_137,York University Station,1
+1,WEEKEND,1_WEEKEND_1_138,York University Station,1
+1,WEEKEND,1_WEEKEND_1_139,York University Station,1
+1,WEEKEND,1_WEEKEND_1_140,York University Station,1
+1,WEEKEND,1_WEEKEND_1_141,York University Station,1
+1,WEEKEND,1_WEEKEND_1_142,York University Station,1
+1,WEEKEND,1_WEEKEND_1_143,York University Station,1
+1,WEEKEND,1_WEEKEND_1_144,York University Station,1
+1,WEEKEND,1_WEEKEND_1_145,York University Station,1
+1,WEEKEND,1_WEEKEND_1_146,York University Station,1
+1,WEEKEND,1_WEEKEND_1_147,York University Station,1
+1,WEEKEND,1_WEEKEND_1_148,York University Station,1
+1,WEEKEND,1_WEEKEND_1_149,York University Station,1
+1,WEEKEND,1_WEEKEND_1_150,York University Station,1
+1,WEEKEND,1_WEEKEND_1_151,York University Station,1
+1,WEEKEND,1_WEEKEND_1_152,York University Station,1
+1,WEEKEND,1_WEEKEND_1_153,York University Station,1
+1,WEEKEND,1_WEEKEND_1_154,York University Station,1
+1,WEEKEND,1_WEEKEND_1_155,York University Station,1
+1,WEEKEND,1_WEEKEND_1_156,York University Station,1
+1,WEEKEND,1_WEEKEND_1_157,York University Station,1
+1,WEEKEND,1_WEEKEND_1_158,York University Station,1
+1,WEEKEND,1_WEEKEND_1_159,York University Station,1
+1,WEEKEND,1_WEEKEND_1_160,York University Station,1
+1,WEEKEND,1_WEEKEND_1_161,York University Station,1
+1,WEEKEND,1_WEEKEND_1_162,York University Station,1
+1,WEEKEND,1_WEEKEND_1_163,York University Station,1
+1,WEEKEND,1_WEEKEND_1_164,York University Station,1
+1,WEEKEND,1_WEEKEND_1_165,York University Station,1
+1,WEEKEND,1_WEEKEND_1_166,York University Station,1
+1,WEEKEND,1_WEEKEND_1_167,York University Station,1
+1,WEEKEND,1_WEEKEND_1_168,York University Station,1
+1,WEEKEND,1_WEEKEND_1_169,York University Station,1
+1,WEEKEND,1_WEEKEND_1_170,York University Station,1
+1,WEEKEND,1_WEEKEND_1_171,York University Station,1
+1,WEEKEND,1_WEEKEND_1_172,York University Station,1
+1,WEEKEND,1_WEEKEND_1_173,York University Station,1
+1,WEEKEND,1_WEEKEND_1_174,York University Station,1
+1,WEEKEND,1_WEEKEND_1_175,York University Station,1
+2,WEEKDAY,2_WEEKDAY_0_0,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_1,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_2,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_3,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_4,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_5,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_6,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_7,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_8,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_9,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_10,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_11,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_12,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_13,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_14,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_15,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_16,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_17,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_18,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_19,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_20,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_21,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_22,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_23,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_24,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_25,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_26,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_27,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_28,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_29,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_30,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_31,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_32,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_33,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_34,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_35,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_36,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_37,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_38,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_39,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_40,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_41,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_42,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_43,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_44,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_45,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_46,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_47,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_48,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_49,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_50,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_51,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_52,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_53,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_54,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_55,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_56,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_57,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_58,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_59,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_60,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_61,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_62,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_63,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_64,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_65,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_66,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_67,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_68,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_69,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_70,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_71,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_72,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_73,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_74,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_75,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_76,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_77,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_78,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_79,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_80,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_81,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_82,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_83,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_84,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_85,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_86,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_87,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_88,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_89,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_90,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_91,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_92,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_93,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_94,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_95,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_96,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_97,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_98,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_99,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_100,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_101,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_102,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_103,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_104,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_105,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_106,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_107,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_108,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_109,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_110,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_111,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_112,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_113,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_114,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_115,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_116,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_117,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_118,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_119,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_120,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_121,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_122,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_123,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_124,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_125,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_126,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_127,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_128,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_129,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_130,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_131,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_132,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_133,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_134,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_135,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_136,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_137,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_138,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_139,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_140,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_141,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_142,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_143,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_144,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_145,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_146,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_147,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_148,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_149,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_150,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_151,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_152,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_153,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_154,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_155,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_156,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_157,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_158,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_159,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_160,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_161,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_162,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_163,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_164,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_165,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_166,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_167,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_168,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_169,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_170,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_171,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_172,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_173,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_174,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_175,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_176,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_177,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_178,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_179,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_180,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_181,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_182,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_183,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_184,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_185,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_186,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_187,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_188,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_189,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_190,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_191,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_192,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_193,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_194,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_195,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_196,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_197,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_198,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_199,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_200,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_201,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_202,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_203,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_204,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_205,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_206,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_207,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_208,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_209,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_0_210,Broadview Station,0
+2,WEEKDAY,2_WEEKDAY_1_0,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_1,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_2,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_3,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_4,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_5,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_6,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_7,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_8,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_9,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_10,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_11,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_12,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_13,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_14,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_15,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_16,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_17,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_18,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_19,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_20,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_21,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_22,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_23,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_24,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_25,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_26,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_27,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_28,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_29,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_30,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_31,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_32,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_33,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_34,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_35,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_36,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_37,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_38,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_39,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_40,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_41,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_42,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_43,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_44,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_45,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_46,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_47,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_48,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_49,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_50,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_51,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_52,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_53,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_54,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_55,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_56,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_57,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_58,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_59,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_60,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_61,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_62,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_63,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_64,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_65,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_66,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_67,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_68,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_69,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_70,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_71,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_72,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_73,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_74,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_75,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_76,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_77,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_78,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_79,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_80,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_81,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_82,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_83,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_84,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_85,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_86,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_87,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_88,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_89,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_90,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_91,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_92,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_93,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_94,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_95,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_96,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_97,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_98,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_99,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_100,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_101,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_102,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_103,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_104,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_105,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_106,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_107,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_108,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_109,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_110,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_111,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_112,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_113,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_114,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_115,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_116,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_117,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_118,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_119,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_120,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_121,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_122,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_123,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_124,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_125,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_126,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_127,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_128,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_129,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_130,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_131,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_132,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_133,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_134,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_135,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_136,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_137,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_138,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_139,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_140,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_141,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_142,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_143,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_144,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_145,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_146,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_147,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_148,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_149,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_150,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_151,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_152,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_153,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_154,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_155,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_156,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_157,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_158,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_159,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_160,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_161,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_162,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_163,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_164,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_165,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_166,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_167,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_168,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_169,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_170,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_171,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_172,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_173,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_174,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_175,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_176,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_177,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_178,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_179,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_180,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_181,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_182,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_183,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_184,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_185,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_186,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_187,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_188,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_189,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_190,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_191,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_192,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_193,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_194,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_195,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_196,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_197,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_198,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_199,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_200,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_201,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_202,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_203,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_204,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_205,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_206,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_207,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_208,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_209,Keele Station,1
+2,WEEKDAY,2_WEEKDAY_1_210,Keele Station,1
+2,WEEKEND,2_WEEKEND_0_0,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_1,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_2,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_3,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_4,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_5,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_6,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_7,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_8,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_9,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_10,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_11,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_12,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_13,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_14,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_15,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_16,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_17,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_18,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_19,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_20,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_21,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_22,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_23,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_24,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_25,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_26,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_27,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_28,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_29,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_30,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_31,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_32,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_33,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_34,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_35,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_36,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_37,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_38,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_39,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_40,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_41,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_42,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_43,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_44,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_45,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_46,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_47,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_48,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_49,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_50,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_51,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_52,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_53,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_54,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_55,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_56,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_57,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_58,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_59,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_60,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_61,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_62,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_63,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_64,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_65,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_66,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_67,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_68,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_69,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_70,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_71,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_72,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_73,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_74,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_75,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_76,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_77,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_78,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_79,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_80,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_81,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_82,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_83,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_84,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_85,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_86,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_87,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_88,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_89,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_90,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_91,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_92,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_93,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_94,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_95,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_96,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_97,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_98,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_99,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_100,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_101,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_102,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_103,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_104,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_105,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_106,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_107,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_108,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_109,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_110,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_111,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_112,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_113,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_114,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_115,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_116,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_117,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_118,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_119,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_120,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_121,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_122,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_123,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_124,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_125,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_126,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_127,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_128,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_129,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_130,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_131,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_132,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_133,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_134,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_135,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_136,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_137,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_138,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_139,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_140,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_141,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_142,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_143,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_144,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_145,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_146,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_147,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_148,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_149,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_150,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_151,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_152,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_153,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_154,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_155,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_156,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_157,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_158,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_159,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_160,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_161,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_162,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_163,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_164,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_165,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_166,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_167,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_168,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_169,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_170,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_171,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_172,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_173,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_174,Broadview Station,0
+2,WEEKEND,2_WEEKEND_0_175,Broadview Station,0
+2,WEEKEND,2_WEEKEND_1_0,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_1,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_2,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_3,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_4,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_5,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_6,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_7,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_8,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_9,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_10,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_11,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_12,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_13,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_14,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_15,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_16,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_17,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_18,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_19,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_20,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_21,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_22,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_23,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_24,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_25,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_26,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_27,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_28,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_29,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_30,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_31,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_32,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_33,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_34,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_35,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_36,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_37,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_38,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_39,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_40,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_41,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_42,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_43,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_44,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_45,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_46,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_47,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_48,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_49,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_50,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_51,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_52,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_53,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_54,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_55,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_56,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_57,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_58,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_59,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_60,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_61,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_62,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_63,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_64,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_65,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_66,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_67,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_68,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_69,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_70,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_71,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_72,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_73,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_74,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_75,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_76,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_77,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_78,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_79,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_80,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_81,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_82,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_83,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_84,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_85,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_86,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_87,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_88,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_89,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_90,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_91,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_92,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_93,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_94,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_95,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_96,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_97,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_98,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_99,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_100,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_101,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_102,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_103,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_104,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_105,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_106,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_107,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_108,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_109,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_110,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_111,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_112,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_113,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_114,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_115,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_116,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_117,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_118,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_119,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_120,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_121,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_122,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_123,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_124,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_125,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_126,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_127,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_128,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_129,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_130,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_131,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_132,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_133,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_134,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_135,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_136,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_137,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_138,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_139,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_140,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_141,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_142,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_143,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_144,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_145,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_146,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_147,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_148,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_149,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_150,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_151,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_152,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_153,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_154,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_155,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_156,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_157,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_158,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_159,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_160,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_161,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_162,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_163,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_164,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_165,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_166,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_167,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_168,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_169,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_170,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_171,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_172,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_173,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_174,Keele Station,1
+2,WEEKEND,2_WEEKEND_1_175,Keele Station,1
+510,WEEKDAY,510_WEEKDAY_0_0,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_1,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_2,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_3,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_4,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_5,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_6,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_7,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_8,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_9,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_10,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_11,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_12,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_13,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_14,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_15,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_16,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_17,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_18,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_19,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_20,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_21,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_22,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_23,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_24,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_25,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_26,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_27,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_28,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_29,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_30,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_31,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_32,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_33,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_34,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_35,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_36,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_37,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_38,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_39,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_40,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_41,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_42,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_43,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_44,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_45,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_46,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_47,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_48,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_49,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_50,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_51,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_52,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_53,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_54,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_55,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_56,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_57,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_58,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_59,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_60,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_61,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_62,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_63,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_64,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_65,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_66,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_67,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_68,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_69,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_70,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_71,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_72,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_73,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_74,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_75,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_76,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_77,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_78,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_79,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_80,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_81,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_82,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_83,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_84,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_85,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_86,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_87,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_88,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_89,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_90,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_91,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_92,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_93,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_94,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_95,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_96,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_97,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_98,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_99,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_100,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_101,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_102,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_103,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_104,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_105,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_106,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_107,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_108,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_109,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_110,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_111,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_112,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_113,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_114,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_115,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_116,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_117,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_118,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_119,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_120,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_121,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_122,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_123,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_124,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_125,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_126,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_127,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_128,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_129,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_130,Union Station,0
+510,WEEKDAY,510_WEEKDAY_0_131,Union Station,0
+510,WEEKDAY,510_WEEKDAY_1_0,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_1,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_2,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_3,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_4,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_5,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_6,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_7,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_8,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_9,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_10,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_11,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_12,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_13,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_14,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_15,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_16,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_17,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_18,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_19,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_20,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_21,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_22,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_23,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_24,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_25,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_26,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_27,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_28,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_29,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_30,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_31,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_32,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_33,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_34,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_35,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_36,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_37,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_38,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_39,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_40,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_41,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_42,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_43,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_44,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_45,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_46,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_47,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_48,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_49,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_50,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_51,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_52,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_53,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_54,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_55,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_56,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_57,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_58,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_59,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_60,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_61,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_62,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_63,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_64,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_65,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_66,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_67,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_68,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_69,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_70,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_71,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_72,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_73,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_74,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_75,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_76,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_77,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_78,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_79,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_80,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_81,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_82,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_83,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_84,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_85,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_86,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_87,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_88,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_89,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_90,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_91,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_92,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_93,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_94,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_95,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_96,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_97,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_98,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_99,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_100,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_101,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_102,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_103,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_104,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_105,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_106,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_107,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_108,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_109,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_110,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_111,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_112,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_113,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_114,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_115,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_116,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_117,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_118,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_119,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_120,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_121,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_122,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_123,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_124,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_125,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_126,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_127,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_128,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_129,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_130,Spadina Station,1
+510,WEEKDAY,510_WEEKDAY_1_131,Spadina Station,1
+510,WEEKEND,510_WEEKEND_0_0,Union Station,0
+510,WEEKEND,510_WEEKEND_0_1,Union Station,0
+510,WEEKEND,510_WEEKEND_0_2,Union Station,0
+510,WEEKEND,510_WEEKEND_0_3,Union Station,0
+510,WEEKEND,510_WEEKEND_0_4,Union Station,0
+510,WEEKEND,510_WEEKEND_0_5,Union Station,0
+510,WEEKEND,510_WEEKEND_0_6,Union Station,0
+510,WEEKEND,510_WEEKEND_0_7,Union Station,0
+510,WEEKEND,510_WEEKEND_0_8,Union Station,0
+510,WEEKEND,510_WEEKEND_0_9,Union Station,0
+510,WEEKEND,510_WEEKEND_0_10,Union Station,0
+510,WEEKEND,510_WEEKEND_0_11,Union Station,0
+510,WEEKEND,510_WEEKEND_0_12,Union Station,0
+510,WEEKEND,510_WEEKEND_0_13,Union Station,0
+510,WEEKEND,510_WEEKEND_0_14,Union Station,0
+510,WEEKEND,510_WEEKEND_0_15,Union Station,0
+510,WEEKEND,510_WEEKEND_0_16,Union Station,0
+510,WEEKEND,510_WEEKEND_0_17,Union Station,0
+510,WEEKEND,510_WEEKEND_0_18,Union Station,0
+510,WEEKEND,510_WEEKEND_0_19,Union Station,0
+510,WEEKEND,510_WEEKEND_0_20,Union Station,0
+510,WEEKEND,510_WEEKEND_0_21,Union Station,0
+510,WEEKEND,510_WEEKEND_0_22,Union Station,0
+510,WEEKEND,510_WEEKEND_0_23,Union Station,0
+510,WEEKEND,510_WEEKEND_0_24,Union Station,0
+510,WEEKEND,510_WEEKEND_0_25,Union Station,0
+510,WEEKEND,510_WEEKEND_0_26,Union Station,0
+510,WEEKEND,510_WEEKEND_0_27,Union Station,0
+510,WEEKEND,510_WEEKEND_0_28,Union Station,0
+510,WEEKEND,510_WEEKEND_0_29,Union Station,0
+510,WEEKEND,510_WEEKEND_0_30,Union Station,0
+510,WEEKEND,510_WEEKEND_0_31,Union Station,0
+510,WEEKEND,510_WEEKEND_0_32,Union Station,0
+510,WEEKEND,510_WEEKEND_0_33,Union Station,0
+510,WEEKEND,510_WEEKEND_0_34,Union Station,0
+510,WEEKEND,510_WEEKEND_0_35,Union Station,0
+510,WEEKEND,510_WEEKEND_0_36,Union Station,0
+510,WEEKEND,510_WEEKEND_0_37,Union Station,0
+510,WEEKEND,510_WEEKEND_0_38,Union Station,0
+510,WEEKEND,510_WEEKEND_0_39,Union Station,0
+510,WEEKEND,510_WEEKEND_0_40,Union Station,0
+510,WEEKEND,510_WEEKEND_0_41,Union Station,0
+510,WEEKEND,510_WEEKEND_0_42,Union Station,0
+510,WEEKEND,510_WEEKEND_0_43,Union Station,0
+510,WEEKEND,510_WEEKEND_0_44,Union Station,0
+510,WEEKEND,510_WEEKEND_0_45,Union Station,0
+510,WEEKEND,510_WEEKEND_0_46,Union Station,0
+510,WEEKEND,510_WEEKEND_0_47,Union Station,0
+510,WEEKEND,510_WEEKEND_0_48,Union Station,0
+510,WEEKEND,510_WEEKEND_0_49,Union Station,0
+510,WEEKEND,510_WEEKEND_0_50,Union Station,0
+510,WEEKEND,510_WEEKEND_0_51,Union Station,0
+510,WEEKEND,510_WEEKEND_0_52,Union Station,0
+510,WEEKEND,510_WEEKEND_0_53,Union Station,0
+510,WEEKEND,510_WEEKEND_0_54,Union Station,0
+510,WEEKEND,510_WEEKEND_0_55,Union Station,0
+510,WEEKEND,510_WEEKEND_0_56,Union Station,0
+510,WEEKEND,510_WEEKEND_0_57,Union Station,0
+510,WEEKEND,510_WEEKEND_0_58,Union Station,0
+510,WEEKEND,510_WEEKEND_0_59,Union Station,0
+510,WEEKEND,510_WEEKEND_0_60,Union Station,0
+510,WEEKEND,510_WEEKEND_0_61,Union Station,0
+510,WEEKEND,510_WEEKEND_0_62,Union Station,0
+510,WEEKEND,510_WEEKEND_0_63,Union Station,0
+510,WEEKEND,510_WEEKEND_0_64,Union Station,0
+510,WEEKEND,510_WEEKEND_0_65,Union Station,0
+510,WEEKEND,510_WEEKEND_0_66,Union Station,0
+510,WEEKEND,510_WEEKEND_0_67,Union Station,0
+510,WEEKEND,510_WEEKEND_0_68,Union Station,0
+510,WEEKEND,510_WEEKEND_0_69,Union Station,0
+510,WEEKEND,510_WEEKEND_0_70,Union Station,0
+510,WEEKEND,510_WEEKEND_0_71,Union Station,0
+510,WEEKEND,510_WEEKEND_0_72,Union Station,0
+510,WEEKEND,510_WEEKEND_0_73,Union Station,0
+510,WEEKEND,510_WEEKEND_0_74,Union Station,0
+510,WEEKEND,510_WEEKEND_0_75,Union Station,0
+510,WEEKEND,510_WEEKEND_0_76,Union Station,0
+510,WEEKEND,510_WEEKEND_0_77,Union Station,0
+510,WEEKEND,510_WEEKEND_0_78,Union Station,0
+510,WEEKEND,510_WEEKEND_0_79,Union Station,0
+510,WEEKEND,510_WEEKEND_0_80,Union Station,0
+510,WEEKEND,510_WEEKEND_0_81,Union Station,0
+510,WEEKEND,510_WEEKEND_0_82,Union Station,0
+510,WEEKEND,510_WEEKEND_0_83,Union Station,0
+510,WEEKEND,510_WEEKEND_0_84,Union Station,0
+510,WEEKEND,510_WEEKEND_0_85,Union Station,0
+510,WEEKEND,510_WEEKEND_0_86,Union Station,0
+510,WEEKEND,510_WEEKEND_0_87,Union Station,0
+510,WEEKEND,510_WEEKEND_0_88,Union Station,0
+510,WEEKEND,510_WEEKEND_0_89,Union Station,0
+510,WEEKEND,510_WEEKEND_0_90,Union Station,0
+510,WEEKEND,510_WEEKEND_0_91,Union Station,0
+510,WEEKEND,510_WEEKEND_0_92,Union Station,0
+510,WEEKEND,510_WEEKEND_0_93,Union Station,0
+510,WEEKEND,510_WEEKEND_0_94,Union Station,0
+510,WEEKEND,510_WEEKEND_0_95,Union Station,0
+510,WEEKEND,510_WEEKEND_0_96,Union Station,0
+510,WEEKEND,510_WEEKEND_0_97,Union Station,0
+510,WEEKEND,510_WEEKEND_0_98,Union Station,0
+510,WEEKEND,510_WEEKEND_0_99,Union Station,0
+510,WEEKEND,510_WEEKEND_0_100,Union Station,0
+510,WEEKEND,510_WEEKEND_0_101,Union Station,0
+510,WEEKEND,510_WEEKEND_0_102,Union Station,0
+510,WEEKEND,510_WEEKEND_0_103,Union Station,0
+510,WEEKEND,510_WEEKEND_0_104,Union Station,0
+510,WEEKEND,510_WEEKEND_0_105,Union Station,0
+510,WEEKEND,510_WEEKEND_1_0,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_1,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_2,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_3,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_4,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_5,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_6,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_7,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_8,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_9,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_10,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_11,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_12,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_13,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_14,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_15,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_16,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_17,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_18,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_19,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_20,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_21,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_22,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_23,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_24,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_25,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_26,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_27,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_28,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_29,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_30,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_31,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_32,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_33,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_34,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_35,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_36,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_37,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_38,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_39,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_40,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_41,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_42,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_43,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_44,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_45,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_46,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_47,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_48,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_49,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_50,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_51,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_52,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_53,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_54,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_55,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_56,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_57,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_58,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_59,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_60,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_61,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_62,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_63,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_64,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_65,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_66,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_67,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_68,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_69,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_70,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_71,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_72,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_73,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_74,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_75,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_76,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_77,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_78,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_79,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_80,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_81,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_82,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_83,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_84,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_85,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_86,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_87,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_88,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_89,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_90,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_91,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_92,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_93,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_94,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_95,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_96,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_97,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_98,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_99,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_100,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_101,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_102,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_103,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_104,Spadina Station,1
+510,WEEKEND,510_WEEKEND_1_105,Spadina Station,1
+29,WEEKDAY,29_WEEKDAY_0_0,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_1,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_2,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_3,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_4,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_5,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_6,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_7,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_8,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_9,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_10,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_11,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_12,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_13,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_14,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_15,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_16,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_17,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_18,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_19,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_20,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_21,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_22,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_23,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_24,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_25,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_26,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_27,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_28,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_29,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_30,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_31,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_32,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_33,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_34,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_35,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_36,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_37,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_38,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_39,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_40,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_41,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_42,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_43,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_44,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_45,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_46,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_47,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_48,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_49,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_50,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_51,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_52,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_53,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_54,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_55,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_56,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_57,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_58,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_59,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_60,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_61,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_62,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_63,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_64,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_65,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_66,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_67,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_68,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_69,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_70,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_71,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_72,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_73,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_74,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_75,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_76,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_77,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_78,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_79,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_80,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_81,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_82,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_83,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_84,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_85,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_86,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_0_87,Wilson Station,0
+29,WEEKDAY,29_WEEKDAY_1_0,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_1,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_2,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_3,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_4,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_5,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_6,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_7,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_8,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_9,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_10,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_11,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_12,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_13,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_14,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_15,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_16,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_17,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_18,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_19,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_20,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_21,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_22,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_23,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_24,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_25,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_26,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_27,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_28,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_29,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_30,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_31,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_32,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_33,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_34,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_35,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_36,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_37,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_38,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_39,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_40,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_41,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_42,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_43,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_44,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_45,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_46,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_47,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_48,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_49,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_50,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_51,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_52,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_53,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_54,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_55,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_56,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_57,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_58,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_59,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_60,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_61,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_62,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_63,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_64,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_65,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_66,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_67,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_68,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_69,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_70,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_71,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_72,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_73,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_74,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_75,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_76,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_77,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_78,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_79,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_80,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_81,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_82,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_83,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_84,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_85,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_86,Dufferin Station,1
+29,WEEKDAY,29_WEEKDAY_1_87,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_0_0,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_1,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_2,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_3,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_4,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_5,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_6,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_7,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_8,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_9,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_10,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_11,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_12,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_13,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_14,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_15,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_16,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_17,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_18,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_19,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_20,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_21,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_22,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_23,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_24,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_25,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_26,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_27,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_28,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_29,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_30,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_31,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_32,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_33,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_34,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_35,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_36,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_37,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_38,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_39,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_40,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_41,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_42,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_43,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_44,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_45,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_46,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_47,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_48,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_49,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_50,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_51,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_52,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_53,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_54,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_55,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_56,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_57,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_58,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_59,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_60,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_61,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_62,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_63,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_64,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_65,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_66,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_67,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_68,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_69,Wilson Station,0
+29,WEEKEND,29_WEEKEND_0_70,Wilson Station,0
+29,WEEKEND,29_WEEKEND_1_0,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_1,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_2,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_3,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_4,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_5,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_6,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_7,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_8,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_9,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_10,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_11,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_12,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_13,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_14,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_15,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_16,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_17,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_18,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_19,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_20,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_21,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_22,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_23,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_24,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_25,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_26,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_27,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_28,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_29,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_30,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_31,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_32,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_33,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_34,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_35,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_36,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_37,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_38,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_39,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_40,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_41,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_42,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_43,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_44,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_45,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_46,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_47,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_48,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_49,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_50,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_51,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_52,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_53,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_54,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_55,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_56,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_57,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_58,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_59,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_60,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_61,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_62,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_63,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_64,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_65,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_66,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_67,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_68,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_69,Dufferin Station,1
+29,WEEKEND,29_WEEKEND_1_70,Dufferin Station,1
+36,WEEKDAY,36_WEEKDAY_0_0,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_1,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_2,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_3,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_4,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_5,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_6,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_7,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_8,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_9,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_10,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_11,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_12,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_13,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_14,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_15,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_16,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_17,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_18,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_19,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_20,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_21,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_22,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_23,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_24,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_25,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_26,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_27,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_28,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_29,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_30,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_31,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_32,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_33,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_34,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_35,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_36,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_37,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_38,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_39,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_40,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_41,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_42,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_43,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_44,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_45,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_46,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_47,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_48,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_49,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_50,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_51,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_52,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_53,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_54,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_55,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_56,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_57,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_58,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_59,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_60,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_61,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_62,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_63,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_64,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_65,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_66,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_67,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_68,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_69,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_70,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_71,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_72,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_73,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_74,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_75,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_76,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_77,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_78,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_79,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_80,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_81,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_82,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_83,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_84,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_85,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_86,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_87,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_88,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_89,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_90,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_91,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_92,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_93,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_94,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_95,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_96,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_97,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_98,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_99,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_100,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_101,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_102,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_103,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_104,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_0_105,Finch Station,0
+36,WEEKDAY,36_WEEKDAY_1_0,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_1,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_2,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_3,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_4,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_5,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_6,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_7,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_8,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_9,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_10,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_11,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_12,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_13,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_14,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_15,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_16,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_17,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_18,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_19,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_20,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_21,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_22,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_23,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_24,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_25,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_26,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_27,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_28,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_29,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_30,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_31,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_32,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_33,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_34,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_35,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_36,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_37,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_38,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_39,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_40,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_41,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_42,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_43,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_44,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_45,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_46,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_47,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_48,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_49,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_50,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_51,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_52,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_53,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_54,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_55,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_56,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_57,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_58,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_59,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_60,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_61,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_62,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_63,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_64,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_65,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_66,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_67,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_68,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_69,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_70,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_71,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_72,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_73,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_74,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_75,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_76,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_77,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_78,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_79,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_80,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_81,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_82,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_83,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_84,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_85,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_86,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_87,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_88,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_89,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_90,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_91,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_92,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_93,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_94,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_95,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_96,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_97,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_98,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_99,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_100,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_101,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_102,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_103,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_104,Finch West Station,1
+36,WEEKDAY,36_WEEKDAY_1_105,Finch West Station,1
+36,WEEKEND,36_WEEKEND_0_0,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_1,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_2,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_3,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_4,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_5,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_6,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_7,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_8,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_9,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_10,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_11,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_12,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_13,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_14,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_15,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_16,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_17,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_18,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_19,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_20,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_21,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_22,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_23,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_24,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_25,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_26,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_27,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_28,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_29,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_30,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_31,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_32,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_33,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_34,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_35,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_36,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_37,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_38,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_39,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_40,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_41,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_42,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_43,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_44,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_45,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_46,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_47,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_48,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_49,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_50,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_51,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_52,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_53,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_54,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_55,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_56,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_57,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_58,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_59,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_60,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_61,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_62,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_63,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_64,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_65,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_66,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_67,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_68,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_69,Finch Station,0
+36,WEEKEND,36_WEEKEND_0_70,Finch Station,0
+36,WEEKEND,36_WEEKEND_1_0,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_1,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_2,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_3,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_4,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_5,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_6,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_7,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_8,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_9,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_10,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_11,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_12,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_13,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_14,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_15,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_16,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_17,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_18,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_19,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_20,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_21,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_22,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_23,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_24,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_25,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_26,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_27,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_28,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_29,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_30,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_31,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_32,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_33,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_34,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_35,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_36,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_37,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_38,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_39,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_40,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_41,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_42,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_43,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_44,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_45,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_46,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_47,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_48,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_49,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_50,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_51,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_52,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_53,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_54,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_55,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_56,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_57,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_58,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_59,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_60,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_61,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_62,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_63,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_64,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_65,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_66,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_67,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_68,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_69,Finch West Station,1
+36,WEEKEND,36_WEEKEND_1_70,Finch West Station,1
