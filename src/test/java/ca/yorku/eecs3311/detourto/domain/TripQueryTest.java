@@ -36,6 +36,14 @@ class TripQueryTest {
     }
 
     @Test
+    void routeLabelsDoNotRepeatTheNumber() {
+        assertEquals("Line 1 Yonge-University", new Route("1", "1", "Line 1 Yonge-University", TransitMode.SUBWAY).label());
+        assertEquals("510 Spadina", new Route("510", "510", "Spadina", TransitMode.STREETCAR).label());
+        assertEquals("LINE 2 (BLOOR - DANFORTH)", new Route("2", "2", "LINE 2 (BLOOR - DANFORTH)", TransitMode.SUBWAY).label());
+        assertEquals("29", new Route("29", "29", "", TransitMode.BUS).label());
+    }
+
+    @Test
     void strategyNamesParseFromCliSpelling() {
         assertEquals(StrategyKind.FEWEST_TRANSFERS, StrategyKind.parse("fewest-transfers"));
         assertEquals("least-walking", StrategyKind.LEAST_WALKING.cliName());
