@@ -12,9 +12,42 @@ The agent proposes and the Java code verifies. Every stop, route, time and itine
 
 | Stage | State |
 |---|---|
-| Stage 1 — Design | Complete (this commit) |
-| Stage 2 — AI-assisted implementation | Not started |
+| Stage 1 — Design | Complete |
+| Stage 2 — AI-assisted implementation | In progress (due Nov 10, 2026) |
 | Stage 3 — Testing (JUnit + KUMA) | Not started |
+
+## Running the Code
+
+### Prerequisites
+
+- Java 21 (`java -version`)
+- Maven 3.9+ (`mvn -version`)
+- For the AI features: an AWS account with Claude model access enabled in Amazon Bedrock
+
+### Setup
+
+```bash
+git clone https://github.com/prathamp18/EECS3311-DetourTO.git
+cd EECS3311-DetourTO
+cp .env.example .env        # then edit .env with your own values (never commit it)
+mvn -q package              # compiles, runs the tests, builds target/detourto.jar
+```
+
+`.env` is listed in `.gitignore`. Real keys go only in your local `.env` (or in `~/.aws/credentials` via `aws configure`); `.env.example` holds placeholders only.
+
+### Run
+
+```bash
+java -jar target/detourto.jar --help
+```
+
+By default the app uses the small sample network in `data/sample/mini-gtfs`, so it runs without downloading anything. To use the real TTC network, download "TTC Routes and Schedules" (GTFS zip) from the City of Toronto Open Data portal into `data/local/` and set `GTFS_PATH` in `.env`.
+
+### Tests
+
+```bash
+mvn test
+```
 
 ## Stage 1 Report
 
