@@ -1,0 +1,6 @@
+route_id,agency_id,route_short_name,route_long_name,route_type
+1,TTC,1,Line 1 Yonge-University,1
+2,TTC,2,Line 2 Bloor-Danforth,1
+510,TTC,510,Spadina,0
+29,TTC,29,Dufferin,3
+36,TTC,36,Finch West,3
