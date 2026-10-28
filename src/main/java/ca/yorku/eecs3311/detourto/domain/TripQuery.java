@@ -21,6 +21,7 @@ public final class TripQuery {
     private LocalDateTime arriveBy;
     private StrategyKind strategyKind = StrategyKind.FASTEST;
     private final Set<String> avoidRouteIds = new LinkedHashSet<>();
+    private final Set<TransitMode> avoidModes = java.util.EnumSet.noneOf(TransitMode.class);
     private int maxWalkMeters = DEFAULT_MAX_WALK_METERS;
 
     private TripQuery(Stop origin, Stop destination) {
@@ -46,6 +47,7 @@ public final class TripQuery {
         q.arriveBy = arriveBy;
         q.strategyKind = strategyKind;
         q.avoidRouteIds.addAll(avoidRouteIds);
+        q.avoidModes.addAll(avoidModes);
         q.maxWalkMeters = maxWalkMeters;
         return q;
     }
@@ -113,6 +115,22 @@ public final class TripQuery {
         avoidRouteIds.remove(routeId);
     }
 
+    /** Modes the rider does not want, e.g. "no streetcars". Walking cannot be avoided. */
+    public Set<TransitMode> avoidModes() {
+        return avoidModes.isEmpty() ? Set.of() : java.util.EnumSet.copyOf(avoidModes);
+    }
+
+    public void avoidMode(TransitMode mode) {
+        if (mode == TransitMode.WALK) {
+            throw new IllegalArgumentException("walking cannot be avoided");
+        }
+        avoidModes.add(mode);
+    }
+
+    public void allowMode(TransitMode mode) {
+        avoidModes.remove(mode);
+    }
+
     public int maxWalkMeters() {
         return maxWalkMeters;
     }
@@ -129,6 +147,7 @@ public final class TripQuery {
         return "TripQuery[" + origin.id() + " -> " + destination.id()
                 + (isArriveBy() ? " arrive by " + arriveBy : " depart " + departAt)
                 + ", " + strategyKind.cliName() + (avoidRouteIds.isEmpty() ? "" : ", avoid " + avoidRouteIds)
+                + (avoidModes.isEmpty() ? "" : ", no " + avoidModes)
                 + "]";
     }
 }

@@ -52,25 +52,37 @@ public final class JourneyPlanner {
         return network;
     }
 
-    /** Plans on the network with nothing closed. */
+    /** Plans on the network with nothing closed, using the query's own strategy. */
     public List<Itinerary> plan(TripQuery q) {
-        return plan(q, network.fullView());
+        return plan(q, network.fullView(), RouteScoringStrategy.of(q.strategyKind()));
+    }
+
+    /** Plans on a view (closures applied), using the query's own strategy. */
+    public List<Itinerary> plan(TripQuery q, NetworkView view) {
+        return plan(q, view, RouteScoringStrategy.of(q.strategyKind()));
     }
 
     /**
-     * Up to {@link #MAX_OPTIONS} non-dominated itineraries with ids opt-1, opt-2, ... Depart-at
-     * options are ordered by arrival; arrive-by options by latest departure. An empty list means
-     * no route exists under the given closures.
+     * Up to {@link #MAX_OPTIONS} non-dominated itineraries that the strategy accepts, best score
+     * first, with ids opt-1, opt-2, ... An empty list means no route exists under the given
+     * closures and strategy.
      */
-    public List<Itinerary> plan(TripQuery q, NetworkView view) {
-        List<Itinerary> found = q.isArriveBy() ? planArriveBy(q, view) : planDepartAt(q, view);
-        List<Itinerary> sorted = new ArrayList<>(nonDominated(found));
-        Comparator<Itinerary> order = q.isArriveBy()
+    public List<Itinerary> plan(TripQuery q, NetworkView view, RouteScoringStrategy strategy) {
+        List<Itinerary> found = q.isArriveBy()
+                ? planArriveBy(q, view, strategy) : planDepartAt(q, view, strategy);
+        List<Itinerary> accepted = new ArrayList<>();
+        for (Itinerary it : nonDominated(found)) {
+            if (it.legs().stream().allMatch(leg -> strategy.admissible(leg, q, view))) {
+                accepted.add(it);
+            }
+        }
+        Comparator<Itinerary> tieBreak = q.isArriveBy()
                 ? Comparator.comparing(Itinerary::departure, Comparator.reverseOrder())
-                        .thenComparing(Itinerary::arrival)
-                : Comparator.comparing(Itinerary::arrival)
-                        .thenComparing(Itinerary::departure, Comparator.reverseOrder());
-        sorted.sort(order.thenComparingInt(Itinerary::transfers));
+                : Comparator.comparing(Itinerary::arrival);
+        List<Itinerary> sorted = new ArrayList<>(accepted);
+        sorted.sort(Comparator.<Itinerary>comparingDouble(it -> strategy.score(it, q))
+                .thenComparing(tieBreak)
+                .thenComparingInt(Itinerary::transfers));
         List<Itinerary> out = new ArrayList<>();
         for (Itinerary it : sorted) {
             if (out.size() == MAX_OPTIONS) {
@@ -81,12 +93,12 @@ public final class JourneyPlanner {
         return out;
     }
 
-    private List<Itinerary> planDepartAt(TripQuery q, NetworkView view) {
+    private List<Itinerary> planDepartAt(TripQuery q, NetworkView view, RouteScoringStrategy strategy) {
         LocalDate date = q.departAt().toLocalDate();
         int t = q.departAt().toLocalTime().toSecondOfDay();
         Map<String, Itinerary> options = new LinkedHashMap<>();
         for (int i = 0; i < MAX_SEARCHES && options.size() < MAX_OPTIONS; i++) {
-            List<Itinerary> batch = new Search(q, view, date, t).run();
+            List<Itinerary> batch = new Search(q, view, strategy, date, t).run();
             if (batch.isEmpty()) {
                 break;
             }
@@ -105,13 +117,13 @@ public final class JourneyPlanner {
      * the latest-found first departure, and keep every option that still arrives in time. The
      * options that leave latest are returned.
      */
-    private List<Itinerary> planArriveBy(TripQuery q, NetworkView view) {
+    private List<Itinerary> planArriveBy(TripQuery q, NetworkView view, RouteScoringStrategy strategy) {
         LocalDateTime deadline = q.arriveBy();
         LocalDate date = deadline.toLocalDate();
         int t = Math.max(0, deadline.toLocalTime().toSecondOfDay() - ARRIVE_BY_WINDOW_SECONDS);
         Map<String, Itinerary> inTime = new LinkedHashMap<>();
         for (int i = 0; i < MAX_SEARCHES; i++) {
-            List<Itinerary> batch = new Search(q, view, date, t).run();
+            List<Itinerary> batch = new Search(q, view, strategy, date, t).run();
             boolean anyInTime = false;
             for (Itinerary it : batch) {
                 if (!it.arrival().isAfter(deadline)) {
@@ -186,6 +198,7 @@ public final class JourneyPlanner {
 
         private final TripQuery q;
         private final NetworkView view;
+        private final RouteScoringStrategy strategy;
         private final LocalDate date;
         private final int departure;
         private final int n;
@@ -206,9 +219,11 @@ public final class JourneyPlanner {
         private final Set<Integer> targets = new HashSet<>();
         private int bestTarget = INF;
 
-        Search(TripQuery q, NetworkView view, LocalDate date, int departure) {
+        Search(TripQuery q, NetworkView view, RouteScoringStrategy strategy, LocalDate date,
+               int departure) {
             this.q = q;
             this.view = view;
+            this.strategy = strategy;
             this.date = date;
             this.departure = departure;
             this.n = network.stopCount();
@@ -270,10 +285,13 @@ public final class JourneyPlanner {
                 }
             }
             Set<Integer> improved = new HashSet<>();
+            Set<String> avoidRoutes = q.avoidRouteIds();
+            Set<TransitMode> avoidModes = q.avoidModes();
             for (Map.Entry<Integer, Integer> e : queue.entrySet()) {
                 RoutePattern pattern = network.patterns().get(e.getKey());
                 Route route = pattern.route();
-                if (view.isRouteClosed(route) || q.avoidRouteIds().contains(route.id())) {
+                if (view.isRouteClosed(route) || avoidRoutes.contains(route.id())
+                        || avoidModes.contains(route.mode())) {
                     continue;
                 }
                 Trip trip = null;
@@ -282,7 +300,8 @@ public final class JourneyPlanner {
                 for (int pos = e.getValue(); pos < pattern.stopCount(); pos++) {
                     int s = pattern.stopAt(pos);
                     boolean open = !view.isStopClosed(s);
-                    if (trip != null && open) {
+                    Stop stop = network.stopAt(s);
+                    if (trip != null && open && strategy.canAlight(stop, view)) {
                         int arr = trip.arrivalAt(pos) + offset;
                         if (arr < Math.min(best[s], bestTarget)) {
                             tau[k][s] = arr;
@@ -297,7 +316,7 @@ public final class JourneyPlanner {
                         }
                     }
                     int ready = tau[k - 1][s];
-                    if (open && ready < INF
+                    if (open && ready < INF && strategy.canBoard(stop, route, view)
                             && (trip == null || ready <= trip.departureAt(pos) + offset)) {
                         int[] caught = earliestTrip(pattern, pos, ready);
                         if (caught != null) {
