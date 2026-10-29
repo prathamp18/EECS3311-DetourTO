@@ -24,6 +24,10 @@ public final class TextResultWriter {
             return;
         }
         TripQuery q = r.query();
+        if (q == null) {
+            out.println(r.message());
+            return;
+        }
         out.printf("%s -> %s, %s %s (%s)%n", q.origin().name(), q.destination().name(),
                 q.isArriveBy() ? "arrive by" : "depart", DAY.format(q.time()), q.strategyKind().cliName());
         out.println(r.message());

@@ -17,32 +17,39 @@ import java.util.concurrent.Callable;
 import picocli.CommandLine.ArgGroup;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
 import picocli.CommandLine.ParameterException;
 import picocli.CommandLine.Spec;
 import picocli.CommandLine.Model.CommandSpec;
 
 /**
- * {@code detour plan --from "York U" --to Union --arrive-by 09:30 --strategy accessible [--json]}
- * (features F02 and F03). Plain-English requests ({@code detour plan "..."}) are added with the
- * agent in week 2.
+ * {@code detour plan "York U to Union by 9:30, step-free"} (F01, uses the LLM agent) or
+ * {@code detour plan --from "York U" --to Union --arrive-by 09:30 --strategy accessible}
+ * (F02 and F03, no LLM). Both support {@code --json}.
  */
 @Command(name = "plan",
         mixinStandardHelpOptions = true,
-        description = "Plan a TTC trip between two stops.",
-        footer = {"", "Exit codes: 0 options found, 3 no route, 4 a place needs clarifying."})
+        description = "Plan a TTC trip, in plain English or with --from/--to.",
+        footer = {"", "Exit codes: 0 options found, 3 no route, 4 a place needs clarifying,",
+                "5 the request could not be understood (or no LLM key)."})
 public class PlanCommand implements Callable<Integer> {
 
     static final ZoneId TORONTO = ZoneId.of("America/Toronto");
     static final int EXIT_NO_ROUTE = 3;
     static final int EXIT_CLARIFY = 4;
+    static final int EXIT_NOT_UNDERSTOOD = 5;
 
     @Spec
     CommandSpec spec;
 
-    @Option(names = "--from", required = true, description = "Origin: station or street name, stop id, or lat,lon")
+    @Parameters(arity = "0..1", paramLabel = "REQUEST",
+            description = "Plain-English request, e.g. \"York U to Union by 10, no streetcars\"")
+    String request;
+
+    @Option(names = "--from", description = "Origin: station or street name, stop id, or lat,lon")
     String from;
 
-    @Option(names = "--to", required = true, description = "Destination, same formats as --from")
+    @Option(names = "--to", description = "Destination, same formats as --from")
     String to;
 
     static class When {
@@ -90,10 +97,23 @@ public class PlanCommand implements Callable<Integer> {
         if (result.needsClarification()) {
             return EXIT_CLARIFY;
         }
+        if (result.query() == null) {
+            return EXIT_NOT_UNDERSTOOD;
+        }
         return result.hasOptions() ? 0 : EXIT_NO_ROUTE;
     }
 
     PlanResult plan(TripController c) {
+        if (request != null && !request.isBlank()) {
+            if (from != null || to != null) {
+                throw new ParameterException(spec.commandLine(), "Give either a REQUEST or --from/--to, not both.");
+            }
+            LocalDateTime now = when.depart != null ? parseTime(when.depart) : parseTime("now");
+            return c.planFromText(request, now);
+        }
+        if (from == null || to == null) {
+            throw new ParameterException(spec.commandLine(), "Give a REQUEST in quotes, or both --from and --to.");
+        }
         TripController.Resolution origin = c.resolvePlace(from);
         if (origin.stop().isEmpty()) {
             return PlanResult.needsClarification(origin.clarification());

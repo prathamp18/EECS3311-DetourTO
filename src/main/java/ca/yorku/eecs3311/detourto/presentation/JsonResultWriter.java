@@ -37,7 +37,8 @@ public final class JsonResultWriter {
 
     Map<String, Object> toMap(PlanResult r) {
         Map<String, Object> m = new LinkedHashMap<>();
-        m.put("status", r.needsClarification() ? "clarification_needed" : r.hasOptions() ? "ok" : "no_route");
+        m.put("status", r.needsClarification() ? "clarification_needed"
+                : r.query() == null ? "error" : r.hasOptions() ? "ok" : "no_route");
         m.put("message", r.message());
         m.put("query", r.query() == null ? null : query(r.query()));
         List<Object> options = new ArrayList<>();
