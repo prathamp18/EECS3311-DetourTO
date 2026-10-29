@@ -12,13 +12,15 @@ import java.util.Optional;
  * Application settings.
  *
  * <p>Values are read, in order of priority, from real environment variables and then from a local
- * {@code .env} file (KEY=VALUE lines). The .env file holds secrets such as AWS keys, is listed in
+ * {@code .env} file (KEY=VALUE lines). The .env file holds secrets such as the Gemini API key, is listed in
  * .gitignore and is never committed; {@code .env.example} shows which keys exist.
  */
 public final class AppConfig {
 
     public static final String DEFAULT_GTFS_PATH = "data/sample/mini-gtfs";
     public static final String DEFAULT_FEED_BASE_URL = "https://bustime.ttc.ca/gtfsrt";
+    public static final String DEFAULT_LLM_PROVIDER = "gemini";
+    public static final String DEFAULT_GEMINI_MODEL = "gemini-flash-latest";
 
     private final Map<String, String> values;
 
@@ -90,15 +92,6 @@ public final class AppConfig {
         return Path.of(getOrDefault("GTFS_PATH", DEFAULT_GTFS_PATH));
     }
 
-    public String awsRegion() {
-        return getOrDefault("AWS_REGION", "us-east-1");
-    }
-
-    /** Bedrock model or inference-profile id, copied from the Bedrock console. */
-    public Optional<String> modelId() {
-        return get("BEDROCK_MODEL_ID");
-    }
-
     public String feedBaseUrl() {
         return getOrDefault("TTC_FEED_BASE_URL", DEFAULT_FEED_BASE_URL);
     }
@@ -107,7 +100,21 @@ public final class AppConfig {
         return Path.of(getOrDefault("TRACE_FILE", "trace.jsonl"));
     }
 
-    /** true = use the offline ScriptedLLMClient instead of Bedrock (tests, demos without credits). */
+    /** Which LLM adapter to use: gemini or scripted. */
+    public String llmProvider() {
+        return getOrDefault("LLM_PROVIDER", DEFAULT_LLM_PROVIDER);
+    }
+
+    /** Google AI Studio API key (secret: only in .env, never committed). */
+    public Optional<String> geminiApiKey() {
+        return get("GEMINI_API_KEY");
+    }
+
+    public String geminiModel() {
+        return getOrDefault("GEMINI_MODEL", DEFAULT_GEMINI_MODEL);
+    }
+
+    /** true = use the offline ScriptedLLMClient instead of Gemini (tests, demos without a key). */
     public boolean useScriptedLlm() {
         return get("USE_SCRIPTED_LLM").map(Boolean::parseBoolean).orElse(false);
     }
