@@ -21,15 +21,15 @@ class AppConfigTest {
         Path env = dir.resolve(".env");
         Files.writeString(env, """
                 # comment
-                AWS_REGION=ca-central-1
-                export BEDROCK_MODEL_ID="my-model"
+                LLM_PROVIDER=gemini
+                export GEMINI_MODEL="my-model"
                 EMPTY=
                 not a pair
                 QUOTED='a b c'
                 """);
         Map<String, String> parsed = AppConfig.parseEnvFile(env);
-        assertEquals("ca-central-1", parsed.get("AWS_REGION"));
-        assertEquals("my-model", parsed.get("BEDROCK_MODEL_ID"));
+        assertEquals("gemini", parsed.get("LLM_PROVIDER"));
+        assertEquals("my-model", parsed.get("GEMINI_MODEL"));
         assertEquals("a b c", parsed.get("QUOTED"));
         assertEquals("", parsed.get("EMPTY"));
         assertFalse(parsed.containsKey("not a pair"));
@@ -37,9 +37,9 @@ class AppConfigTest {
 
     @Test
     void defaultsApplyWhenKeysAreMissingOrBlank() {
-        AppConfig cfg = AppConfig.of(Map.of("BEDROCK_MODEL_ID", "  "));
-        assertTrue(cfg.modelId().isEmpty());
-        assertEquals("us-east-1", cfg.awsRegion());
+        AppConfig cfg = AppConfig.of(Map.of("GEMINI_API_KEY", "  "));
+        assertEquals("gemini", cfg.llmProvider());
+        assertTrue(cfg.geminiApiKey().isEmpty());
         assertEquals(Path.of(AppConfig.DEFAULT_GTFS_PATH), cfg.gtfsPath());
         assertFalse(cfg.useScriptedLlm());
     }

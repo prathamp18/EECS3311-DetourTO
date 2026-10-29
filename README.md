@@ -4,7 +4,7 @@
 
 EECS 3311 Software Design, York University, Fall 2026 · Pratham Patel
 
-DetourTO plans trips on the Toronto transit network and keeps them working when things go wrong. You describe a trip in plain English ("York U by 10, no streetcars, step-free please"). A deterministic Java planner computes real itineraries from the TTC's published schedule. An LLM agent (Claude on Amazon Bedrock) reads free-text service alerts, re-plans around closures, explains the trade-offs, remembers your places and preferences, and watches an active trip so it can warn you before a disruption ruins it.
+DetourTO plans trips on the Toronto transit network and keeps them working when things go wrong. You describe a trip in plain English ("York U by 10, no streetcars, step-free please"). A deterministic Java planner computes real itineraries from the TTC's published schedule. An LLM agent (Google Gemini) reads free-text service alerts, re-plans around closures, explains the trade-offs, remembers your places and preferences, and watches an active trip so it can warn you before a disruption ruins it.
 
 The agent proposes and the Java code verifies. Every stop, route, time and itinerary the rider sees was computed by the planner and checked by `GroundingValidator`, never taken from model text.
 
@@ -22,7 +22,7 @@ The agent proposes and the Java code verifies. Every stop, route, time and itine
 
 - Java 21 (`java -version`)
 - Maven 3.9+ (`mvn -version`)
-- For the AI features: an AWS account with Claude model access enabled in Amazon Bedrock
+- For the AI features: a free Google AI Studio API key (Gemini). Tests and `LLM_PROVIDER=scripted` need no key
 
 ### Setup
 
@@ -33,7 +33,7 @@ cp .env.example .env        # then edit .env with your own values (never commit 
 mvn -q package              # compiles, runs the tests, builds target/detourto.jar
 ```
 
-`.env` is listed in `.gitignore`. Real keys go only in your local `.env` (or in `~/.aws/credentials` via `aws configure`); `.env.example` holds placeholders only.
+`.env` is listed in `.gitignore`. The real key (`GEMINI_API_KEY`) goes only in your local `.env`; `.env.example` holds placeholders only. `LLM_PROVIDER` chooses the model provider: `gemini` or `scripted` (offline).
 
 ### Run
 
@@ -42,6 +42,7 @@ java -jar target/detourto.jar --help
 java -jar target/detourto.jar plan --from "York U" --to Union --arrive-by 09:30
 java -jar target/detourto.jar plan --from Keele --to "Queens Quay" --strategy fewest-transfers --avoid-mode streetcar
 java -jar target/detourto.jar plan --from "St George" --to Union --date 2026-10-22 --depart 08:00 --json
+java -jar target/detourto.jar llm-check --tools                      # check the LLM key and a tool-call round trip
 java -jar target/detourto.jar validate-feed                          # check the configured GTFS feed
 java -jar target/detourto.jar validate-feed --gtfs data/local/ttc.zip  # or a specific zip/folder
 ```
@@ -83,7 +84,7 @@ Presentation    MainWindow + 6 JavaFX panels, DetourCli (picocli)
 Application     TripController «Facade», EventBus «Observer», CommandHistory «Command»,
                 TripMonitorService + ActiveTrip «State», AlertService, CommuteScheduler, BenchmarkRunner
 Agent           TransitAgent «Template Method» + 4 agents, ToolRegistry + 5 tools,
-                LLMClient ← BedrockClaudeAdapter «Adapter», ResponseParser, GroundingValidator
+                LLMClient ← GeminiAdapter «Adapter», ResponseParser, GroundingValidator
 Domain          TransitNetwork, NetworkView, JourneyPlanner (RAPTOR), RouteScoringStrategy «Strategy»,
                 Itinerary, Leg, Disruption, PlaceResolver
 Infrastructure  RealtimeFeed ← GtfsRealtimeAdapter «Adapter», RealtimeFeedDecorator «Decorator»,
@@ -97,7 +98,7 @@ Infrastructure  RealtimeFeed ← GtfsRealtimeAdapter «Adapter», RealtimeFeedDe
 | Language, build | Java 21, Maven |
 | GUI | JavaFX 21 (map in a WebView with Leaflet + OpenStreetMap) |
 | CLI | picocli, command `detour`, `--json` on every command |
-| LLM | Claude on Amazon Bedrock, AWS SDK for Java v2 Converse API (tool use), no LangChain4j |
+| LLM | Google Gemini API (REST generateContent with function calling), no LangChain4j |
 | Transit data | TTC GTFS schedule (City of Toronto Open Data) + TTC GTFS-Realtime (`bustime.ttc.ca/gtfsrt`) |
 | Storage | SQLite (`sqlite-jdbc`) behind repository interfaces |
 | Unit tests | JUnit 5, Mockito, AssertJ |
@@ -111,7 +112,7 @@ src/main/java/ca/yorku/eecs3311/detourto/
   presentation/     MainWindow, BasePanel + 6 panels, DetourCli, ConsoleNotifier, JsonResultWriter
   application/      TripController, EventBus, commands, TripMonitorService, trip states,
                     AlertService, CommuteScheduler, BenchmarkRunner
-  agent/            TransitAgent + 4 agents, LLMClient, BedrockClaudeAdapter, ScriptedLLMClient,
+  agent/            TransitAgent + 4 agents, LLMClient, GeminiAdapter, ScriptedLLMClient,
                     ToolRegistry + 5 tools, ResponseParser, GroundingValidator
   domain/           TransitNetwork, NetworkView, JourneyPlanner, strategies, Itinerary, Disruption, ...
   infrastructure/   GtfsRealtimeAdapter, feed decorators, CircuitBreaker, GtfsStaticLoader,
