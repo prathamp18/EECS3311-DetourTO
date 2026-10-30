@@ -25,7 +25,13 @@ import ca.yorku.eecs3311.detourto.domain.StrategyKind;
 import ca.yorku.eecs3311.detourto.domain.TransitNetwork;
 import ca.yorku.eecs3311.detourto.domain.TripQuery;
 import ca.yorku.eecs3311.detourto.infrastructure.AppConfig;
+import ca.yorku.eecs3311.detourto.domain.RealtimeSnapshot;
+import ca.yorku.eecs3311.detourto.domain.ServiceAlert;
+import ca.yorku.eecs3311.detourto.infrastructure.CachingRealtimeFeed;
+import ca.yorku.eecs3311.detourto.infrastructure.GtfsRealtimeAdapter;
 import ca.yorku.eecs3311.detourto.infrastructure.GtfsStaticLoader;
+import ca.yorku.eecs3311.detourto.infrastructure.RealtimeFeed;
+import ca.yorku.eecs3311.detourto.infrastructure.ResilientRealtimeFeed;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.EnumMap;
@@ -43,6 +49,19 @@ import java.util.stream.Collectors;
  */
 public final class TripController {
 
+    /** Used when no live feed is configured: no alerts, no live delays. */
+    private static final RealtimeFeed SCHEDULE_ONLY = new RealtimeFeed() {
+        @Override
+        public List<ServiceAlert> alerts() {
+            return List.of();
+        }
+
+        @Override
+        public RealtimeSnapshot snapshot() {
+            return RealtimeSnapshot.empty(java.time.Instant.now(), false);
+        }
+    };
+
     /** Clarification lists only stops scoring within this much of the best match. */
     static final double CANDIDATE_MARGIN = 0.15;
 
@@ -50,24 +69,34 @@ public final class TripController {
     private final PlaceResolver places;
     private final Map<StrategyKind, RouteScoringStrategy> strategies = new EnumMap<>(StrategyKind.class);
     private final TripRequestAgent tripAgent;
+    private final RealtimeFeed feed;
+    private final ArrivalBoard arrivalBoard;
     private final String agentUnavailableReason;
     private final ConversationHistory conversation = new ConversationHistory();
     private TripQuery currentQuery;
     private List<Itinerary> lastOptions = List.of();
 
-    /** Without an LLM: form and CLI-flag planning only. */
+    /** Without an LLM or live feed: form and CLI-flag planning, scheduled arrivals. */
     public TripController(JourneyPlanner planner, PlaceResolver places) {
-        this(planner, places, null, "no LLM client configured");
+        this(planner, places, null, null, "no LLM client configured");
     }
 
     /** With an LLM: natural-language planning (F01) is available too. */
     public TripController(JourneyPlanner planner, PlaceResolver places, LLMClient llm) {
-        this(planner, places, llm, null);
+        this(planner, places, llm, null, null);
     }
 
-    private TripController(JourneyPlanner planner, PlaceResolver places, LLMClient llm, String unavailable) {
+    /** With an LLM (may be null) and a live feed (may be null: schedule only). */
+    public TripController(JourneyPlanner planner, PlaceResolver places, LLMClient llm, RealtimeFeed feed) {
+        this(planner, places, llm, feed, llm == null ? "no LLM client configured" : null);
+    }
+
+    private TripController(JourneyPlanner planner, PlaceResolver places, LLMClient llm, RealtimeFeed feed,
+                           String unavailable) {
         this.planner = planner;
         this.places = places;
+        this.feed = feed != null ? feed : SCHEDULE_ONLY;
+        this.arrivalBoard = new ArrivalBoard(planner, this.feed);
         if (llm != null) {
             ToolRegistry tools = new ToolRegistry()
                     .register(new FindStopTool(places))
@@ -88,12 +117,35 @@ public final class TripController {
         TransitNetwork network = new GtfsStaticLoader().load(config.gtfsPath());
         JourneyPlanner planner = new JourneyPlanner(network);
         PlaceResolver places = new PlaceResolver(network);
+        // caching outside, failure handling inside: a failed fetch is also cached for the TTL
+        RealtimeFeed feed = new CachingRealtimeFeed(new ResilientRealtimeFeed(
+                new GtfsRealtimeAdapter(config.feedBaseUrl())));
         try {
-            return new TripController(planner, places, LLMClientFactory.create(config));
+            return new TripController(planner, places, LLMClientFactory.create(config), feed, null);
         } catch (LLMException e) {
             // flag-based planning still works without a key; plain-English requests explain why not
-            return new TripController(planner, places, null, e.getMessage());
+            return new TripController(planner, places, null, feed, e.getMessage());
         }
+    }
+
+    /**
+     * Feature F08: next departures at a stop, with live delays where the TTC publishes them.
+     * Returns the clarification as the error when the stop text is ambiguous.
+     */
+    public ArrivalsResult getArrivals(String stopText, LocalDateTime now, int n) {
+        Resolution r = resolvePlace(stopText);
+        if (r.stop().isEmpty()) {
+            return new ArrivalsResult(null, r.clarification());
+        }
+        return new ArrivalsResult(arrivalBoard.arrivals(r.stop().get(), now, n), null);
+    }
+
+    /** An arrivals board, or a question about which stop was meant. */
+    public record ArrivalsResult(ArrivalBoard.Board board, ClarificationRequest clarification) {
+    }
+
+    public RealtimeFeed feed() {
+        return feed;
     }
 
     /**
