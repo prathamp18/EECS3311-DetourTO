@@ -191,6 +191,40 @@ public final class JourneyPlanner {
         return (int) java.time.Duration.between(date.atStartOfDay(), time).getSeconds();
     }
 
+    /**
+     * The next {@code n} scheduled departures from a stop (or all platforms of a station) at or
+     * after {@code from}, within the next 3 hours. Last stops of trips are skipped because nobody
+     * can board there. Used by the arrivals board (F08).
+     */
+    public List<Arrival> scheduledDepartures(Stop stop, LocalDateTime from, int n) {
+        LocalDate date = from.toLocalDate();
+        int start = from.toLocalTime().toSecondOfDay();
+        int end = start + 3 * 3600;
+        List<Arrival> out = new ArrayList<>();
+        for (Stop platform : network.boardingStopsFor(stop)) {
+            int idx = network.indexOf(platform);
+            for (TransitNetwork.PatternStop ps : network.patternsAt(idx)) {
+                RoutePattern pattern = network.patterns().get(ps.pattern());
+                if (ps.position() == pattern.stopCount() - 1) {
+                    continue;
+                }
+                for (int offset : new int[] {-DAY, 0}) {
+                    Set<String> services = network.calendar().activeServices(date.plusDays(offset / DAY));
+                    for (Trip trip : pattern.trips()) {
+                        int dep = trip.departureAt(ps.position()) + offset;
+                        if (dep >= start && dep <= end && services.contains(trip.serviceId())) {
+                            LocalDateTime t = date.atStartOfDay().plusSeconds(dep);
+                            out.add(new Arrival(pattern.route(), platform, trip.id(), trip.headsign(),
+                                    ps.position() + 1, t, t, 0, false));
+                        }
+                    }
+                }
+            }
+        }
+        out.sort(Comparator.comparing(Arrival::scheduled));
+        return out.size() > n ? List.copyOf(out.subList(0, n)) : List.copyOf(out);
+    }
+
     // ================================================================== one RAPTOR run
 
     /** State of a single RAPTOR search. Times are seconds after midnight of {@code date}. */
