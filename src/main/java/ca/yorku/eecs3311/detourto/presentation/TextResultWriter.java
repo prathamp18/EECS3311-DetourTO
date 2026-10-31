@@ -31,6 +31,8 @@ public final class TextResultWriter {
         out.printf("%s -> %s, %s %s (%s)%n", q.origin().name(), q.destination().name(),
                 q.isArriveBy() ? "arrive by" : "depart", DAY.format(q.time()), q.strategyKind().cliName());
         out.println(r.message());
+        r.disruptionsApplied().forEach(d -> out.println("  avoiding: " + d.summary()
+                + (d.llmDerived() ? String.format(" (interpreted by AI, confidence %.0f%%)", d.confidence() * 100) : "")));
         for (Itinerary i : r.options()) {
             out.println();
             out.printf("%-6s %s -> %s   %d min, %d transfer%s, %d m walking%n", i.id(),

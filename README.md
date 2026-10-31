@@ -43,13 +43,17 @@ java -jar target/detourto.jar plan "York U to Union by 10, no streetcars, I use 
 java -jar target/detourto.jar plan --from "York U" --to Union --arrive-by 09:30
 java -jar target/detourto.jar plan --from Keele --to "Queens Quay" --strategy fewest-transfers --avoid-mode streetcar
 java -jar target/detourto.jar plan --from "St George" --to Union --date 2026-10-22 --depart 08:00 --json
+java -jar target/detourto.jar alerts                                 # live alerts as structured disruptions
+java -jar target/detourto.jar plan --from "York U" --to Union --ignore-alerts   # compare with the schedule
 java -jar target/detourto.jar arrivals "Dufferin" -n 8                # next departures, live delays for buses/streetcars
 java -jar target/detourto.jar llm-check --tools                      # check the LLM key and a tool-call round trip
 java -jar target/detourto.jar validate-feed                          # check the configured GTFS feed
 java -jar target/detourto.jar validate-feed --gtfs data/local/ttc.zip  # or a specific zip/folder
 ```
 
-`plan` options: `--from`/`--to` (station or street name, stop id, or `lat,lon`), `--depart` or `--arrive-by` (`HH:mm`, ISO date-time, or `now`), `--date`, `--strategy` (`fastest`, `fewest-transfers`, `least-walking`, `accessible`), `--avoid-route`, `--avoid-mode`, `--max-walk`, `--json`. Exit codes: 0 options found, 3 no route, 4 a place needs clarifying, 5 the request could not be understood.
+Planning routes around active disruptions by default. Alerts that name stops and an effect in their structured fields become disruptions directly; free-text alerts are read by the `AlertInterpreterAgent`, whose stop ids are checked against the network. Interpretations below 50% confidence are listed but only applied with `--avoid-disruption <id>`.
+
+`plan` options: `--from`/`--to` (station or street name, stop id, or `lat,lon`), `--depart` or `--arrive-by` (`HH:mm`, ISO date-time, or `now`), `--date`, `--strategy` (`fastest`, `fewest-transfers`, `least-walking`, `accessible`), `--avoid-route`, `--avoid-mode`, `--max-walk`, `--avoid-disruption`, `--ignore-alerts`, `--json`. Exit codes: 0 options found, 3 no route, 4 a place needs clarifying, 5 the request could not be understood.
 
 With a plain-English request, the LLM only produces a structured trip query: it must look up every place with the `find_stop` tool, and the `GroundingValidator` rejects any stop id that did not come from a tool result. The routes and times always come from the Java planner.
 

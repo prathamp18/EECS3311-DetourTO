@@ -1,5 +1,8 @@
 package ca.yorku.eecs3311.detourto.agent;
 
+import ca.yorku.eecs3311.detourto.domain.Disruption;
+import ca.yorku.eecs3311.detourto.domain.DisruptionKind;
+import ca.yorku.eecs3311.detourto.domain.ServiceAlert;
 import ca.yorku.eecs3311.detourto.domain.Stop;
 import ca.yorku.eecs3311.detourto.domain.StrategyKind;
 import ca.yorku.eecs3311.detourto.domain.TransitMode;
@@ -11,7 +14,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Turns the model's final text into typed objects. Models often wrap JSON in ```json fences or
@@ -109,6 +114,47 @@ public final class ResponseParser {
                     .orElseThrow(() -> new ResponseFormatException("unknown stop id " + id.asText())));
         }
         return new ClarificationRequest(question, candidates);
+    }
+
+    /**
+     * The interpreter's reading of an alert. Unknown stop ids are a format error (the model is
+     * asked to fix them); grounding against tool results is checked by the validator.
+     */
+    public Disruption toDisruption(String text, ServiceAlert alert, TransitNetwork network) {
+        JsonNode root = extractJson(text);
+        DisruptionKind kind;
+        try {
+            kind = DisruptionKind.valueOf(root.path("kind").asText("UNKNOWN").strip().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ResponseFormatException("kind must be CLOSURE, DELAY, DETOUR, ELEVATOR_OUTAGE or UNKNOWN");
+        }
+        Set<String> stops = new LinkedHashSet<>();
+        for (JsonNode id : root.path("closed_stop_ids")) {
+            String sid = id.asText().strip();
+            if (network.findStop(sid).isEmpty()) {
+                throw new ResponseFormatException("closed_stop_ids contains '" + sid
+                        + "', which is not a real stop id; use find_stop or get_route_stops");
+            }
+            stops.add(sid);
+        }
+        Set<String> routes = new LinkedHashSet<>();
+        for (JsonNode id : root.path("affected_route_ids")) {
+            routes.add(id.asText().strip());
+        }
+        double confidence = root.path("confidence").asDouble(-1);
+        if (confidence < 0 || confidence > 1) {
+            throw new ResponseFormatException("confidence must be a number between 0 and 1");
+        }
+        String summary = root.path("summary").asText("").strip();
+        if (summary.isEmpty()) {
+            summary = alert.header();
+        }
+        return new Disruption("D-" + alert.id(), alert.id(), kind, routes, stops,
+                toLocal(alert.activeFrom()), toLocal(alert.activeTo()), confidence, true, summary);
+    }
+
+    static LocalDateTime toLocal(java.time.Instant t) {
+        return t == null ? null : LocalDateTime.ofInstant(t, java.time.ZoneId.of("America/Toronto"));
     }
 
     private static Stop stop(JsonNode root, String field, TransitNetwork network) {

@@ -79,6 +79,13 @@ public class PlanCommand implements Callable<Integer> {
     @Option(names = "--max-walk", description = "Maximum total walking in metres (default: 800)")
     Integer maxWalk;
 
+    @Option(names = "--avoid-disruption", split = ",",
+            description = "Also avoid these disruption or alert ids (see detour alerts), even if low confidence")
+    List<String> avoidDisruptions = List.of();
+
+    @Option(names = "--ignore-alerts", description = "Plan on the schedule only, without live disruptions")
+    boolean ignoreAlerts;
+
     @Option(names = "--json", description = "Print the result as JSON")
     boolean json;
 
@@ -137,7 +144,7 @@ public class PlanCommand implements Callable<Integer> {
         } catch (IllegalArgumentException e) {
             throw new ParameterException(spec.commandLine(), "Invalid option: " + e.getMessage());
         }
-        return c.planFromForm(q);
+        return c.planWithDisruptions(q, java.util.Set.copyOf(avoidDisruptions), ignoreAlerts);
     }
 
     LocalDateTime parseTime(String text) {

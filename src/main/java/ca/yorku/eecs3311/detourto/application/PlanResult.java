@@ -1,6 +1,7 @@
 package ca.yorku.eecs3311.detourto.application;
 
 import ca.yorku.eecs3311.detourto.agent.ClarificationRequest;
+import ca.yorku.eecs3311.detourto.domain.Disruption;
 import ca.yorku.eecs3311.detourto.domain.Itinerary;
 import ca.yorku.eecs3311.detourto.domain.TripQuery;
 import java.util.List;
@@ -13,12 +14,19 @@ import java.util.List;
  * @param options       ranked itineraries (may be empty)
  * @param clarification non-null when the rider must pick a stop first
  * @param message       one-line status for the CLI and GUI
+ * @param disruptionsApplied disruptions the planner routed around
  */
 public record PlanResult(TripQuery query, List<Itinerary> options,
-                         ClarificationRequest clarification, String message) {
+                         ClarificationRequest clarification, String message,
+                         List<Disruption> disruptionsApplied) {
 
     public PlanResult {
         options = List.copyOf(options);
+        disruptionsApplied = disruptionsApplied == null ? List.of() : List.copyOf(disruptionsApplied);
+    }
+
+    public PlanResult(TripQuery query, List<Itinerary> options, ClarificationRequest clarification, String message) {
+        this(query, options, clarification, message, List.of());
     }
 
     public static PlanResult ok(TripQuery q, List<Itinerary> options, String message) {

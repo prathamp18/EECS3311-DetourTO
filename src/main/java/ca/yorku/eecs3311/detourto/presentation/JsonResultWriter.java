@@ -1,6 +1,7 @@
 package ca.yorku.eecs3311.detourto.presentation;
 
 import ca.yorku.eecs3311.detourto.application.PlanResult;
+import ca.yorku.eecs3311.detourto.domain.Disruption;
 import ca.yorku.eecs3311.detourto.domain.Itinerary;
 import ca.yorku.eecs3311.detourto.domain.Leg;
 import ca.yorku.eecs3311.detourto.domain.RideLeg;
@@ -44,12 +45,27 @@ public final class JsonResultWriter {
         List<Object> options = new ArrayList<>();
         r.options().forEach(i -> options.add(itinerary(i)));
         m.put("options", options);
+        m.put("disruptionsApplied", r.disruptionsApplied().stream().map(JsonResultWriter::disruption).toList());
         if (r.needsClarification()) {
             Map<String, Object> c = new LinkedHashMap<>();
             c.put("question", r.clarification().question());
             c.put("candidates", r.clarification().candidates().stream().map(this::stop).toList());
             m.put("clarification", c);
         }
+        return m;
+    }
+
+    static Map<String, Object> disruption(Disruption d) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("id", d.id());
+        m.put("alertId", d.sourceAlertId());
+        m.put("kind", d.kind().name());
+        m.put("summary", d.summary());
+        m.put("routes", d.affectedRouteIds().stream().sorted().toList());
+        m.put("closedStops", d.sortedStopIds());
+        m.put("confidence", d.confidence());
+        m.put("source", d.llmDerived() ? "llm" : "structured");
+        m.put("appliedByDefault", d.appliesByDefault());
         return m;
     }
 

@@ -1,5 +1,6 @@
 package ca.yorku.eecs3311.detourto.domain;
 
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -13,13 +14,21 @@ public final class NetworkView {
     private final Set<String> closedStopIds;
     private final Set<String> closedRouteIds;
     private final Set<String> outageStopIds;
+    /** route id -> stops its vehicles cannot run through (a closed section of the line). */
+    private final Map<String, Set<String>> closedSections;
 
     NetworkView(TransitNetwork base, Set<String> closedStopIds, Set<String> closedRouteIds,
                 Set<String> outageStopIds) {
+        this(base, closedStopIds, closedRouteIds, outageStopIds, Map.of());
+    }
+
+    NetworkView(TransitNetwork base, Set<String> closedStopIds, Set<String> closedRouteIds,
+                Set<String> outageStopIds, Map<String, Set<String>> closedSections) {
         this.base = base;
         this.closedStopIds = Set.copyOf(closedStopIds);
         this.closedRouteIds = Set.copyOf(closedRouteIds);
         this.outageStopIds = Set.copyOf(outageStopIds);
+        this.closedSections = Map.copyOf(closedSections);
     }
 
     public TransitNetwork base() {
@@ -38,6 +47,20 @@ public final class NetworkView {
 
     public boolean isRouteClosed(Route r) {
         return closedRouteIds.contains(r.id());
+    }
+
+    /**
+     * True when vehicles of {@code r} cannot run through this stop because that section of the
+     * line is closed. A plain station closure (no route) still lets vehicles pass through.
+     */
+    public boolean isSectionClosed(Route r, Stop s) {
+        Set<String> section = closedSections.get(r.id());
+        return section != null && (section.contains(s.id())
+                || (s.parentStation() != null && section.contains(s.parentStation())));
+    }
+
+    public boolean isSectionClosed(Route r, int stopIndex) {
+        return !closedSections.isEmpty() && isSectionClosed(r, base.stopAt(stopIndex));
     }
 
     /** True if the trip may be ridden from {@code from} to {@code to}. */

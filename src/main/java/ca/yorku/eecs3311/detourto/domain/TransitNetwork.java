@@ -144,6 +144,31 @@ public final class TransitNetwork {
         return footpaths.get(stopIndex);
     }
 
+    /** Stops served by a route, in the order of its longest pattern, without duplicates. */
+    public List<Stop> stopsOfRoute(String routeId) {
+        RoutePattern longest = null;
+        for (RoutePattern p : patterns) {
+            if (p.route().id().equals(routeId) && (longest == null || p.stopCount() > longest.stopCount())) {
+                longest = p;
+            }
+        }
+        if (longest == null) {
+            return List.of();
+        }
+        java.util.LinkedHashSet<Stop> out = new java.util.LinkedHashSet<>();
+        for (int i = 0; i < longest.stopCount(); i++) {
+            out.add(stops.get(longest.stopAt(i)));
+        }
+        for (RoutePattern p : patterns) {
+            if (p.route().id().equals(routeId)) {
+                for (int i = 0; i < p.stopCount(); i++) {
+                    out.add(stops.get(p.stopAt(i)));
+                }
+            }
+        }
+        return List.copyOf(out);
+    }
+
     /** Platforms of a station, or the stop itself when it is not a station. */
     public List<Stop> boardingStopsFor(Stop stop) {
         if (stop.station()) {
@@ -168,6 +193,40 @@ public final class TransitNetwork {
     public NetworkView withClosures(Set<String> closedStopIds, Set<String> closedRouteIds,
                                     Set<String> elevatorOutageStopIds) {
         return new NetworkView(this, closedStopIds, closedRouteIds, elevatorOutageStopIds);
+    }
+
+    /**
+     * A view with the given disruptions applied: closures and detours close their stops (a closure
+     * that names only routes closes those routes; a closure that names routes and stops also stops
+     * those routes from running through the stops), elevator outages remove step-free access.
+     * Delays and unknown alerts do not change the view.
+     */
+    public NetworkView withDisruptions(Collection<Disruption> disruptions) {
+        Set<String> closedStops = new java.util.HashSet<>();
+        Set<String> closedRoutes = new java.util.HashSet<>();
+        Set<String> outages = new java.util.HashSet<>();
+        Map<String, Set<String>> sections = new HashMap<>();
+        for (Disruption d : disruptions) {
+            switch (d.kind()) {
+                case CLOSURE -> {
+                    if (d.closedStopIds().isEmpty()) {
+                        closedRoutes.addAll(d.affectedRouteIds());
+                    } else {
+                        closedStops.addAll(d.closedStopIds());
+                        // "no service between A and B" on a route: its vehicles don't run through
+                        for (String r : d.affectedRouteIds()) {
+                            sections.computeIfAbsent(r, k -> new java.util.HashSet<>()).addAll(d.closedStopIds());
+                        }
+                    }
+                }
+                case DETOUR -> closedStops.addAll(d.closedStopIds());
+                case ELEVATOR_OUTAGE -> outages.addAll(d.closedStopIds());
+                default -> {
+                    // delays and unknown alerts are informational
+                }
+            }
+        }
+        return new NetworkView(this, closedStops, closedRoutes, outages, sections);
     }
 
     /** A view with nothing closed. */
