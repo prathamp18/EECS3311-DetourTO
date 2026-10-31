@@ -1,11 +1,16 @@
 package ca.yorku.eecs3311.detourto.agent;
 
+import ca.yorku.eecs3311.detourto.domain.Disruption;
+import ca.yorku.eecs3311.detourto.domain.DisruptionKind;
 import ca.yorku.eecs3311.detourto.domain.Stop;
 import ca.yorku.eecs3311.detourto.domain.TransitNetwork;
 import ca.yorku.eecs3311.detourto.domain.TripQuery;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * The LLM proposes, this class verifies. Every stop in an agent's answer must exist in the
@@ -39,6 +44,49 @@ public final class GroundingValidator {
         for (String r : q.avoidRouteIds()) {
             if (network.findRoute(r).isEmpty()) {
                 errors.add("avoid_route_ids contains unknown route '" + r + "'");
+            }
+        }
+        return ValidationReport.of(errors);
+    }
+
+    /**
+     * Every closed stop must exist and come from a tool result; every route must exist; a closure
+     * or detour must name at least one stop or route; and closed stops must be served by one of
+     * the affected routes when routes are given (an alert about the 510 cannot close a Line 2 stop).
+     */
+    public ValidationReport validateDisruption(Disruption d, AgentContext ctx) {
+        List<String> errors = new ArrayList<>();
+        for (String id : d.closedStopIds()) {
+            Optional<Stop> s = network.findStop(id);
+            if (s.isEmpty()) {
+                errors.add("stop " + id + " does not exist");
+            } else if (!ctx.stopWasReturnedByTool(id)) {
+                errors.add("stop " + id + " was not returned by find_stop or get_route_stops");
+            }
+        }
+        for (String r : d.affectedRouteIds()) {
+            if (network.findRoute(r).isEmpty()) {
+                errors.add("route " + r + " does not exist");
+            }
+        }
+        if ((d.kind() == DisruptionKind.CLOSURE || d.kind() == DisruptionKind.DETOUR)
+                && d.closedStopIds().isEmpty() && d.affectedRouteIds().isEmpty()) {
+            errors.add(d.kind() + " must name at least one stop or route");
+        }
+        if (errors.isEmpty() && !d.affectedRouteIds().isEmpty()) {
+            Set<String> served = new HashSet<>();
+            for (String r : d.affectedRouteIds()) {
+                for (Stop s : network.stopsOfRoute(r)) {
+                    served.add(s.id());
+                    if (s.parentStation() != null) {
+                        served.add(s.parentStation());
+                    }
+                }
+            }
+            for (String id : d.closedStopIds()) {
+                if (!served.contains(id)) {
+                    errors.add("stop " + id + " is not served by route(s) " + d.affectedRouteIds());
+                }
             }
         }
         return ValidationReport.of(errors);

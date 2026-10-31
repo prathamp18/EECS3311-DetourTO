@@ -333,6 +333,10 @@ public final class JourneyPlanner {
                 int boardPos = -1;
                 for (int pos = e.getValue(); pos < pattern.stopCount(); pos++) {
                     int s = pattern.stopAt(pos);
+                    if (view.isSectionClosed(route, s)) {
+                        trip = null; // the line is closed here: the rider must have got off before
+                        continue;
+                    }
                     boolean open = !view.isStopClosed(s);
                     Stop stop = network.stopAt(s);
                     if (trip != null && open && strategy.canAlight(stop, view)) {

@@ -3,6 +3,8 @@ package ca.yorku.eecs3311.detourto.application;
 import ca.yorku.eecs3311.detourto.agent.AgentContext;
 import ca.yorku.eecs3311.detourto.agent.AgentRequest;
 import ca.yorku.eecs3311.detourto.agent.AgentResult;
+import ca.yorku.eecs3311.detourto.agent.AlertInterpreterAgent;
+import ca.yorku.eecs3311.detourto.agent.RouteStopsTool;
 import ca.yorku.eecs3311.detourto.agent.ClarificationRequest;
 import ca.yorku.eecs3311.detourto.agent.ConversationHistory;
 import ca.yorku.eecs3311.detourto.agent.FindStopTool;
@@ -15,6 +17,7 @@ import ca.yorku.eecs3311.detourto.agent.PlanJourneyTool;
 import ca.yorku.eecs3311.detourto.agent.ResponseParser;
 import ca.yorku.eecs3311.detourto.agent.ToolRegistry;
 import ca.yorku.eecs3311.detourto.agent.TripRequestAgent;
+import ca.yorku.eecs3311.detourto.domain.Disruption;
 import ca.yorku.eecs3311.detourto.domain.Itinerary;
 import ca.yorku.eecs3311.detourto.domain.JourneyPlanner;
 import ca.yorku.eecs3311.detourto.domain.NetworkView;
@@ -34,10 +37,12 @@ import ca.yorku.eecs3311.detourto.infrastructure.RealtimeFeed;
 import ca.yorku.eecs3311.detourto.infrastructure.ResilientRealtimeFeed;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -71,6 +76,7 @@ public final class TripController {
     private final TripRequestAgent tripAgent;
     private final RealtimeFeed feed;
     private final ArrivalBoard arrivalBoard;
+    private final AlertService alertService;
     private final String agentUnavailableReason;
     private final ConversationHistory conversation = new ConversationHistory();
     private TripQuery currentQuery;
@@ -103,8 +109,15 @@ public final class TripController {
                     .register(new PlanJourneyTool(planner));
             this.tripAgent = new TripRequestAgent(llm, tools, new ResponseParser(),
                     new GroundingValidator(planner.network()), planner.network());
+            ToolRegistry alertTools = new ToolRegistry()
+                    .register(new RouteStopsTool(planner.network()))
+                    .register(new FindStopTool(places));
+            AlertInterpreterAgent interpreter = new AlertInterpreterAgent(llm, alertTools, new ResponseParser(),
+                    new GroundingValidator(planner.network()), planner.network());
+            this.alertService = new AlertService(this.feed, interpreter, planner.network());
         } else {
             this.tripAgent = null;
+            this.alertService = new AlertService(this.feed, null, planner.network());
         }
         this.agentUnavailableReason = unavailable;
         for (StrategyKind k : StrategyKind.values()) {
@@ -213,9 +226,57 @@ public final class TripController {
         }
     }
 
-    /** Plans a fully specified query (Trip Planner form, or CLI flags). */
+    /**
+     * Plans a fully specified query (Trip Planner form, or CLI flags), routing around every
+     * active disruption that is confident enough (F02 with F05).
+     */
     public PlanResult planFromForm(TripQuery q) {
-        return planOn(q, planner.network().fullView());
+        return planWithDisruptions(q, Set.of(), false);
+    }
+
+    /**
+     * Plans with control over disruptions: {@code forceIds} are applied even when their
+     * confidence is low (the rider chose to avoid them); {@code ignoreAlerts} plans on the
+     * schedule only, for comparison.
+     */
+    public PlanResult planWithDisruptions(TripQuery q, Set<String> forceIds, boolean ignoreAlerts) {
+        List<Disruption> applied = new ArrayList<>();
+        if (!ignoreAlerts) {
+            for (Disruption d : alertService.currentDisruptions(q.time())) {
+                boolean forced = forceIds.contains(d.id()) || forceIds.contains(d.sourceAlertId());
+                if (d.affectsRouting() && (forced || d.appliesByDefault())) {
+                    applied.add(d);
+                }
+            }
+        }
+        PlanResult r = planOn(q, planner.network().withDisruptions(applied));
+        String message = r.message();
+        if (!applied.isEmpty()) {
+            message += ". Avoiding " + applied.size() + " disruption" + (applied.size() == 1 ? "" : "s") + ".";
+        }
+        if (!r.hasOptions() && !applied.isEmpty()) {
+            message = "No route avoids the current disruptions"
+                    + (applied.stream().anyMatch(d -> d.summary().toLowerCase().contains("shuttle"))
+                    ? "; shuttle buses may be running (see alerts)." : ".");
+        }
+        return new PlanResult(r.query(), r.options(), null, message, applied);
+    }
+
+    /** Feature F05: plan the current trip again, avoiding this disruption (even if low confidence). */
+    public PlanResult rerouteAround(String disruptionId) {
+        if (currentQuery == null) {
+            return new PlanResult(null, List.of(), null, "Plan a trip first, then re-route it.");
+        }
+        return planWithDisruptions(currentQuery, Set.of(disruptionId), false);
+    }
+
+    /** Feature F04: interpreted alerts active at {@code at}. */
+    public List<Disruption> getAlerts(LocalDateTime at) {
+        return alertService.currentDisruptions(at);
+    }
+
+    public AlertService alertService() {
+        return alertService;
     }
 
     /** Changes the strategy of the current query and plans again. */
