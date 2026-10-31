@@ -1,5 +1,7 @@
 package ca.yorku.eecs3311.detourto.presentation;
 
+import ca.yorku.eecs3311.detourto.agent.Explanation;
+import ca.yorku.eecs3311.detourto.application.EventType;
 import ca.yorku.eecs3311.detourto.application.PlanResult;
 import ca.yorku.eecs3311.detourto.application.TripController;
 import ca.yorku.eecs3311.detourto.domain.Stop;
@@ -13,6 +15,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import picocli.CommandLine.ArgGroup;
 import picocli.CommandLine.Command;
@@ -86,6 +89,12 @@ public class PlanCommand implements Callable<Integer> {
     @Option(names = "--ignore-alerts", description = "Plan on the schedule only, without live disruptions")
     boolean ignoreAlerts;
 
+    @Option(names = "--explain", description = "Also compare the options in plain language (F06)")
+    boolean explain;
+
+    @Option(names = "--verbose", description = "Show each agent step (LLM calls, tool calls, validation)")
+    boolean verbose;
+
     @Option(names = "--json", description = "Print the result as JSON")
     boolean json;
 
@@ -95,11 +104,33 @@ public class PlanCommand implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         TripController c = controller != null ? controller : TripController.fromConfig(AppConfig.load());
+        ConsoleNotifier notifier = verbose ? new ConsoleNotifier(System.err) : null;
+        if (notifier != null) {
+            c.eventBus().subscribeAll(notifier);
+        }
         PlanResult result = plan(c);
+        Explanation explanation = explain && result.hasOptions()
+                ? c.explain(LocalDateTime.now(TORONTO)) : null;
         if (json) {
-            new JsonResultWriter().write(result, System.out);
+            JsonResultWriter writer = new JsonResultWriter();
+            Map<String, Object> tree = writer.toMap(result);
+            if (explanation != null) {
+                tree.put("explanation", JsonResultWriter.explanation(explanation));
+            }
+            writer.write(tree, System.out);
         } else {
             new TextResultWriter().write(result, System.out);
+            if (explanation != null) {
+                System.out.println();
+                System.out.println((explanation.llmGenerated() ? "Explanation: " : "Comparison: ")
+                        + explanation.summary());
+                explanation.optionNotes().forEach((id, note) -> System.out.println("  " + id + ": " + note));
+            }
+        }
+        if (notifier != null) {
+            for (EventType t : EventType.values()) {
+                c.eventBus().unsubscribe(t, notifier);
+            }
         }
         if (result.needsClarification()) {
             return EXIT_CLARIFY;

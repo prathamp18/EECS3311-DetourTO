@@ -153,6 +153,26 @@ public final class ResponseParser {
                 toLocal(alert.activeFrom()), toLocal(alert.activeTo()), confidence, true, summary);
     }
 
+    public Explanation toExplanation(String text) {
+        JsonNode root = extractJson(text);
+        String summary = root.path("summary").asText("").strip();
+        if (summary.isEmpty()) {
+            throw new ResponseFormatException("summary is required");
+        }
+        java.util.Map<String, String> notes = new java.util.LinkedHashMap<>();
+        root.path("option_notes").fields().forEachRemaining(e -> notes.put(e.getKey(), e.getValue().asText()));
+        List<String> ids = new ArrayList<>();
+        root.path("cited_itinerary_ids").forEach(n -> ids.add(n.asText()));
+        List<Integer> minutes = new ArrayList<>();
+        for (JsonNode n : root.path("cited_minutes")) {
+            if (!n.canConvertToInt()) {
+                throw new ResponseFormatException("cited_minutes must be whole numbers");
+            }
+            minutes.add(n.asInt());
+        }
+        return new Explanation(summary, notes, ids, minutes, true);
+    }
+
     static LocalDateTime toLocal(java.time.Instant t) {
         return t == null ? null : LocalDateTime.ofInstant(t, java.time.ZoneId.of("America/Toronto"));
     }

@@ -1,6 +1,9 @@
 package ca.yorku.eecs3311.detourto.agent;
 
 import ca.yorku.eecs3311.detourto.domain.Disruption;
+import ca.yorku.eecs3311.detourto.domain.Itinerary;
+import ca.yorku.eecs3311.detourto.domain.Leg;
+import ca.yorku.eecs3311.detourto.domain.RideLeg;
 import ca.yorku.eecs3311.detourto.domain.DisruptionKind;
 import ca.yorku.eecs3311.detourto.domain.Stop;
 import ca.yorku.eecs3311.detourto.domain.TransitNetwork;
@@ -90,6 +93,103 @@ public final class GroundingValidator {
             }
         }
         return ValidationReport.of(errors);
+    }
+
+    private static final java.util.regex.Pattern OPTION_ID = java.util.regex.Pattern.compile("\\bopt-\\d+\\b");
+    private static final java.util.regex.Pattern MINUTES =
+            java.util.regex.Pattern.compile("(\\d+)\\s*-?\\s*(?:min|mins|minute|minutes)\\b", java.util.regex.Pattern.CASE_INSENSITIVE);
+    private static final java.util.regex.Pattern LINE = java.util.regex.Pattern.compile("\\bLine\\s+(\\d+)\\b");
+    private static final java.util.regex.Pattern NUMBERED_ROUTE =
+            java.util.regex.Pattern.compile("\\b(?:route|bus|streetcar)\\s+(\\d{1,3})\\b", java.util.regex.Pattern.CASE_INSENSITIVE);
+
+    /**
+     * An explanation may only cite options that exist, minute values that come from the options
+     * (or differences between them), and lines that the options use.
+     */
+    public ValidationReport validateExplanation(Explanation e, List<Itinerary> options, TripQuery q) {
+        List<String> errors = new ArrayList<>();
+        Set<String> ids = new HashSet<>();
+        Set<String> routeNumbers = new HashSet<>();
+        for (Itinerary it : options) {
+            ids.add(it.id());
+            for (RideLeg r : it.rideLegs()) {
+                routeNumbers.add(r.route().shortName());
+            }
+        }
+        String text = e.summary() + " " + String.join(" ", e.optionNotes().values());
+        Set<String> mentioned = new java.util.LinkedHashSet<>(e.citedItineraryIds());
+        mentioned.addAll(e.optionNotes().keySet());
+        java.util.regex.Matcher m = OPTION_ID.matcher(text);
+        while (m.find()) {
+            mentioned.add(m.group());
+        }
+        for (String id : mentioned) {
+            if (!ids.contains(id)) {
+                errors.add("option " + id + " does not exist (options are " + ids.stream().sorted().toList() + ")");
+            }
+        }
+        Set<Integer> allowed = allowedMinutes(options, q);
+        List<Integer> cited = new ArrayList<>(e.citedMinutes());
+        m = MINUTES.matcher(text);
+        while (m.find()) {
+            cited.add(Integer.parseInt(m.group(1)));
+        }
+        for (int minutes : cited) {
+            if (!allowed.contains(minutes)) {
+                errors.add(minutes + " min does not match any time in the options");
+            }
+        }
+        for (java.util.regex.Pattern p : List.of(LINE, NUMBERED_ROUTE)) {
+            m = p.matcher(text);
+            while (m.find()) {
+                if (!routeNumbers.contains(m.group(1))) {
+                    errors.add("route " + m.group(1) + " is not used by any option");
+                }
+            }
+        }
+        return ValidationReport.of(errors);
+    }
+
+    /** Minute values that may be cited, allowing 1 minute of rounding either way. */
+    static Set<Integer> allowedMinutes(List<Itinerary> options, TripQuery q) {
+        Set<Integer> base = new HashSet<>();
+        List<Integer> durations = new ArrayList<>();
+        List<Long> arrivals = new ArrayList<>();
+        List<Long> departures = new ArrayList<>();
+        for (Itinerary it : options) {
+            base.add(it.durationMinutes());
+            base.add(it.transfers());
+            base.add((int) Math.round(it.walkSeconds() / 60.0));
+            durations.add(it.durationMinutes());
+            arrivals.add(it.arrival().toEpochSecond(java.time.ZoneOffset.UTC) / 60);
+            departures.add(it.departure().toEpochSecond(java.time.ZoneOffset.UTC) / 60);
+            Leg prev = null;
+            for (Leg leg : it.legs()) {
+                base.add(leg.minutes());
+                if (prev != null) {
+                    base.add((int) java.time.Duration.between(prev.end(), leg.start()).toMinutes());
+                }
+                prev = leg;
+            }
+            if (q != null) {
+                base.add((int) Math.abs(java.time.Duration.between(q.time(), it.departure()).toMinutes()));
+                base.add((int) Math.abs(java.time.Duration.between(q.time(), it.arrival()).toMinutes()));
+            }
+        }
+        for (int i = 0; i < options.size(); i++) {
+            for (int j = 0; j < options.size(); j++) {
+                base.add(Math.abs(durations.get(i) - durations.get(j)));
+                base.add((int) Math.abs(arrivals.get(i) - arrivals.get(j)));
+                base.add((int) Math.abs(departures.get(i) - departures.get(j)));
+            }
+        }
+        Set<Integer> out = new HashSet<>();
+        for (int v : base) {
+            out.add(v - 1);
+            out.add(v);
+            out.add(v + 1);
+        }
+        return out;
     }
 
     public ValidationReport validateClarification(ClarificationRequest c, AgentContext ctx) {
