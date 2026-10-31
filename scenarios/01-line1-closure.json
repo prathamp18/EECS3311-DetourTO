@@ -1,0 +1,20 @@
+{
+  "name": "Line 1 closed St George to St Andrew",
+  "at": "2026-11-02T08:00",
+  "request": "York U to Union, leaving now",
+  "from": "York U",
+  "to": "Union",
+  "alerts": [
+    {
+      "id": "A-L1-CLOSURE",
+      "header": "Line 1: No subway service between St George and St Andrew stations",
+      "description": "Due to track maintenance, there is no subway service between St George and St Andrew stations. Shuttle buses are running.",
+      "routes": ["1"],
+      "stops": ["STN_MU", "STN_QP", "STN_SPT", "STN_OS"],
+      "effect": "NO_SERVICE",
+      "cause": "MAINTENANCE",
+      "activeFrom": "2026-11-02T05:00"
+    }
+  ],
+  "expectedClosedStopIds": ["STN_MU", "STN_QP", "STN_SPT", "STN_OS"]
+}

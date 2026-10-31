@@ -1,0 +1,18 @@
+{
+  "name": "510 skips Queen (free-text alert only)",
+  "at": "2026-11-02T08:00",
+  "request": "Union to Spadina and Queen",
+  "from": "Union",
+  "to": "Spadina Ave at Queen",
+  "alerts": [
+    {
+      "id": "A-510-DIVERSION",
+      "header": "510 Spadina: Streetcars not stopping at Queen",
+      "description": "Due to construction, 510 Spadina streetcars are not stopping at Spadina Ave at Queen St West. Customers can board at Spadina Ave at King St West instead.",
+      "routes": ["510"],
+      "effect": "UNKNOWN_EFFECT",
+      "cause": "CONSTRUCTION"
+    }
+  ],
+  "expectedClosedStopIds": ["SPQU_510"]
+}
