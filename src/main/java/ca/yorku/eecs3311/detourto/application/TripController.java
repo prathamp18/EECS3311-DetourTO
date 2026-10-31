@@ -3,6 +3,9 @@ package ca.yorku.eecs3311.detourto.application;
 import ca.yorku.eecs3311.detourto.agent.AgentContext;
 import ca.yorku.eecs3311.detourto.agent.AgentRequest;
 import ca.yorku.eecs3311.detourto.agent.AgentResult;
+import ca.yorku.eecs3311.detourto.agent.AgentStepListener;
+import ca.yorku.eecs3311.detourto.agent.Explanation;
+import ca.yorku.eecs3311.detourto.agent.ExplanationAgent;
 import ca.yorku.eecs3311.detourto.agent.AlertInterpreterAgent;
 import ca.yorku.eecs3311.detourto.agent.RouteStopsTool;
 import ca.yorku.eecs3311.detourto.agent.ClarificationRequest;
@@ -77,6 +80,9 @@ public final class TripController {
     private final RealtimeFeed feed;
     private final ArrivalBoard arrivalBoard;
     private final AlertService alertService;
+    private final ExplanationAgent explanationAgent;
+    private final EventBus eventBus = new EventBus();
+    private List<Disruption> lastDisruptions = List.of();
     private final String agentUnavailableReason;
     private final ConversationHistory conversation = new ConversationHistory();
     private TripQuery currentQuery;
@@ -115,9 +121,18 @@ public final class TripController {
             AlertInterpreterAgent interpreter = new AlertInterpreterAgent(llm, alertTools, new ResponseParser(),
                     new GroundingValidator(planner.network()), planner.network());
             this.alertService = new AlertService(this.feed, interpreter, planner.network());
+            this.explanationAgent = new ExplanationAgent(llm, new ResponseParser(),
+                    new GroundingValidator(planner.network()));
+            // Observer: every agent step goes onto the event bus (trace file, verbose CLI, GUI)
+            AgentStepListener toBus = (agent, kind, detail) -> eventBus.publish(TransitEvent.of(
+                    EventType.AGENT_STEP, Map.of("agent", agent, "kind", kind, "detail", detail)));
+            tripAgent.setStepListener(toBus);
+            interpreter.setStepListener(toBus);
+            explanationAgent.setStepListener(toBus);
         } else {
             this.tripAgent = null;
             this.alertService = new AlertService(this.feed, null, planner.network());
+            this.explanationAgent = null;
         }
         this.agentUnavailableReason = unavailable;
         for (StrategyKind k : StrategyKind.values()) {
@@ -133,12 +148,34 @@ public final class TripController {
         // caching outside, failure handling inside: a failed fetch is also cached for the TTL
         RealtimeFeed feed = new CachingRealtimeFeed(new ResilientRealtimeFeed(
                 new GtfsRealtimeAdapter(config.feedBaseUrl())));
+        TripController c;
         try {
-            return new TripController(planner, places, LLMClientFactory.create(config), feed, null);
+            c = new TripController(planner, places, LLMClientFactory.create(config), feed, null);
         } catch (LLMException e) {
             // flag-based planning still works without a key; plain-English requests explain why not
-            return new TripController(planner, places, null, feed, e.getMessage());
+            c = new TripController(planner, places, null, feed, e.getMessage());
         }
+        c.eventBus().subscribeAll(new TraceLogger(config.traceFile()));
+        return c;
+    }
+
+    public EventBus eventBus() {
+        return eventBus;
+    }
+
+    /**
+     * Feature F06: compares the current options. Uses the LLM when available (validated against
+     * the options), otherwise a deterministic comparison.
+     */
+    public Explanation explain(LocalDateTime now) {
+        if (currentQuery == null || lastOptions.isEmpty()) {
+            return new Explanation("Plan a trip first; there are no options to explain.", Map.of(), List.of(),
+                    List.of(), false);
+        }
+        if (explanationAgent == null) {
+            return ExplanationAgent.fallback(currentQuery, lastOptions);
+        }
+        return explanationAgent.explain(currentQuery, lastOptions, lastDisruptions, now);
     }
 
     /**
@@ -259,6 +296,11 @@ public final class TripController {
                     + (applied.stream().anyMatch(d -> d.summary().toLowerCase().contains("shuttle"))
                     ? "; shuttle buses may be running (see alerts)." : ".");
         }
+        lastDisruptions = List.copyOf(applied);
+        eventBus.publish(TransitEvent.of(EventType.ITINERARY_UPDATED, Map.of(
+                "query", String.valueOf(r.query()),
+                "options", r.options().stream().map(Itinerary::id).toList(),
+                "disruptions", applied.stream().map(Disruption::id).toList())));
         return new PlanResult(r.query(), r.options(), null, message, applied);
     }
 
@@ -272,7 +314,10 @@ public final class TripController {
 
     /** Feature F04: interpreted alerts active at {@code at}. */
     public List<Disruption> getAlerts(LocalDateTime at) {
-        return alertService.currentDisruptions(at);
+        List<Disruption> ds = alertService.currentDisruptions(at);
+        eventBus.publish(TransitEvent.of(EventType.ALERTS_UPDATED, Map.of(
+                "count", ds.size(), "ids", ds.stream().map(Disruption::id).toList())));
+        return ds;
     }
 
     public AlertService alertService() {

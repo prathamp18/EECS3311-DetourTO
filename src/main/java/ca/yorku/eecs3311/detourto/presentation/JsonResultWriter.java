@@ -1,5 +1,6 @@
 package ca.yorku.eecs3311.detourto.presentation;
 
+import ca.yorku.eecs3311.detourto.agent.Explanation;
 import ca.yorku.eecs3311.detourto.application.PlanResult;
 import ca.yorku.eecs3311.detourto.domain.Disruption;
 import ca.yorku.eecs3311.detourto.domain.Itinerary;
@@ -52,6 +53,16 @@ public final class JsonResultWriter {
             c.put("candidates", r.clarification().candidates().stream().map(this::stop).toList());
             m.put("clarification", c);
         }
+        return m;
+    }
+
+    static Map<String, Object> explanation(Explanation e) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("summary", e.summary());
+        m.put("optionNotes", e.optionNotes());
+        m.put("citedItineraryIds", e.citedItineraryIds());
+        m.put("citedMinutes", e.citedMinutes());
+        m.put("source", e.llmGenerated() ? "llm" : "deterministic");
         return m;
     }
 

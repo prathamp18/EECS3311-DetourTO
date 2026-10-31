@@ -30,6 +30,7 @@ public abstract class TransitAgent {
     protected final GroundingValidator validator;
     protected final int maxToolRounds;
     protected final int maxRepairs;
+    private volatile AgentStepListener stepListener;
 
     protected TransitAgent(LLMClient llm, ToolRegistry tools, ResponseParser parser,
                            GroundingValidator validator) {
@@ -65,7 +66,8 @@ public abstract class TransitAgent {
                         toolCalls, llmCalls);
             }
             llmCalls++;
-            onStep("llm_call", r.wantsTools() ? r.toolCalls().size() + " tool call(s)" : "final answer");
+            onStep("llm_call", (r.wantsTools() ? r.toolCalls().size() + " tool call(s)" : "final answer")
+                    + ", tokens " + r.inputTokens() + "/" + r.outputTokens() + ", " + llm.describe());
             if (r.wantsTools()) {
                 if (++rounds > maxToolRounds) {
                     return new AgentResult(false, null, List.of("too many tool rounds (" + maxToolRounds + ")"),
@@ -131,7 +133,16 @@ public abstract class TransitAgent {
         return new AgentResult(false, null, errors, toolCalls, llmCalls);
     }
 
-    /** Hook for logging each step (the event bus and trace file are attached in a later step). */
+    /** Where steps are reported (the controller connects this to the EventBus and trace file). */
+    public void setStepListener(AgentStepListener listener) {
+        this.stepListener = listener;
+    }
+
+    /** Hook called for every step; reports it to the step listener if one is set. */
     protected void onStep(String kind, String detail) {
+        AgentStepListener l = stepListener;
+        if (l != null) {
+            l.onStep(getClass().getSimpleName(), kind, detail);
+        }
     }
 }
