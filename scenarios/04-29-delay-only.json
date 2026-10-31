@@ -1,0 +1,18 @@
+{
+  "name": "29 Dufferin delays (no closure)",
+  "at": "2026-11-02T08:00",
+  "request": "Dufferin and Lawrence to Wilson station",
+  "from": "Dufferin St at Lawrence",
+  "to": "Wilson",
+  "alerts": [
+    {
+      "id": "A-29-DELAY",
+      "header": "29 Dufferin: Delays of up to 15 minutes",
+      "description": "29 Dufferin buses are delayed by up to 15 minutes in both directions due to a collision near Lawrence Ave West.",
+      "routes": ["29"],
+      "effect": "SIGNIFICANT_DELAYS",
+      "cause": "ACCIDENT"
+    }
+  ],
+  "expectedClosedStopIds": []
+}

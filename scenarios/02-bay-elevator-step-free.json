@@ -1,0 +1,19 @@
+{
+  "name": "Bay elevator out, step-free trip to Bay",
+  "at": "2026-11-02T17:30",
+  "request": "Keele to Bay station, I use a wheelchair",
+  "from": "Keele",
+  "to": "Bay",
+  "strategy": "accessible",
+  "alerts": [
+    {
+      "id": "A-BAY-ELEVATOR",
+      "header": "Elevator out of service at Bay Station",
+      "description": "The elevator between the concourse and the Line 2 platform at Bay Station is out of service.",
+      "stops": ["STN_BAY"],
+      "effect": "ACCESSIBILITY_ISSUE",
+      "cause": "TECHNICAL_PROBLEM"
+    }
+  ],
+  "expectedClosedStopIds": ["STN_BAY"]
+}

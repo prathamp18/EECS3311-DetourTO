@@ -20,7 +20,9 @@ import ca.yorku.eecs3311.detourto.agent.PlanJourneyTool;
 import ca.yorku.eecs3311.detourto.agent.ResponseParser;
 import ca.yorku.eecs3311.detourto.agent.ToolRegistry;
 import ca.yorku.eecs3311.detourto.agent.TripRequestAgent;
+import ca.yorku.eecs3311.detourto.domain.BenchmarkReport;
 import ca.yorku.eecs3311.detourto.domain.Disruption;
+import ca.yorku.eecs3311.detourto.domain.ReplayScenario;
 import ca.yorku.eecs3311.detourto.domain.Itinerary;
 import ca.yorku.eecs3311.detourto.domain.JourneyPlanner;
 import ca.yorku.eecs3311.detourto.domain.NetworkView;
@@ -82,6 +84,7 @@ public final class TripController {
     private final AlertService alertService;
     private final ExplanationAgent explanationAgent;
     private final EventBus eventBus = new EventBus();
+    private final LLMClient llm;
     private List<Disruption> lastDisruptions = List.of();
     private final String agentUnavailableReason;
     private final ConversationHistory conversation = new ConversationHistory();
@@ -107,6 +110,7 @@ public final class TripController {
                            String unavailable) {
         this.planner = planner;
         this.places = places;
+        this.llm = llm;
         this.feed = feed != null ? feed : SCHEDULE_ONLY;
         this.arrivalBoard = new ArrivalBoard(planner, this.feed);
         if (llm != null) {
@@ -161,6 +165,11 @@ public final class TripController {
 
     public EventBus eventBus() {
         return eventBus;
+    }
+
+    /** Feature F12: replay scenarios through the pipeline and measure the results. */
+    public List<BenchmarkReport> runReplay(List<ReplayScenario> scenarios) {
+        return new BenchmarkRunner(planner, places, llm).runAll(scenarios);
     }
 
     /**

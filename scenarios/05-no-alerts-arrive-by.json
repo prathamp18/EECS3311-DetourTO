@@ -1,0 +1,10 @@
+{
+  "name": "Normal service, arrive by 9:30",
+  "at": "2026-11-02T09:30",
+  "request": "Finch to York U, I need to be there by 9:30",
+  "from": "Finch",
+  "to": "York U",
+  "arriveBy": true,
+  "alerts": [],
+  "expectedClosedStopIds": []
+}
