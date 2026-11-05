@@ -6,6 +6,7 @@ import ca.yorku.eecs3311.detourto.domain.Leg;
 import ca.yorku.eecs3311.detourto.domain.RideLeg;
 import ca.yorku.eecs3311.detourto.domain.DisruptionKind;
 import ca.yorku.eecs3311.detourto.domain.Stop;
+import ca.yorku.eecs3311.detourto.domain.StrategyKind;
 import ca.yorku.eecs3311.detourto.domain.TransitNetwork;
 import ca.yorku.eecs3311.detourto.domain.TripQuery;
 import java.time.Duration;
@@ -190,6 +191,34 @@ public final class GroundingValidator {
             out.add(v + 1);
         }
         return out;
+    }
+
+    private static final java.util.regex.Pattern SHIFT_VALUE = java.util.regex.Pattern.compile("[+-]\\d{1,3}");
+    private static final java.util.regex.Pattern CLOCK_VALUE =
+            java.util.regex.Pattern.compile("(depart|arrive)@([01]\\d|2[0-3]):[0-5]\\d");
+
+    /** A follow-up must name a real route, a known mode or strategy, or a stop from find_stop. */
+    public ValidationReport validateFollowUp(FollowUpIntent intent, AgentContext ctx) {
+        String v = intent.value();
+        String error = switch (intent.kind()) {
+            case CHANGE_TIME -> SHIFT_VALUE.matcher(v).matches() || CLOCK_VALUE.matcher(v).matches() ? null
+                    : "CHANGE_TIME value must look like +15, -10, depart@09:30 or arrive@10:00";
+            case AVOID_ROUTE -> network.findRoute(v).isPresent() ? null : "route '" + v + "' does not exist";
+            case AVOID_MODE -> v.equals("SUBWAY") || v.equals("STREETCAR") || v.equals("BUS") ? null
+                    : "mode must be SUBWAY, STREETCAR or BUS";
+            case CHANGE_STRATEGY -> {
+                try {
+                    StrategyKind.parse(v);
+                    yield null;
+                } catch (IllegalArgumentException e) {
+                    yield "unknown strategy '" + v + "'";
+                }
+            }
+            case CHANGE_DESTINATION -> network.findStop(v).isEmpty() ? "stop " + v + " does not exist"
+                    : ctx.stopWasReturnedByTool(v) ? null : "stop " + v + " was not returned by find_stop";
+            case UNDO, REDO, UNKNOWN -> null;
+        };
+        return error == null ? ValidationReport.ok() : ValidationReport.of(List.of(error));
     }
 
     public ValidationReport validateClarification(ClarificationRequest c, AgentContext ctx) {

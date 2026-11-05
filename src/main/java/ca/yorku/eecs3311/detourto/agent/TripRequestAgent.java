@@ -32,7 +32,21 @@ public final class TripRequestAgent extends TransitAgent {
             {"type":"clarification","question":"...","candidate_stop_ids":["...","..."]}
             """;
 
+    static final String FOLLOW_UP_PROMPT = """
+            You are the follow-up step of DetourTO, a Toronto (TTC) trip planner. The rider already has
+            a planned trip (given below) and now asks for ONE change. Answer with JSON only:
+            {"kind":"CHANGE_TIME","value":"+15"}          leave 15 min later (use -10 for earlier)
+            {"kind":"CHANGE_TIME","value":"depart@09:30"} or "arrive@10:00" for a new clock time
+            {"kind":"AVOID_ROUTE","value":"2"}            a route number the rider names
+            {"kind":"AVOID_MODE","value":"STREETCAR"}     SUBWAY, STREETCAR or BUS
+            {"kind":"CHANGE_STRATEGY","value":"fewest-transfers"}  fastest|fewest-transfers|least-walking|accessible
+            {"kind":"CHANGE_DESTINATION","value":"<stop_id>"}  call find_stop first; use a returned stop_id
+            {"kind":"UNDO","value":""} or {"kind":"REDO","value":""}
+            {"kind":"UNKNOWN","value":"short reason"}     if the message asks for something else
+            """;
+
     private final TransitNetwork network;
+    private boolean followUpMode;
 
     public TripRequestAgent(LLMClient llm, ToolRegistry tools, ResponseParser parser,
                             GroundingValidator validator, TransitNetwork network) {
@@ -40,23 +54,48 @@ public final class TripRequestAgent extends TransitAgent {
         this.network = network;
     }
 
+    /**
+     * Feature F10: turns a follow-up ("leave 15 minutes later") into one structured change. Same
+     * template loop as {@link #run}, with a different prompt, parser and validation. Falls back to
+     * {@link FollowUpRules} if the model's answer stays invalid.
+     */
+    public synchronized FollowUpIntent interpretFollowUp(String text, AgentContext ctx) {
+        followUpMode = true;
+        try {
+            String current = ctx.query().map(Object::toString).orElse("(no trip planned yet)");
+            AgentResult r = run(new AgentRequest("follow_up", "Current trip: " + current + "\nFollow-up: " + text, ctx));
+            if (r.success() && r.output() instanceof FollowUpIntent intent && intent.kind() != IntentKind.UNKNOWN) {
+                return intent;
+            }
+            return FollowUpRules.parse(text);
+        } finally {
+            followUpMode = false;
+        }
+    }
+
     @Override
     protected String systemPrompt() {
-        return SYSTEM_PROMPT;
+        return followUpMode ? FOLLOW_UP_PROMPT : SYSTEM_PROMPT;
     }
 
     @Override
     protected List<String> toolNames() {
-        return List.of(FindStopTool.NAME, PlanJourneyTool.NAME);
+        return followUpMode ? List.of(FindStopTool.NAME) : List.of(FindStopTool.NAME, PlanJourneyTool.NAME);
     }
 
     @Override
     protected Object parseFinal(LLMResponse r, AgentContext ctx) {
+        if (followUpMode) {
+            return parser.toFollowUpIntent(r.text());
+        }
         return parser.toTripRequest(r.text(), network, ctx.now());
     }
 
     @Override
     protected ValidationReport validate(Object output, AgentContext ctx) {
+        if (output instanceof FollowUpIntent intent) {
+            return validator.validateFollowUp(intent, ctx);
+        }
         if (output instanceof TripQuery q) {
             return validator.validateQuery(q, ctx);
         }

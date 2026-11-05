@@ -36,8 +36,9 @@ public final class ScriptedLLMClient implements LLMClient {
         requests.add(new Request(List.copyOf(msgs), List.copyOf(tools), system));
         LLMResponse next = script.poll();
         if (next == null) {
-            throw new IllegalStateException("ScriptedLLMClient ran out of responses after "
-                    + requests.size() + " calls");
+            // behave like an unavailable provider, so agents fall back instead of crashing
+            throw new LLMException(LLMException.Kind.UNAVAILABLE, "scripted LLM has no more responses (after "
+                    + requests.size() + " calls)");
         }
         return next;
     }

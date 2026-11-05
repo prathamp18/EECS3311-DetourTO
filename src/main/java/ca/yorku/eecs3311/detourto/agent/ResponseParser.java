@@ -173,6 +173,17 @@ public final class ResponseParser {
         return new Explanation(summary, notes, ids, minutes, true);
     }
 
+    public FollowUpIntent toFollowUpIntent(String text) {
+        JsonNode root = extractJson(text);
+        IntentKind kind;
+        try {
+            kind = IntentKind.valueOf(root.path("kind").asText("").strip().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ResponseFormatException("kind must be one of " + java.util.Arrays.toString(IntentKind.values()));
+        }
+        return new FollowUpIntent(kind, root.path("value").asText("").strip());
+    }
+
     static LocalDateTime toLocal(java.time.Instant t) {
         return t == null ? null : LocalDateTime.ofInstant(t, java.time.ZoneId.of("America/Toronto"));
     }

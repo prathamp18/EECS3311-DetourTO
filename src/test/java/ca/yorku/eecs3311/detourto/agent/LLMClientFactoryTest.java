@@ -47,6 +47,7 @@ class LLMClientFactoryTest {
         assertEquals(2, s.requests().size());
         assertEquals("sys", s.requests().get(0).system());
         assertEquals(0, s.remaining());
-        assertThrows(IllegalStateException.class, () -> s.complete(List.of(), List.of(), ""));
+        assertEquals(LLMException.Kind.UNAVAILABLE,
+                assertThrows(LLMException.class, () -> s.complete(List.of(), List.of(), "")).kind());
     }
 }
