@@ -221,6 +221,49 @@ public final class GroundingValidator {
         return error == null ? ValidationReport.ok() : ValidationReport.of(List.of(error));
     }
 
+    /** Saved places must point at stops returned by find_stop; routes and strategies must exist. */
+    public ValidationReport validatePreferences(List<ca.yorku.eecs3311.detourto.domain.PreferenceUpdate> updates,
+                                                AgentContext ctx) {
+        List<String> errors = new ArrayList<>();
+        for (var u : updates) {
+            String v = u.value();
+            switch (u.key()) {
+                case "save_place", "forget_place" -> {
+                    if (u.key().equals("save_place")) {
+                        int eq = v.indexOf('=');
+                        String id = eq < 0 ? "" : v.substring(eq + 1);
+                        if (eq <= 0) {
+                            errors.add("save_place value must be label=stop_id");
+                        } else if (network.findStop(id).isEmpty()) {
+                            errors.add("stop " + id + " does not exist");
+                        } else if (!ctx.stopWasReturnedByTool(id)) {
+                            errors.add("stop " + id + " was not returned by find_stop");
+                        }
+                    }
+                }
+                case "avoid_route", "allow_route" -> {
+                    if (network.findRoute(v).isEmpty()) {
+                        errors.add("route '" + v + "' does not exist");
+                    }
+                }
+                case "default_strategy" -> {
+                    try {
+                        StrategyKind.parse(v);
+                    } catch (IllegalArgumentException e) {
+                        errors.add("unknown strategy '" + v + "'");
+                    }
+                }
+                case "step_free" -> {
+                    if (!v.equals("true") && !v.equals("false")) {
+                        errors.add("step_free must be true or false");
+                    }
+                }
+                default -> errors.add("unknown preference key '" + u.key() + "'");
+            }
+        }
+        return ValidationReport.of(errors);
+    }
+
     public ValidationReport validateClarification(ClarificationRequest c, AgentContext ctx) {
         List<String> errors = new ArrayList<>();
         for (Stop s : c.candidates()) {

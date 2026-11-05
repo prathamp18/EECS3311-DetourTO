@@ -13,6 +13,14 @@ import ca.yorku.eecs3311.detourto.agent.ConversationHistory;
 import ca.yorku.eecs3311.detourto.agent.FindStopTool;
 import ca.yorku.eecs3311.detourto.agent.FollowUpIntent;
 import ca.yorku.eecs3311.detourto.agent.FollowUpRules;
+import ca.yorku.eecs3311.detourto.agent.PreferenceExtractorAgent;
+import ca.yorku.eecs3311.detourto.agent.PreferenceRules;
+import ca.yorku.eecs3311.detourto.domain.PreferenceUpdate;
+import ca.yorku.eecs3311.detourto.domain.RiderProfile;
+import ca.yorku.eecs3311.detourto.infrastructure.InMemoryProfileRepository;
+import ca.yorku.eecs3311.detourto.infrastructure.ProfileRepository;
+import ca.yorku.eecs3311.detourto.infrastructure.SqliteDatabase;
+import ca.yorku.eecs3311.detourto.infrastructure.SqliteProfileRepository;
 import ca.yorku.eecs3311.detourto.agent.GroundingValidator;
 import ca.yorku.eecs3311.detourto.agent.LLMClient;
 import ca.yorku.eecs3311.detourto.agent.LLMClientFactory;
@@ -93,6 +101,8 @@ public final class TripController {
     private TripQuery currentQuery;
     private List<Itinerary> lastOptions = List.of();
     private final CommandHistory history = new CommandHistory();
+    private ProfileRepository profiles = new InMemoryProfileRepository();
+    private PreferenceExtractorAgent preferenceAgent;
     private QueryCommandFactory commandFactory;
 
     /** Without an LLM or live feed: form and CLI-flag planning, scheduled arrivals. */
@@ -131,12 +141,15 @@ public final class TripController {
             this.alertService = new AlertService(this.feed, interpreter, planner.network());
             this.explanationAgent = new ExplanationAgent(llm, new ResponseParser(),
                     new GroundingValidator(planner.network()));
+            this.preferenceAgent = new PreferenceExtractorAgent(llm, new ToolRegistry().register(new FindStopTool(places)),
+                    new ResponseParser(), new GroundingValidator(planner.network()), planner.network());
             // Observer: every agent step goes onto the event bus (trace file, verbose CLI, GUI)
             AgentStepListener toBus = (agent, kind, detail) -> eventBus.publish(TransitEvent.of(
                     EventType.AGENT_STEP, Map.of("agent", agent, "kind", kind, "detail", detail)));
             tripAgent.setStepListener(toBus);
             interpreter.setStepListener(toBus);
             explanationAgent.setStepListener(toBus);
+            preferenceAgent.setStepListener(toBus);
         } else {
             this.tripAgent = null;
             this.alertService = new AlertService(this.feed, null, planner.network());
@@ -146,6 +159,7 @@ public final class TripController {
         for (StrategyKind k : StrategyKind.values()) {
             strategies.put(k, RouteScoringStrategy.of(k));
         }
+        places.setSavedPlaces(label -> this.profiles.load().placeStopId(label));
     }
 
     /** Loads the GTFS feed named in the config and wires the services together. */
@@ -164,7 +178,71 @@ public final class TripController {
             c = new TripController(planner, places, null, feed, e.getMessage());
         }
         c.eventBus().subscribeAll(new TraceLogger(config.traceFile()));
+        c.useProfiles(new SqliteProfileRepository(SqliteDatabase.open(config.databasePath())));
         return c;
+    }
+
+    // ------------------------------------------------------------------ F09 profile
+
+    /** Where the rider profile is stored (SQLite in the app, in memory in tests). */
+    public void useProfiles(ProfileRepository repo) {
+        this.profiles = repo;
+    }
+
+    public RiderProfile profile() {
+        return profiles.load();
+    }
+
+    /** Applies and saves updates; returns a description of each one that was applied. */
+    public List<String> updateProfile(List<PreferenceUpdate> updates) {
+        RiderProfile p = profiles.load();
+        List<String> done = new ArrayList<>();
+        for (PreferenceUpdate u : updates) {
+            p.apply(u);
+            done.add(u.describe());
+        }
+        if (!done.isEmpty()) {
+            profiles.save(p);
+        }
+        return done;
+    }
+
+    /** Saves a place under a label ("home"); the place text must resolve to one stop. */
+    public Resolution savePlace(String label, String placeText) {
+        Resolution r = resolvePlace(placeText);
+        r.stop().ifPresent(s -> updateProfile(List.of(new PreferenceUpdate(PreferenceUpdate.SAVE_PLACE,
+                RiderProfile.normalize(label) + "=" + s.id()))));
+        return r;
+    }
+
+    /**
+     * Picks lasting preferences out of a message ("never put me on the 29") with the
+     * PreferenceExtractorAgent, or with built-in rules when there is no LLM, and saves them.
+     */
+    public List<String> learnPreferences(String text, LocalDateTime now) {
+        List<PreferenceUpdate> found;
+        if (preferenceAgent != null) {
+            found = preferenceAgent.extract(text, AgentContext.at(now));
+        } else {
+            found = new ArrayList<>();
+            for (PreferenceUpdate u : PreferenceRules.parse(text)) {
+                if (!u.key().equals(PreferenceUpdate.SAVE_PLACE)) {
+                    if (!u.key().equals(PreferenceUpdate.AVOID_ROUTE) || planner.network().findRoute(u.value()).isPresent()) {
+                        found.add(u);
+                    }
+                    continue;
+                }
+                String label = u.value().substring(0, u.value().indexOf('='));
+                resolvePlace(u.value().substring(u.value().indexOf('=') + 1)).stop().ifPresent(s ->
+                        found.add(new PreferenceUpdate(PreferenceUpdate.SAVE_PLACE, label + "=" + s.id())));
+            }
+        }
+        return updateProfile(found);
+    }
+
+    /** Profile defaults for a new query (avoided routes, step-free, default strategy). */
+    public void applyProfile(TripQuery q, boolean strategyChosen) {
+        profiles.load().applyDefaults(q, strategyChosen);
     }
 
     public EventBus eventBus() {
@@ -220,6 +298,7 @@ public final class TripController {
             return new PlanResult(null, List.of(), null,
                     "Plain-English planning needs an LLM: " + agentUnavailableReason);
         }
+        List<String> learned = PreferenceRules.mentionsPreference(text) ? learnPreferences(text, now) : List.of();
         AgentContext ctx = new AgentContext(now, currentQuery, lastOptions, conversation);
         AgentResult result = tripAgent.run(new AgentRequest("trip_request", text, ctx));
         conversation.append(Message.user(text));
@@ -232,8 +311,11 @@ public final class TripController {
             return PlanResult.needsClarification(c);
         }
         TripQuery q = (TripQuery) result.output();
+        applyProfile(q, q.strategyKind() != StrategyKind.FASTEST);
         conversation.append(Message.assistant("Planned: " + q, List.of(), null));
-        return planFromForm(q);
+        PlanResult planned = planFromForm(q);
+        return learned.isEmpty() ? planned
+                : withMessage(planned, "Saved to your profile: " + String.join("; ", learned) + ".");
     }
 
     /**

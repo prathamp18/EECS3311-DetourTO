@@ -100,6 +100,11 @@ public final class AppConfig {
         return Path.of(getOrDefault("TRACE_FILE", "trace.jsonl"));
     }
 
+    /** SQLite file for the rider profile and commutes (git-ignored). */
+    public Path databasePath() {
+        return Path.of(getOrDefault("DB_PATH", "data/local/detourto.db"));
+    }
+
     /** Which LLM adapter to use: gemini or scripted. */
     public String llmProvider() {
         return getOrDefault("LLM_PROVIDER", DEFAULT_LLM_PROVIDER);

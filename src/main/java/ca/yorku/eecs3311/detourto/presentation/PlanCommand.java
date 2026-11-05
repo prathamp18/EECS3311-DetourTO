@@ -69,8 +69,8 @@ public class PlanCommand implements Callable<Integer> {
     @Option(names = "--date", description = "Service date YYYY-MM-DD for HH:mm times (default: today)")
     LocalDate date;
 
-    @Option(names = "--strategy", defaultValue = "fastest",
-            description = "fastest, fewest-transfers, least-walking or accessible (default: ${DEFAULT-VALUE})")
+    @Option(names = "--strategy",
+            description = "fastest, fewest-transfers, least-walking or accessible (default: your profile's, else fastest)")
     String strategy;
 
     @Option(names = "--avoid-route", split = ",", description = "Route ids to avoid, e.g. 29,510")
@@ -191,7 +191,10 @@ public class PlanCommand implements Callable<Integer> {
                 ? TripQuery.arriveBy(o, d, parseTime(when.arriveBy))
                 : TripQuery.departAt(o, d, parseTime(when.depart == null ? "now" : when.depart));
         try {
-            q.setStrategyKind(StrategyKind.parse(strategy));
+            if (strategy != null) {
+                q.setStrategyKind(StrategyKind.parse(strategy));
+            }
+            c.applyProfile(q, strategy != null);
             avoidRoutes.forEach(q::avoidRoute);
             avoidModes.forEach(m -> q.avoidMode(TransitMode.valueOf(m.strip().toUpperCase())));
             if (maxWalk != null) {

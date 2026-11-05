@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  * Turns what a rider types ("York U", "st george", "Spadina & College", "43.66,-79.40", a stop
  * id) into ranked stops. Platforms are folded into their station so "Union" gives one answer.
  *
- * <p>Saved places from the rider profile ("home", "school") are added in week 3.
+ * <p>Saved places from the rider profile ("home", "school") are checked first.
  */
 public final class PlaceResolver {
 
@@ -39,9 +39,15 @@ public final class PlaceResolver {
     }
 
     private final TransitNetwork network;
+    private volatile java.util.function.Function<String, Optional<String>> savedPlaces = label -> Optional.empty();
 
     public PlaceResolver(TransitNetwork network) {
         this.network = network;
+    }
+
+    /** Looks up the rider's saved places ("home", "school") before searching stop names (F09). */
+    public void setSavedPlaces(java.util.function.Function<String, Optional<String>> lookup) {
+        this.savedPlaces = lookup;
     }
 
     /** Best matches first; empty when nothing looks similar. */
@@ -53,6 +59,10 @@ public final class PlaceResolver {
     public List<Match> match(String text) {
         if (text == null || text.isBlank()) {
             return List.of();
+        }
+        Optional<Stop> saved = savedPlaces.apply(text).flatMap(network::findStop);
+        if (saved.isPresent()) {
+            return List.of(new Match(fold(saved.get()), 1.0));
         }
         Optional<Stop> exact = network.findStop(text.strip());
         if (exact.isPresent()) {
