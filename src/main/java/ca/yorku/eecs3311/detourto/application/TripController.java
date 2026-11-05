@@ -103,6 +103,7 @@ public final class TripController {
     private final CommandHistory history = new CommandHistory();
     private ProfileRepository profiles = new InMemoryProfileRepository();
     private PreferenceExtractorAgent preferenceAgent;
+    private TripMonitorService monitor;
     private QueryCommandFactory commandFactory;
 
     /** Without an LLM or live feed: form and CLI-flag planning, scheduled arrivals. */
@@ -180,6 +181,48 @@ public final class TripController {
         c.eventBus().subscribeAll(new TraceLogger(config.traceFile()));
         c.useProfiles(new SqliteProfileRepository(SqliteDatabase.open(config.databasePath())));
         return c;
+    }
+
+    // ------------------------------------------------------------------ F07 monitoring
+
+    public TripMonitorService monitor() {
+        if (monitor == null) {
+            monitor = new TripMonitorService(feed, alertService, eventBus, planner.network(), this::rerouteOptions);
+        }
+        return monitor;
+    }
+
+    /** Starts monitoring one of the current options (e.g. "opt-1"). */
+    public Optional<ActiveTrip> startTrip(String itineraryId) {
+        if (currentQuery == null) {
+            return Optional.empty();
+        }
+        return lastOptions.stream().filter(i -> i.id().equals(itineraryId)).findFirst()
+                .map(i -> monitor().start(i, currentQuery.isArriveBy() ? currentQuery.arriveBy() : null,
+                        currentQuery.strategyKind()));
+    }
+
+    /** Accepts a reroute option for an at-risk trip. */
+    public Optional<Itinerary> acceptReroute(String tripId, String optionId) {
+        return monitor().applyReroute(tripId, optionId);
+    }
+
+    /** New options from where the rider will be, avoiding the current disruptions. */
+    private List<Itinerary> rerouteOptions(ActiveTrip trip, LocalDateTime now) {
+        Stop from = trip.rerouteOrigin(now);
+        Stop to = trip.itinerary().destination();
+        if (from.equals(to)) {
+            return List.of();
+        }
+        LocalDateTime start = now.isAfter(trip.itinerary().departure()) ? now : trip.itinerary().departure();
+        TripQuery q = TripQuery.departAt(from, to, start);
+        q.setStrategyKind(trip.strategy());
+        List<Disruption> applied = alertService.currentDisruptions(now).stream()
+                .filter(Disruption::appliesByDefault).toList();
+        List<String> currentTrips = trip.itinerary().rideLegs().stream().map(l -> l.trip().id()).toList();
+        return planner.plan(q, planner.network().withDisruptions(applied), strategies.get(trip.strategy())).stream()
+                .filter(i -> !currentTrips.containsAll(i.rideLegs().stream().map(l -> l.trip().id()).toList()))
+                .toList();
     }
 
     // ------------------------------------------------------------------ F09 profile

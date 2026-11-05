@@ -49,6 +49,7 @@ java -jar target/detourto.jar places add home "Keele"               # saved plac
 java -jar target/detourto.jar places add school "York University"
 java -jar target/detourto.jar plan --from home --to school
 java -jar target/detourto.jar prefs --learn "never put me on the 29"   # or --strategy, --avoid-route, --step-free
+java -jar target/detourto.jar monitor --from "York U" --to Union --depart 08:00 --accept-reroute   # trip states, minute by minute
 java -jar target/detourto.jar alerts                                 # live alerts as structured disruptions
 java -jar target/detourto.jar plan --from "York U" --to Union --ignore-alerts   # compare with the schedule
 java -jar target/detourto.jar arrivals "Dufferin" -n 8                # next departures, live delays for buses/streetcars
@@ -63,6 +64,8 @@ Every LLM call, tool call and validation result is published on an event bus and
 Follow-ups (`--then`, or the chat box in the GUI) change the current trip one step at a time: leave earlier or later, arrive by a time, avoid a route or mode, change the strategy or destination, `undo`, `redo`. Each change is an undoable command. With a Gemini key the agent interprets the message (its answer is validated); without one, built-in rules handle the common phrasings.
 
 Saved places and preferences live in a local SQLite file (`DB_PATH`, default `data/local/detourto.db`, git-ignored). Preferences apply to every new trip: avoided routes are skipped, step-free riders always get the accessible strategy, and the default strategy is used unless you pick one. A plain-English request that states a lasting preference ("never put me on the 29") is saved by the `PreferenceExtractorAgent` (or built-in rules without a key).
+
+`monitor` follows one option through its states: Planned, On track, At risk (a disruption on the remaining route, a likely missed connection, or arriving after the arrive-by time), Rerouted and Completed. The CLI replays the trip minute by minute against the configured feed; by default the trip is planned as if today's alerts were not known yet, so the monitor has something to catch. The GUI monitors on the real clock.
 
 Planning routes around active disruptions by default. Alerts that name stops and an effect in their structured fields become disruptions directly; free-text alerts are read by the `AlertInterpreterAgent`, whose stop ids are checked against the network. Interpretations below 50% confidence are listed but only applied with `--avoid-disruption <id>`.
 
