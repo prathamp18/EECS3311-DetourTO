@@ -11,6 +11,8 @@ import ca.yorku.eecs3311.detourto.agent.RouteStopsTool;
 import ca.yorku.eecs3311.detourto.agent.ClarificationRequest;
 import ca.yorku.eecs3311.detourto.agent.ConversationHistory;
 import ca.yorku.eecs3311.detourto.agent.FindStopTool;
+import ca.yorku.eecs3311.detourto.agent.FollowUpIntent;
+import ca.yorku.eecs3311.detourto.agent.FollowUpRules;
 import ca.yorku.eecs3311.detourto.agent.GroundingValidator;
 import ca.yorku.eecs3311.detourto.agent.LLMClient;
 import ca.yorku.eecs3311.detourto.agent.LLMClientFactory;
@@ -90,6 +92,8 @@ public final class TripController {
     private final ConversationHistory conversation = new ConversationHistory();
     private TripQuery currentQuery;
     private List<Itinerary> lastOptions = List.of();
+    private final CommandHistory history = new CommandHistory();
+    private QueryCommandFactory commandFactory;
 
     /** Without an LLM or live feed: form and CLI-flag planning, scheduled arrivals. */
     public TripController(JourneyPlanner planner, PlaceResolver places) {
@@ -232,6 +236,77 @@ public final class TripController {
         return planFromForm(q);
     }
 
+    /**
+     * Feature F10: apply a follow-up ("leave 15 minutes later", "avoid line 2", "undo") to the
+     * current trip as an undoable command, then plan again.
+     */
+    public PlanResult followUp(String text, LocalDateTime now) {
+        if (currentQuery == null) {
+            return new PlanResult(null, List.of(), null, "Plan a trip first, then ask for changes.");
+        }
+        FollowUpIntent intent = tripAgent != null
+                ? tripAgent.interpretFollowUp(text, new AgentContext(now, currentQuery, lastOptions, conversation))
+                : FollowUpRules.parse(text);
+        conversation.append(Message.user(text));
+        switch (intent.kind()) {
+            case UNDO:
+                return undo();
+            case REDO:
+                return redo();
+            case UNKNOWN:
+                return withMessage(replanCurrent(), "Sorry, " + intent.value()
+                        + ". Try e.g. \"leave 15 minutes later\", \"avoid line 2\" or \"fewest transfers\".");
+            default:
+                break;
+        }
+        QueryCommand cmd;
+        try {
+            cmd = commandFactory().create(intent, currentQuery);
+        } catch (IllegalArgumentException e) {
+            return withMessage(replanCurrent(), e.getMessage());
+        }
+        history.run(cmd);
+        return withMessage(replanCurrent(), cmd.describe() + ".");
+    }
+
+    /** Undo the last follow-up change and plan again. */
+    public PlanResult undo() {
+        if (currentQuery == null || !history.undo()) {
+            return currentQuery == null ? new PlanResult(null, List.of(), null, "Nothing to undo.")
+                    : withMessage(replanCurrent(), "Nothing to undo.");
+        }
+        return withMessage(replanCurrent(), "Undone.");
+    }
+
+    /** Redo the last undone change and plan again. */
+    public PlanResult redo() {
+        if (currentQuery == null || !history.redo()) {
+            return currentQuery == null ? new PlanResult(null, List.of(), null, "Nothing to redo.")
+                    : withMessage(replanCurrent(), "Nothing to redo.");
+        }
+        return withMessage(replanCurrent(), "Redone.");
+    }
+
+    public CommandHistory history() {
+        return history;
+    }
+
+    private PlanResult replanCurrent() {
+        return planWithDisruptions(currentQuery, Set.of(), false);
+    }
+
+    private static PlanResult withMessage(PlanResult r, String prefix) {
+        return new PlanResult(r.query(), r.options(), r.clarification(), prefix + " " + r.message(),
+                r.disruptionsApplied());
+    }
+
+    private QueryCommandFactory commandFactory() {
+        if (commandFactory == null) {
+            commandFactory = new QueryCommandFactory(planner.network(), places);
+        }
+        return commandFactory;
+    }
+
     public boolean hasAgent() {
         return tripAgent != null;
     }
@@ -343,6 +418,10 @@ public final class TripController {
     }
 
     PlanResult planOn(TripQuery q, NetworkView view) {
+        if (q != currentQuery) {
+            history.clear(); // a new trip starts a new undo history
+            currentQuery = q;
+        }
         if (q.origin().equals(q.destination())) {
             return PlanResult.ok(q, List.of(), "Origin and destination are the same stop.");
         }

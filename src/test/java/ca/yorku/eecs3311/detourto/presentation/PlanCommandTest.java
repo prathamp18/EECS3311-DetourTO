@@ -120,6 +120,17 @@ class PlanCommandTest {
     }
 
     @Test
+    void thenAppliesFollowUpsInOrder() throws IOException {
+        int code = run("--from", "Keele", "--to", "Union", "--date", "2026-10-22", "--depart", "08:00",
+                "--then", "leave 15 minutes later", "--then", "avoid line 1", "--then", "undo", "--json");
+        assertEquals(0, code, out());
+        JsonNode root = new ObjectMapper().readTree(out());
+        assertEquals(3, root.get("followUps").size());
+        assertEquals("[\"Leave 15 min later\"]", root.get("history").toString());
+        assertEquals("2026-10-22T08:15", root.at("/query/departAt").asText());
+    }
+
+    @Test
     void plainEnglishWithoutAnLlmExplainsWhy() {
         int code = run("York U to Union");
         assertEquals(PlanCommand.EXIT_NOT_UNDERSTOOD, code);

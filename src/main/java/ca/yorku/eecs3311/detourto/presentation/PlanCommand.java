@@ -89,6 +89,10 @@ public class PlanCommand implements Callable<Integer> {
     @Option(names = "--ignore-alerts", description = "Plan on the schedule only, without live disruptions")
     boolean ignoreAlerts;
 
+    @Option(names = "--then", paramLabel = "FOLLOW_UP",
+            description = "Follow-up applied after planning, repeatable, e.g. --then \"leave 15 min later\" --then undo")
+    List<String> followUps = List.of();
+
     @Option(names = "--explain", description = "Also compare the options in plain language (F06)")
     boolean explain;
 
@@ -109,11 +113,32 @@ public class PlanCommand implements Callable<Integer> {
             c.eventBus().subscribeAll(notifier);
         }
         PlanResult result = plan(c);
+        List<Map<String, Object>> steps = new java.util.ArrayList<>();
+        for (String f : followUps) {
+            if (result.query() == null) {
+                break;
+            }
+            if (!json) {
+                new TextResultWriter().write(result, System.out);
+                System.out.println();
+                System.out.println(">>> " + f);
+            }
+            result = c.followUp(f, LocalDateTime.now(TORONTO));
+            Map<String, Object> step = new java.util.LinkedHashMap<>();
+            step.put("followUp", f);
+            step.put("message", result.message());
+            step.put("query", result.query() == null ? null : result.query().toString());
+            steps.add(step);
+        }
         Explanation explanation = explain && result.hasOptions()
                 ? c.explain(LocalDateTime.now(TORONTO)) : null;
         if (json) {
             JsonResultWriter writer = new JsonResultWriter();
             Map<String, Object> tree = writer.toMap(result);
+            if (!followUps.isEmpty()) {
+                tree.put("followUps", steps);
+                tree.put("history", c.history().applied());
+            }
             if (explanation != null) {
                 tree.put("explanation", JsonResultWriter.explanation(explanation));
             }
