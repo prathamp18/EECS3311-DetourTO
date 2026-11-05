@@ -50,6 +50,9 @@ java -jar target/detourto.jar places add school "York University"
 java -jar target/detourto.jar plan --from home --to school
 java -jar target/detourto.jar prefs --learn "never put me on the 29"   # or --strategy, --avoid-route, --step-free
 java -jar target/detourto.jar monitor --from "York U" --to Union --depart 08:00 --accept-reroute   # trip states, minute by minute
+java -jar target/detourto.jar commute add school --from home --to school --arrive-by 09:00 --days weekdays
+java -jar target/detourto.jar commute check                          # when to leave today, with current disruptions
+java -jar target/detourto.jar refresh-data                           # download, validate and load the latest TTC schedule
 java -jar target/detourto.jar alerts                                 # live alerts as structured disruptions
 java -jar target/detourto.jar plan --from "York U" --to Union --ignore-alerts   # compare with the schedule
 java -jar target/detourto.jar arrivals "Dufferin" -n 8                # next departures, live delays for buses/streetcars
@@ -66,6 +69,8 @@ Follow-ups (`--then`, or the chat box in the GUI) change the current trip one st
 Saved places and preferences live in a local SQLite file (`DB_PATH`, default `data/local/detourto.db`, git-ignored). Preferences apply to every new trip: avoided routes are skipped, step-free riders always get the accessible strategy, and the default strategy is used unless you pick one. A plain-English request that states a lasting preference ("never put me on the 29") is saved by the `PreferenceExtractorAgent` (or built-in rules without a key).
 
 `monitor` follows one option through its states: Planned, On track, At risk (a disruption on the remaining route, a likely missed connection, or arriving after the arrive-by time), Rerouted and Completed. The CLI replays the trip minute by minute against the configured feed; by default the trip is planned as if today's alerts were not known yet, so the monitor has something to catch. The GUI monitors on the real clock.
+
+Commutes (`commute add|list|remove|check`) compute today's leave-by time with current disruptions and say how much earlier than usual you need to leave and why; the GUI checks every minute and warns `--warn` minutes before (once per commute per day). `refresh-data` downloads the TTC schedule from Toronto Open Data (or `--file` a local zip), validates it, and only swaps it in if it is valid.
 
 Planning routes around active disruptions by default. Alerts that name stops and an effect in their structured fields become disruptions directly; free-text alerts are read by the `AlertInterpreterAgent`, whose stop ids are checked against the network. Interpretations below 50% confidence are listed but only applied with `--avoid-disruption <id>`.
 

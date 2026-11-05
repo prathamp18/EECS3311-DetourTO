@@ -100,6 +100,11 @@ public final class AppConfig {
         return Path.of(getOrDefault("TRACE_FILE", "trace.jsonl"));
     }
 
+    /** Where `detour refresh-data` downloads the TTC GTFS from (a .zip URL or a CKAN package URL). */
+    public String gtfsDownloadUrl() {
+        return getOrDefault("TTC_GTFS_URL", OpenDataDownloader.DEFAULT_URL);
+    }
+
     /** SQLite file for the rider profile and commutes (git-ignored). */
     public Path databasePath() {
         return Path.of(getOrDefault("DB_PATH", "data/local/detourto.db"));

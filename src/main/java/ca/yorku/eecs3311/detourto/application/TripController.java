@@ -17,7 +17,13 @@ import ca.yorku.eecs3311.detourto.agent.PreferenceExtractorAgent;
 import ca.yorku.eecs3311.detourto.agent.PreferenceRules;
 import ca.yorku.eecs3311.detourto.domain.PreferenceUpdate;
 import ca.yorku.eecs3311.detourto.domain.RiderProfile;
+import ca.yorku.eecs3311.detourto.domain.Commute;
+import ca.yorku.eecs3311.detourto.infrastructure.CommuteRepository;
+import ca.yorku.eecs3311.detourto.infrastructure.FeedValidationReport;
+import ca.yorku.eecs3311.detourto.infrastructure.InMemoryCommuteRepository;
 import ca.yorku.eecs3311.detourto.infrastructure.InMemoryProfileRepository;
+import ca.yorku.eecs3311.detourto.infrastructure.OpenDataDownloader;
+import ca.yorku.eecs3311.detourto.infrastructure.SqliteCommuteRepository;
 import ca.yorku.eecs3311.detourto.infrastructure.ProfileRepository;
 import ca.yorku.eecs3311.detourto.infrastructure.SqliteDatabase;
 import ca.yorku.eecs3311.detourto.infrastructure.SqliteProfileRepository;
@@ -51,6 +57,7 @@ import ca.yorku.eecs3311.detourto.infrastructure.GtfsStaticLoader;
 import ca.yorku.eecs3311.detourto.infrastructure.RealtimeFeed;
 import ca.yorku.eecs3311.detourto.infrastructure.ResilientRealtimeFeed;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -104,6 +111,8 @@ public final class TripController {
     private ProfileRepository profiles = new InMemoryProfileRepository();
     private PreferenceExtractorAgent preferenceAgent;
     private TripMonitorService monitor;
+    private CommuteRepository commuteRepo = new InMemoryCommuteRepository();
+    private CommuteScheduler commuteScheduler;
     private QueryCommandFactory commandFactory;
 
     /** Without an LLM or live feed: form and CLI-flag planning, scheduled arrivals. */
@@ -179,8 +188,80 @@ public final class TripController {
             c = new TripController(planner, places, null, feed, e.getMessage());
         }
         c.eventBus().subscribeAll(new TraceLogger(config.traceFile()));
-        c.useProfiles(new SqliteProfileRepository(SqliteDatabase.open(config.databasePath())));
+        java.sql.Connection db = SqliteDatabase.open(config.databasePath());
+        c.useProfiles(new SqliteProfileRepository(db));
+        c.useCommutes(new SqliteCommuteRepository(db, network));
         return c;
+    }
+
+    // ------------------------------------------------------------------ F11 commutes
+
+    public void useCommutes(CommuteRepository repo) {
+        this.commuteRepo = repo;
+        this.commuteScheduler = null;
+    }
+
+    public CommuteScheduler commutes() {
+        if (commuteScheduler == null) {
+            commuteScheduler = new CommuteScheduler(commuteRepo, planner, alertService, eventBus,
+                    q -> applyProfile(q, false));
+        }
+        return commuteScheduler;
+    }
+
+    /** Saves a commute; returns the clarification when a place is ambiguous or unknown. */
+    public Optional<ClarificationRequest> saveCommute(String name, String fromText, String toText,
+                                                      java.time.LocalTime arriveBy, Set<java.time.DayOfWeek> days,
+                                                      int warnMinutes) {
+        Resolution o = resolvePlace(fromText);
+        if (o.stop().isEmpty()) {
+            return Optional.of(o.clarification());
+        }
+        Resolution d = resolvePlace(toText);
+        if (d.stop().isEmpty()) {
+            return Optional.of(d.clarification());
+        }
+        commutes().schedule(new Commute(name, o.stop().get(), d.stop().get(), arriveBy, days, warnMinutes));
+        return Optional.empty();
+    }
+
+    // ------------------------------------------------------------------ F13 data refresh
+
+    /** Outcome of a refresh: the validation report, and whether the new data was swapped in. */
+    public record RefreshResult(FeedValidationReport report, boolean swapped, String message) {
+    }
+
+    /**
+     * Feature F13: loads a new GTFS schedule (downloaded from {@code url}, or from a local file),
+     * validates it, and swaps it into the running network only if it is valid. Everything that
+     * holds the network (planner, resolver, agents) sees the new data at once.
+     */
+    public RefreshResult refreshTransitData(Path localFile, String url, Path downloadTo) {
+        Path source = localFile;
+        try {
+            if (source == null) {
+                source = new OpenDataDownloader().download(url, downloadTo);
+            }
+        } catch (IOException | RuntimeException e) {
+            return new RefreshResult(null, false, "Download failed, keeping the current data: " + e.getMessage());
+        }
+        GtfsStaticLoader loader = new GtfsStaticLoader();
+        TransitNetwork fresh;
+        try {
+            fresh = loader.load(source);
+        } catch (IOException | RuntimeException e) {
+            return new RefreshResult(null, false, "Could not read " + source + ", keeping the current data: " + e.getMessage());
+        }
+        FeedValidationReport report = loader.lastReport();
+        if (!report.ok()) {
+            return new RefreshResult(report, false, "The new data failed validation, keeping the current data.");
+        }
+        planner.network().replaceWith(fresh);
+        currentQuery = null;
+        lastOptions = List.of();
+        history.clear();
+        return new RefreshResult(report, true, "Loaded " + source + ": " + report.stopCount() + " stops, "
+                + report.tripCount() + " trips.");
     }
 
     // ------------------------------------------------------------------ F07 monitoring
