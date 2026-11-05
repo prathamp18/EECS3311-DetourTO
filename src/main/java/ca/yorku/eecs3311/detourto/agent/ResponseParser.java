@@ -184,6 +184,20 @@ public final class ResponseParser {
         return new FollowUpIntent(kind, root.path("value").asText("").strip());
     }
 
+    public List<ca.yorku.eecs3311.detourto.domain.PreferenceUpdate> toPreferences(String text) {
+        JsonNode root = extractJson(text);
+        JsonNode updates = root.path("updates");
+        if (!updates.isArray()) {
+            throw new ResponseFormatException("answer must have an \"updates\" list");
+        }
+        List<ca.yorku.eecs3311.detourto.domain.PreferenceUpdate> out = new ArrayList<>();
+        for (JsonNode u : updates) {
+            out.add(new ca.yorku.eecs3311.detourto.domain.PreferenceUpdate(u.path("key").asText("").strip(),
+                    u.path("value").asText("").strip()));
+        }
+        return out;
+    }
+
     static LocalDateTime toLocal(java.time.Instant t) {
         return t == null ? null : LocalDateTime.ofInstant(t, java.time.ZoneId.of("America/Toronto"));
     }
