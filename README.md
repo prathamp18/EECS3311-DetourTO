@@ -13,7 +13,7 @@ The agent proposes and the Java code verifies. Every stop, route, time and itine
 | Stage | State |
 |---|---|
 | Stage 1 — Design | Complete |
-| Stage 2 — AI-assisted implementation | In progress (due Nov 10, 2026) |
+| Stage 2 — AI-assisted implementation | Implemented: all 13 features, GUI and CLI (report due Nov 10, 2026) |
 | Stage 3 — Testing (JUnit + KUMA) | Not started |
 
 ## Running the Code
@@ -93,6 +93,40 @@ By default the app uses the small sample network in `data/sample/mini-gtfs`, so 
 mvn test
 ```
 
+## Features
+
+Every feature works from the desktop window and from the `detour` command line (`--json` output where it matters, for Stage 3 KUMA tests).
+
+| ID | Feature | GUI | CLI |
+|---|---|---|---|
+| F01 | Natural-language trip request | Trip Planner, Ask box | `detour plan "York U to Union by 10, no streetcars"` |
+| F02 | Multi-option journey planning (RAPTOR) | Trip Planner form, options list, map | `detour plan --from ... --to ... --arrive-by 09:30` |
+| F03 | Route preference strategies | Trip Planner, Rank by | `--strategy fastest\|fewest-transfers\|least-walking\|accessible` |
+| F04 | Service alert interpretation | Alerts tab | `detour alerts` |
+| F05 | Disruption-aware re-routing | Alerts, "Re-route my trip around this"; map shows closures | `detour plan ... --avoid-disruption <id>`, `--ignore-alerts` |
+| F06 | Grounded explanation of the options | Trip Planner, Explain | `detour plan ... --explain` |
+| F07 | Live trip monitoring | Trip Planner, Start trip / Accept reroute | `detour monitor --from ... --to ... --accept-reroute` |
+| F08 | Stop arrivals board | Arrivals tab | `detour arrivals "Dufferin"` |
+| F09 | Saved places and preference memory | Commute & Profile tab | `detour places add home "Keele"`, `detour prefs --learn "..."` |
+| F10 | What-if follow-ups with undo/redo | Trip Planner Ask box, Undo / Redo | `detour plan ... --then "leave 15 min later" --then undo` |
+| F11 | Commute watch and leave-by alerts | Commute & Profile tab | `detour commute add\|list\|remove\|check` |
+| F12 | Disruption replay and benchmark | Benchmark tab | `detour replay scenarios` |
+| F13 | Transit data refresh and validation | Benchmark, "Refresh transit data" | `detour refresh-data [--file zip]` |
+
+## Design Patterns in the Code
+
+| Pattern | Where |
+|---|---|
+| Strategy | `domain/RouteScoringStrategy` + `FastestStrategy`, `FewestTransfersStrategy`, `LeastWalkingStrategy`, `AccessibleStrategy` |
+| Facade | `application/TripController` (the only entry point for the GUI and CLI) |
+| Adapter | `agent/GeminiAdapter` (Gemini REST to `LLMClient`), `infrastructure/GtfsRealtimeAdapter` (GTFS-RT protobuf to domain) |
+| Factory | `agent/LLMClientFactory`, `application/QueryCommandFactory` |
+| Template Method | `agent/TransitAgent.run()` with `TripRequestAgent`, `AlertInterpreterAgent`, `ExplanationAgent`, `PreferenceExtractorAgent` |
+| Decorator | `infrastructure/RealtimeFeedDecorator` + `CachingRealtimeFeed`, `ResilientRealtimeFeed` (with `CircuitBreaker`) |
+| Observer | `application/EventBus`, `EventListener`; `TraceLogger`, `ConsoleNotifier`, GUI panels |
+| Command | `application/QueryCommand` + 5 commands, `CommandHistory` (undo/redo) |
+| State | `application/ActiveTrip` + `PlannedState`, `OnTrackState`, `AtRiskState`, `ReroutedState`, `CompletedState` |
+
 ## Stage 1 Report
 
 **[docs/DetourTO-Stage1-Design-Report.md](docs/DetourTO-Stage1-Design-Report.md)**. The whole report is in one document, and GitHub shows the diagrams inline. A PDF copy is at [docs/DetourTO-Stage1-Design-Report.pdf](docs/DetourTO-Stage1-Design-Report.pdf).
@@ -114,10 +148,10 @@ mvn test
 ![Architecture](docs/diagrams/png/architecture.png)
 
 ```
-Presentation    MainWindow + 6 JavaFX panels, DetourCli (picocli)
+Presentation    MainWindow + 5 JavaFX tabs, DetourCli (picocli)
 Application     TripController «Facade», EventBus «Observer», CommandHistory «Command»,
                 TripMonitorService + ActiveTrip «State», AlertService, CommuteScheduler, BenchmarkRunner
-Agent           TransitAgent «Template Method» + 4 agents, ToolRegistry + 5 tools,
+Agent           TransitAgent «Template Method» + 4 agents, ToolRegistry + tools,
                 LLMClient ← GeminiAdapter «Adapter», ResponseParser, GroundingValidator
 Domain          TransitNetwork, NetworkView, JourneyPlanner (RAPTOR), RouteScoringStrategy «Strategy»,
                 Itinerary, Leg, Disruption, PlaceResolver
@@ -130,30 +164,31 @@ Infrastructure  RealtimeFeed ← GtfsRealtimeAdapter «Adapter», RealtimeFeedDe
 | Concern | Choice |
 |---|---|
 | Language, build | Java 21, Maven |
-| GUI | JavaFX 21 (map in a WebView with Leaflet + OpenStreetMap) |
+| GUI | JavaFX 21 (`detour gui`); map drawn on a Canvas, works offline |
 | CLI | picocli, command `detour`, `--json` on every command |
 | LLM | Google Gemini API (REST generateContent with function calling), no LangChain4j |
 | Transit data | TTC GTFS schedule (City of Toronto Open Data) + TTC GTFS-Realtime (`bustime.ttc.ca/gtfsrt`) |
 | Storage | SQLite (`sqlite-jdbc`) behind repository interfaces |
-| Unit tests | JUnit 5, Mockito, AssertJ |
+| Unit tests | JUnit 5 (170+ tests, no network needed: scripted LLM, local fake Gemini server, recorded feeds) |
 | Agent tests | KUMA (Python SDK) driving `detour ... --json` as a subprocess and reading `trace.jsonl` |
 
-## Planned Source Layout (Stage 2)
+## Source Layout
 
 ```
 pom.xml
 src/main/java/ca/yorku/eecs3311/detourto/
-  presentation/     MainWindow, BasePanel + 6 panels, DetourCli, ConsoleNotifier, JsonResultWriter
+  presentation/     DetourCli + one command class per feature, JsonResultWriter, TextResultWriter, ConsoleNotifier
+  presentation/gui/ MainWindow, BasePanel + 5 tab panels, MapPanel
   application/      TripController, EventBus, commands, TripMonitorService, trip states,
                     AlertService, CommuteScheduler, BenchmarkRunner
   agent/            TransitAgent + 4 agents, LLMClient, GeminiAdapter, ScriptedLLMClient,
-                    ToolRegistry + 5 tools, ResponseParser, GroundingValidator
+                    ToolRegistry + tools, ResponseParser, GroundingValidator, offline rules
   domain/           TransitNetwork, NetworkView, JourneyPlanner, strategies, Itinerary, Disruption, ...
   infrastructure/   GtfsRealtimeAdapter, feed decorators, CircuitBreaker, GtfsStaticLoader,
                     SQLite repositories, AppConfig
 src/test/java/      JUnit 5 tests mirroring the packages
 scenarios/          recorded disruption scenarios for replay and KUMA
-tools/kuma/         Python harness for Stage 3 behaviour tests (no application logic)
+tools/              sample data generators (Stage 3 adds the KUMA harness)
 ```
 
 ## Diagrams

@@ -52,9 +52,9 @@ public class AlertsCommand implements Callable<Integer> {
         for (Disruption d : ds) {
             System.out.println();
             System.out.printf("[%s] %s%n", d.id(), d.summary());
-            String source = d.llmDerived()
-                    ? String.format("interpreted by AI (confidence %.0f%%)", d.confidence() * 100)
-                    : d.confidence() == 0 ? "not interpreted" : "from the alert's structured fields";
+            String source = d.confidence() == 0 ? "not interpreted (shown as text only)"
+                    : d.llmDerived() ? String.format("interpreted by AI (confidence %.0f%%)", d.confidence() * 100)
+                    : "from the alert's structured fields";
             System.out.printf("  %s, %s%s%n", d.kind(), source,
                     d.affectsRouting() && !d.appliesByDefault() ? " - not applied to routing unless you ask" : "");
             if (!d.affectedRouteIds().isEmpty()) {

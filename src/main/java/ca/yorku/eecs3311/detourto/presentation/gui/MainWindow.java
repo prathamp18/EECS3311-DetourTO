@@ -69,9 +69,9 @@ public class MainWindow extends Application {
         panels.forEach(BasePanel::render);
     }
 
-    /** Panels added in later steps (alerts, arrivals, commute, benchmark). */
-    protected List<BasePanel> extraPanels(TripController controller) {
-        return List.of();
+    private List<BasePanel> extraPanels(TripController controller) {
+        return List.of(new AlertsPanel(controller, this), new ArrivalsPanel(controller, this),
+                new CommutePanel(controller, this), new BenchmarkPanel(controller, this));
     }
 
     public void setStatus(String text) {

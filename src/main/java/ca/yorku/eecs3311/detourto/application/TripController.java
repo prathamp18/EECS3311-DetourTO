@@ -344,11 +344,10 @@ public final class TripController {
      * PreferenceExtractorAgent, or with built-in rules when there is no LLM, and saves them.
      */
     public List<String> learnPreferences(String text, LocalDateTime now) {
-        List<PreferenceUpdate> found;
-        if (preferenceAgent != null) {
-            found = preferenceAgent.extract(text, AgentContext.at(now));
-        } else {
-            found = new ArrayList<>();
+        List<PreferenceUpdate> found = preferenceAgent != null
+                ? new ArrayList<>(preferenceAgent.extract(text, AgentContext.at(now))) : new ArrayList<>();
+        if (found.isEmpty()) {
+            // no LLM, or it found nothing valid: the built-in rules catch the common phrasings
             for (PreferenceUpdate u : PreferenceRules.parse(text)) {
                 if (!u.key().equals(PreferenceUpdate.SAVE_PLACE)) {
                     if (!u.key().equals(PreferenceUpdate.AVOID_ROUTE) || planner.network().findRoute(u.value()).isPresent()) {
