@@ -30,8 +30,8 @@ The main rule I set for the design: **the agent suggests, the Java code checks.*
 
 | What | Where |
 |---|---|
-| Stage 2 Implementation Report | [stage2-report.pdf](stage2-report.pdf) (Word version: [stage2-report.docx](stage2-report.docx)) |
-| AI tools and collaboration log | [AI-TOOLS-LOG.md](AI-TOOLS-LOG.md) |
+| Stage 2 Implementation Report | [docs/stage2/stage2-report.pdf](docs/stage2/stage2-report.pdf) (Word version: [stage2-report.docx](docs/stage2/stage2-report.docx)) |
+| AI tools and collaboration log | [docs/stage2/AI-TOOLS-LOG.md](docs/stage2/AI-TOOLS-LOG.md) |
 | Updated UML class diagrams (as implemented) | [docs/diagrams/stage2/](docs/diagrams/stage2/) |
 | Feature demo videos | Section 7 of the report (one video per feature, GUI + CLI) |
 | Safe example configuration | [.env.example](.env.example) (`.env` is git-ignored) |
