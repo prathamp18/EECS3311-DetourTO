@@ -68,7 +68,7 @@ public final class GtfsStaticLoader {
                     throw new IOException("GTFS feed " + path + " is missing " + name);
                 }
             }
-            List<Stop> stops = readStops(src);
+            List<Stop> stops = groupStations(readStops(src));
             Map<String, Integer> stopIdx = new HashMap<>();
             for (int i = 0; i < stops.size(); i++) {
                 stopIdx.put(stops.get(i).id(), i);
@@ -148,6 +148,93 @@ public final class GtfsStaticLoader {
             }
         }
         return out;
+    }
+
+    private static final java.util.regex.Pattern STATION_NAME =
+            java.util.regex.Pattern.compile("(?i)^(.*?\\bstation)\\b.*$");
+    /** Stops more than this far from the rest of their name group are not merged into it. */
+    static final double MAX_STATION_SPREAD_M = 600;
+
+    /**
+     * Some feeds (the TTC's among them) list each subway platform and bus bay as its own stop with
+     * no parent station. Stops whose names start with the same "... Station" are grouped under a
+     * generated station stop, so "Don Mills" finds Don Mills Station instead of a dozen platforms
+     * and street stops, and a trip can start from any of its platforms.
+     */
+    static List<Stop> groupStations(List<Stop> stops) {
+        Set<String> existingStations = new HashSet<>();
+        for (Stop s : stops) {
+            if (s.station()) {
+                existingStations.add(s.name().strip().toLowerCase());
+            }
+        }
+        Map<String, List<Stop>> groups = new LinkedHashMap<>();
+        Map<String, String> displayName = new HashMap<>();
+        for (Stop s : stops) {
+            if (s.station() || s.parentStation() != null) {
+                continue;
+            }
+            java.util.regex.Matcher m = STATION_NAME.matcher(s.name().strip());
+            if (!m.matches()) {
+                continue;
+            }
+            String base = m.group(1).strip().replaceAll("\\s+", " ");
+            String key = base.toLowerCase();
+            if (existingStations.contains(key)) {
+                continue;
+            }
+            groups.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
+            displayName.putIfAbsent(key, titleCase(base));
+        }
+        Map<String, String> parentOf = new HashMap<>();
+        List<Stop> stations = new ArrayList<>();
+        Set<String> usedIds = new HashSet<>();
+        stops.forEach(s -> usedIds.add(s.id()));
+        for (Map.Entry<String, List<Stop>> g : groups.entrySet()) {
+            List<Stop> members = g.getValue();
+            double lat = members.stream().mapToDouble(Stop::lat).average().orElse(0);
+            double lon = members.stream().mapToDouble(Stop::lon).average().orElse(0);
+            List<Stop> close = members.stream().filter(x -> x.distanceMetersTo(lat, lon) <= MAX_STATION_SPREAD_M).toList();
+            if (close.isEmpty()) {
+                continue;
+            }
+            double clat = close.stream().mapToDouble(Stop::lat).average().orElse(lat);
+            double clon = close.stream().mapToDouble(Stop::lon).average().orElse(lon);
+            String id = "STN:" + g.getKey().replaceAll("[^a-z0-9]+", "-");
+            while (!usedIds.add(id)) {
+                id = id + "_";
+            }
+            boolean stepFree = close.stream().allMatch(Stop::wheelchairBoarding);
+            stations.add(new Stop(id, "", displayName.get(g.getKey()), clat, clon, stepFree, null, true));
+            for (Stop c : close) {
+                parentOf.put(c.id(), id);
+            }
+        }
+        if (stations.isEmpty()) {
+            return stops;
+        }
+        List<Stop> out = new ArrayList<>(stops.size() + stations.size());
+        for (Stop s : stops) {
+            String parent = parentOf.get(s.id());
+            out.add(parent == null ? s
+                    : new Stop(s.id(), s.code(), s.name(), s.lat(), s.lon(), s.wheelchairBoarding(), parent, false));
+        }
+        out.addAll(stations);
+        return out;
+    }
+
+    /** "DON MILLS STATION" to "Don Mills Station"; names that are already mixed case are kept. */
+    static String titleCase(String s) {
+        if (!s.equals(s.toUpperCase())) {
+            return s;
+        }
+        StringBuilder sb = new StringBuilder();
+        boolean start = true;
+        for (char c : s.toLowerCase().toCharArray()) {
+            sb.append(start ? Character.toUpperCase(c) : c);
+            start = c == ' ' || c == '-' || c == '/' || c == '(';
+        }
+        return sb.toString();
     }
 
     private Map<String, Route> readRoutes(FeedSource src) throws IOException {
