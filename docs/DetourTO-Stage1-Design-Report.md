@@ -113,7 +113,7 @@ Both the GUI and the CLI call the same `TripController` methods, so every featur
 
 | Concern | Choice |
 |---|---|
-| Language / build | Java 21, Maven |
+| Language / build | Java 25, Maven |
 | GUI | JavaFX 21; map drawn in a `WebView` with Leaflet and OpenStreetMap tiles |
 | CLI | picocli, command name `detour`; every command supports `--json` |
 | LLM | AWS SDK for Java v2, Bedrock Runtime Converse API |

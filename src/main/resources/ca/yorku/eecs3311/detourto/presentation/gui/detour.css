@@ -1,0 +1,11 @@
+.root { -fx-font-family: "System"; -fx-font-size: 13px; -fx-background-color: #f6f7f9; }
+.heading { -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1f2933; }
+.status-bar { -fx-padding: 4 10 4 10; -fx-background-color: #1f2933; }
+.status-bar .label { -fx-text-fill: #e4e7eb; }
+.message { -fx-text-fill: #334e68; -fx-wrap-text: true; }
+.state { -fx-font-weight: bold; -fx-padding: 2 8 2 8; -fx-background-radius: 8; -fx-background-color: #d9e2ec; }
+.state-at-risk { -fx-background-color: #ffd8a8; }
+.state-completed { -fx-background-color: #c3f0ca; }
+.state-rerouted { -fx-background-color: #bee3f8; }
+.card { -fx-padding: 10; -fx-background-color: white; -fx-background-radius: 6; -fx-border-color: #e4e7eb; -fx-border-radius: 6; }
+.explanation { -fx-control-inner-background: #fffbea; }

@@ -38,6 +38,7 @@ mvn -q package              # compiles, runs the tests, builds target/detourto.j
 ### Run
 
 ```bash
+java -jar target/detourto.jar gui                                    # desktop window (Trip Planner, map, monitoring)
 java -jar target/detourto.jar --help
 java -jar target/detourto.jar plan "York U to Union by 10, no streetcars, I use a wheelchair"   # needs GEMINI_API_KEY
 java -jar target/detourto.jar plan --from "York U" --to Union --arrive-by 09:30

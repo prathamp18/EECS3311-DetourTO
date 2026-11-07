@@ -614,13 +614,14 @@ public final class TripController {
         return alertService;
     }
 
-    /** Changes the strategy of the current query and plans again. */
+    /** Changes the strategy of the current query (undoable) and plans again. */
     public PlanResult setStrategy(StrategyKind kind) {
         if (currentQuery == null) {
             throw new IllegalStateException("plan a trip before choosing a strategy");
         }
-        currentQuery.setStrategyKind(kind);
-        return planFromForm(currentQuery);
+        QueryCommand cmd = new ChangeStrategyCommand(currentQuery, kind);
+        history.run(cmd);
+        return withMessage(replanCurrent(), cmd.describe() + ".");
     }
 
     PlanResult planOn(TripQuery q, NetworkView view) {

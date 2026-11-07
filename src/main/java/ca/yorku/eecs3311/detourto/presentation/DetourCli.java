@@ -11,7 +11,7 @@ import picocli.CommandLine.Command;
         mixinStandardHelpOptions = true,
         version = "DetourTO 0.1.0",
         description = "Disruption-aware TTC trip planning agent.",
-        subcommands = {PlanCommand.class, AlertsCommand.class, ArrivalsCommand.class, PlacesCommand.class,
+        subcommands = {GuiCommand.class, PlanCommand.class, AlertsCommand.class, ArrivalsCommand.class, PlacesCommand.class,
                 PrefsCommand.class, MonitorCommand.class, CommuteCommand.class, RefreshDataCommand.class,
                 LlmCheckCommand.class, ReplayCommand.class, ValidateFeedCommand.class})
 public class DetourCli implements Runnable {
