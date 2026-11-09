@@ -232,7 +232,7 @@ public final class MapPanel extends StackPane {
         // the chosen trip, on top
         List<double[]> placed = new ArrayList<>();
         placed.add(new double[] {0, h - 52, 340, h});
-        placed.add(new double[] {w - 240, 0, w, 44});
+        placed.add(new double[] {w - 300, 0, w, 52});
         Set<String> closed = closedStopIds();
         if (itinerary != null) {
             for (Leg leg : itinerary.legs()) {

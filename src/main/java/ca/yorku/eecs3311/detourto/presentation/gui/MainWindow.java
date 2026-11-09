@@ -14,7 +14,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import java.util.Set;
 import javafx.stage.Stage;
 
 /**
@@ -32,7 +41,13 @@ public class MainWindow extends Application {
         }
     };
 
+    /** Buttons that start the main action of a tab get the accent colour. */
+    private static final Set<String> PRIMARY = Set.of("Plan", "Send", "Show", "Run replay", "Save commute",
+            "Check now", "Refresh transit data", "Re-route my trip around this", "Start trip", "Learn", "Save place",
+            "Save preferences", "Accept reroute", "Refresh");
+
     private final Label status = new Label("Ready");
+    private final Label alertsChip = new Label("Alerts: -");
     private final List<BasePanel> panels = new ArrayList<>();
     private TabPane tabs;
     private TripPlannerPanel planner;
@@ -60,13 +75,66 @@ public class MainWindow extends Application {
         HBox bar = new HBox(status);
         bar.getStyleClass().add("status-bar");
         BorderPane root = new BorderPane(tabs);
+        root.setTop(header(controller));
         root.setBottom(bar);
+        markPrimary(root);
         Scene scene = new Scene(root, 1280, 800);
         scene.getStylesheets().add(MainWindow.class.getResource("detour.css").toExternalForm());
         stage.setTitle("DetourTO - disruption-aware TTC trip planner");
         stage.setScene(scene);
         stage.show();
         panels.forEach(BasePanel::render);
+    }
+
+    /** App header: logo, name, and chips showing the AI mode, the network and live alerts. */
+    private Node header(TripController controller) {
+        Label logo = new Label("TO");
+        logo.getStyleClass().add("logo-text");
+        StackPane badge = new StackPane(logo);
+        badge.getStyleClass().add("logo");
+        Label title = new Label("DetourTO");
+        title.getStyleClass().add("app-title");
+        Label subtitle = new Label("Disruption-aware TTC trip planner  ·  AI agent + RAPTOR planner");
+        subtitle.getStyleClass().add("app-subtitle");
+        VBox names = new VBox(0, title, subtitle);
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        Label ai = chip(controller.hasAgent() ? "AI agent: Gemini" : "AI: offline rules",
+                controller.hasAgent() ? "chip-ai" : "chip-off");
+        Label net = chip(controller.network().routes().size() + " routes  ·  "
+                + controller.network().stops().size() + " stops", "chip-net");
+        alertsChip.getStyleClass().addAll("chip", "chip-alert");
+        HBox top = new HBox(12, badge, names, spacer, ai, net, alertsChip);
+        top.setAlignment(Pos.CENTER_LEFT);
+        top.getStyleClass().add("app-header");
+        HBox stripe = new HBox();
+        for (String c : new String[] {"line1", "line2", "line3", "line4", "line5"}) {
+            Region r = new Region();
+            r.getStyleClass().addAll("stripe", c);
+            HBox.setHgrow(r, Priority.ALWAYS);
+            stripe.getChildren().add(r);
+        }
+        return new VBox(top, stripe);
+    }
+
+    private static Label chip(String text, String style) {
+        Label l = new Label(text);
+        l.getStyleClass().addAll("chip", style);
+        return l;
+    }
+
+    private static void markPrimary(Node n) {
+        if (n instanceof Button b && PRIMARY.contains(b.getText())) {
+            b.getStyleClass().add("primary");
+        }
+        if (n instanceof Parent p) {
+            for (Node c : p.getChildrenUnmodifiable()) {
+                markPrimary(c);
+            }
+        }
+        if (n instanceof TabPane t) {
+            t.getTabs().forEach(tab -> markPrimary(tab.getContent()));
+        }
     }
 
     private List<BasePanel> extraPanels(TripController controller) {
@@ -90,7 +158,11 @@ public class MainWindow extends Application {
             case TRIP_AT_RISK -> "Trip at risk: " + e.payload().get("reason");
             case TRIP_STATE_CHANGED -> "Trip " + e.payload().get("from") + " -> " + e.payload().get("to");
             case LEAVE_BY_ALERT -> "Commute " + e.payload().get("commute") + ": " + e.payload().get("message");
-            case ALERTS_UPDATED -> e.payload().get("count") + " active alerts";
+            case ALERTS_UPDATED -> {
+                Object n = e.payload().get("count");
+                BasePanel.runOnFxThread(() -> alertsChip.setText("Alerts: " + n + " active"));
+                yield n + " active alerts";
+            }
             case ITINERARY_UPDATED -> "Options updated";
         };
         setStatus(text);
