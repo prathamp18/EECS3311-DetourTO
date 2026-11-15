@@ -9,7 +9,7 @@ Using AI development tools was required for Stage 2. This file lists the tools I
 | Tool / platform | Model | Used for | Tokens | Money cost |
 |---|---|---|---|---|
 | Claude app (Cowork), coding assistant | Claude Opus 5.5 (`claude-opus-5-5`) | Generating code for all implementation steps (see the table below), JUnit tests, debugging from my error output, README, report drafting | Last working session (map, README, report): ~6.8 M cached input tokens read, ~0.19 M cache-write tokens, ~29.5 K output tokens (≈ 1.27 M input-token equivalents). Earlier sessions were not metered per token. | No per-token charge (covered by a Claude subscription) |
-| Google AI Studio, Gemini API (the app's runtime LLM) | `gemini-flash-latest` (fallback `gemini-flash-lite-latest`) | `TripRequestAgent`, `AlertInterpreterAgent`, `ExplanationAgent`, `PreferenceExtractorAgent` while I developed and tested them | **FILL IN** (see "Counting Gemini tokens" below) | $0 (free tier, no billing account) |
+| Google AI Studio, Gemini API (the app's runtime LLM) | `gemini-flash-latest` (fallback `gemini-flash-lite-latest`) | `TripRequestAgent`, `AlertInterpreterAgent`, `ExplanationAgent`, `PreferenceExtractorAgent` while I developed and tested them | 847,182 input + 30,273 output tokens over 620 calls (counted from `trace.jsonl` with the command below) | $0 (free tier, no billing account) |
 | Amazon Bedrock (dropped) | Claude Sonnet on Bedrock | First LLM integration attempt | 0 (account quota was 0) | $0 |
 
 ### Counting Gemini tokens
