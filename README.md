@@ -33,7 +33,9 @@ The main rule I set for the design: **the agent suggests, the Java code checks.*
 | Stage 2 Implementation Report | [docs/stage2/stage2-report.pdf](docs/stage2/stage2-report.pdf) |
 | AI tools and collaboration log | [docs/stage2/AI-TOOLS-LOG.md](docs/stage2/AI-TOOLS-LOG.md) |
 | Updated UML class diagrams (as implemented) | [docs/diagrams/stage2/](docs/diagrams/stage2/) |
-| Feature demo videos | Section 7 of the report (one video per feature, GUI + CLI) |
+| Feature demo videos | Section 7 of the report (a GUI video and a CLI video for every feature) |
+| Feature screenshots, requirement, implementation and changes | Appendix A of the report; images in [docs/stage2/screenshots/](docs/stage2/screenshots/) |
+| Standalone CLI (task file / standard input) | [Standalone CLI](#standalone-cli-run-the-agent-on-a-task-file) section below; example tasks in [tasks/](tasks/) |
 | Safe example configuration | [.env.example](.env.example) (`.env` is git-ignored) |
 
 ## Running it yourself
