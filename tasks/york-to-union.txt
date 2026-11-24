@@ -1,0 +1,5 @@
+# Plain-English task for the DetourTO agent (needs a Gemini key).
+# Every line that is not a "key: value" line is part of the request.
+York U to Union by 10, no streetcars
+then: leave 15 min later
+then: avoid line 1

@@ -78,6 +78,13 @@ public final class AppConfig {
         return out;
     }
 
+    /** A copy of this config with one value replaced (used by CLI options such as --llm). */
+    public AppConfig with(String key, String value) {
+        Map<String, String> copy = new HashMap<>(values);
+        copy.put(key, value);
+        return new AppConfig(copy);
+    }
+
     public Optional<String> get(String key) {
         String v = values.get(key);
         return (v == null || v.isBlank()) ? Optional.empty() : Optional.of(v);

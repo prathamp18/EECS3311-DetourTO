@@ -124,6 +124,55 @@ The TTC lists every subway platform and bus bay as a separate stop; the loader g
 
 On the full network the map zooms to the trip you pick. Only the start, transfer and end stops are labelled, along with subway station names. Scroll to zoom, drag to move the map, and hover over any stop to see its name. **Fit trip** and **Whole map** reset the view.
 
+### Standalone CLI: run the agent on a task file
+
+The agent runs straight from a terminal. A task can come from a **file**, from **standard input**, or from the command line:
+
+```bash
+java -jar target/detourto.jar plan --llm gemini --input tasks/york-to-union.txt     # task from a file
+cat tasks/york-to-union.txt | java -jar target/detourto.jar plan --input -          # task from standard input
+java -jar target/detourto.jar plan "York U to Union by 10, no streetcars"           # task as an argument
+java -jar target/detourto.jar plan --llm scripted --input tasks/keele-to-union.txt --json   # offline, JSON output
+```
+
+**Task file format** (plain text, one item per line; see [`tasks/`](tasks/)):
+
+```
+# comment lines start with #
+York U to Union by 10, no streetcars     ← any other line is the plain-English request (sent to the LLM agent)
+then: leave 15 min later                 ← a follow-up, like --then (undo and redo work too)
+from: Keele                              ← form fields: from, to, depart, arrive-by, date, strategy,
+to: Union                                   avoid-route, avoid-mode (no LLM needed)
+```
+
+**Options for `plan`:**
+
+| Option | Meaning |
+|---|---|
+| `-i, --input FILE` | Read the task from FILE, or `-` for standard input |
+| `--llm PROVIDER` | LLM for this run: `gemini` or `scripted` (offline). Overrides `LLM_PROVIDER` in `.env` |
+| `--model MODEL` | Gemini model for this run, e.g. `gemini-flash-lite-latest`. Overrides `GEMINI_MODEL` |
+| `REQUEST` | Plain-English request in quotes (instead of `--input`) |
+| `--from`, `--to` | Origin and destination: station or street name, stop id, or `lat,lon` |
+| `--depart` / `--arrive-by` | `HH:mm`, ISO date-time, or `now` |
+| `--date` | Service date `YYYY-MM-DD` |
+| `--strategy` | `fastest`, `fewest-transfers`, `least-walking`, `accessible` |
+| `--avoid-route`, `--avoid-mode` | e.g. `29,510` / `streetcar` |
+| `--then TEXT` | Follow-up after planning (repeatable): "leave 15 min later", "avoid line 1", `undo`, `redo` |
+| `--explain` | Compare the options in plain language |
+| `--verbose` | Print each agent step (LLM calls, tool calls, validation) |
+| `--json` | Machine-readable output (used by the Stage 3 KUMA tests) |
+
+Exit codes: `0` options found, `3` no route, `4` a place needs clarifying, `5` the request could not be understood. Run `java -jar target/detourto.jar <command> --help` for any command's options.
+
+**Working example** (sample network, no key needed):
+
+```bash
+java -jar target/detourto.jar plan --llm scripted --input tasks/keele-to-union.txt
+```
+
+prints five options from Keele to Union ranked by fewest transfers, then the same trip 15 minutes later.
+
 ### Tests
 
 ```bash

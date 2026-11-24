@@ -102,12 +102,27 @@ public class PlanCommand implements Callable<Integer> {
     @Option(names = "--json", description = "Print the result as JSON")
     boolean json;
 
+    @Option(names = {"-i", "--input"}, paramLabel = "FILE",
+            description = "Read the task from a text file, or '-' for standard input (see tasks/ for examples)")
+    String input;
+
+    @Option(names = "--llm", paramLabel = "PROVIDER",
+            description = "LLM to use for this run: gemini or scripted (overrides LLM_PROVIDER in .env)")
+    String llm;
+
+    @Option(names = "--model", paramLabel = "MODEL",
+            description = "Gemini model for this run, e.g. gemini-flash-lite-latest (overrides GEMINI_MODEL)")
+    String model;
+
     /** For tests: use this controller instead of loading the configured feed. */
     TripController controller;
 
     @Override
     public Integer call() throws Exception {
-        TripController c = controller != null ? controller : TripController.fromConfig(AppConfig.load());
+        if (input != null) {
+            readTask(input);
+        }
+        TripController c = controller != null ? controller : TripController.fromConfig(config());
         ConsoleNotifier notifier = verbose ? new ConsoleNotifier(System.err) : null;
         if (notifier != null) {
             c.eventBus().subscribeAll(notifier);
@@ -164,6 +179,70 @@ public class PlanCommand implements Callable<Integer> {
             return EXIT_NOT_UNDERSTOOD;
         }
         return result.hasOptions() ? 0 : EXIT_NO_ROUTE;
+    }
+
+    AppConfig config() {
+        AppConfig cfg = AppConfig.load();
+        if (llm != null) {
+            cfg = cfg.with("LLM_PROVIDER", llm.strip().toLowerCase())
+                    .with("USE_SCRIPTED_LLM", String.valueOf(llm.strip().equalsIgnoreCase("scripted")));
+        }
+        if (model != null) {
+            cfg = cfg.with("GEMINI_MODEL", model.strip());
+        }
+        return cfg;
+    }
+
+    /**
+     * Reads a task file. Blank lines and lines starting with '#' are ignored. "then: ..." lines are
+     * follow-ups (like --then). "from:", "to:", "depart:", "arrive-by:", "date:", "strategy:",
+     * "avoid-route:" and "avoid-mode:" lines set the matching options. Every other line is part of
+     * the plain-English request.
+     */
+    void readTask(String source) throws java.io.IOException {
+        String text = source.equals("-")
+                ? new String(System.in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8)
+                : java.nio.file.Files.readString(java.nio.file.Path.of(source));
+        StringBuilder req = new StringBuilder();
+        List<String> thens = new java.util.ArrayList<>(followUps);
+        for (String raw : text.split("\\R")) {
+            String line = raw.strip();
+            if (line.isEmpty() || line.startsWith("#")) {
+                continue;
+            }
+            int colon = line.indexOf(':');
+            String key = colon > 0 ? line.substring(0, colon).strip().toLowerCase() : "";
+            String value = colon > 0 ? line.substring(colon + 1).strip() : "";
+            switch (key) {
+                case "then" -> thens.add(value);
+                case "from" -> from = value;
+                case "to" -> to = value;
+                case "depart" -> when.depart = value;
+                case "arrive-by", "arrive by" -> when.arriveBy = value;
+                case "date" -> date = LocalDate.parse(value);
+                case "strategy" -> strategy = value;
+                case "avoid-route" -> avoidRoutes = merge(avoidRoutes, value);
+                case "avoid-mode" -> avoidModes = merge(avoidModes, value);
+                default -> req.append(req.length() == 0 ? "" : " ").append(line);
+            }
+        }
+        if (req.length() > 0) {
+            if (request != null && !request.isBlank()) {
+                throw new ParameterException(spec.commandLine(), "Give the request either in quotes or in --input, not both.");
+            }
+            request = req.toString();
+        }
+        followUps = thens;
+    }
+
+    private static List<String> merge(List<String> existing, String csv) {
+        List<String> out = new java.util.ArrayList<>(existing);
+        for (String part : csv.split(",")) {
+            if (!part.isBlank()) {
+                out.add(part.strip());
+            }
+        }
+        return out;
     }
 
     PlanResult plan(TripController c) {

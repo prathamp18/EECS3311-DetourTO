@@ -1,0 +1,7 @@
+# Form-style task: works with or without an LLM key.
+from: Keele
+to: Union
+date: 2026-11-02
+depart: 08:00
+strategy: fewest-transfers
+then: leave 15 min later

@@ -145,4 +145,59 @@ class PlanCommandTest {
         assertEquals(2, run("--from", "York U", "--to", "Union", "--strategy", "cheapest"));
         assertEquals(2, run("--from", "York U", "--to", "Union", "--depart", "08:00", "--arrive-by", "09:00"));
     }
+
+    @Test
+    void taskFileWithFormFieldsPlansTheTrip(@org.junit.jupiter.api.io.TempDir Path dir) throws IOException {
+        Path task = dir.resolve("task.txt");
+        java.nio.file.Files.writeString(task, """
+                # morning trip
+                from: Keele
+                to: Union
+                date: 2026-10-22
+                depart: 08:00
+                strategy: fewest-transfers
+                """);
+        int code = run("--input", task.toString(), "--json");
+        assertEquals(0, code, out());
+        JsonNode root = new ObjectMapper().readTree(out());
+        assertEquals("ok", root.get("status").asText());
+        assertTrue(root.get("options").size() > 0);
+    }
+
+    @Test
+    void taskFileFollowUpsWorkLikeThen(@org.junit.jupiter.api.io.TempDir Path dir) throws IOException {
+        Path task = dir.resolve("task.txt");
+        java.nio.file.Files.writeString(task, """
+                from: Keele
+                to: Union
+                date: 2026-10-22
+                depart: 08:00
+                then: leave 15 min later
+                """);
+        int code = run("-i", task.toString(), "--json");
+        assertEquals(0, code, out());
+        JsonNode root = new ObjectMapper().readTree(out());
+        assertEquals(1, root.get("followUps").size());
+    }
+
+    @Test
+    void taskCanComeFromStandardInput() throws IOException {
+        java.io.InputStream in = System.in;
+        System.setIn(new java.io.ByteArrayInputStream(
+                "from: Keele\nto: Union\ndate: 2026-10-22\ndepart: 08:00\n".getBytes(StandardCharsets.UTF_8)));
+        try {
+            assertEquals(0, run("--input", "-", "--json"), out());
+        } finally {
+            System.setIn(in);
+        }
+        assertEquals("ok", new ObjectMapper().readTree(out()).get("status").asText());
+    }
+
+    @Test
+    void llmOptionOverridesTheProviderForThisRun() {
+        PlanCommand cmd = new PlanCommand();
+        new CommandLine(cmd).parseArgs("--llm", "scripted", "--model", "gemini-flash-lite-latest", "x");
+        assertEquals("scripted", cmd.config().get("LLM_PROVIDER").orElseThrow());
+        assertEquals("gemini-flash-lite-latest", cmd.config().get("GEMINI_MODEL").orElseThrow());
+    }
 }
